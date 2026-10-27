@@ -11,12 +11,17 @@ import {
 import { useEffect, useState } from "react";
 import { PortfolioChart } from "@/components/invest/portfolio-chart";
 import { buttonClass } from "@/components/ui/button";
-import { historicalStartups, SIMULATION_YEARS } from "@/lib/invest-data";
+import {
+  getStartupCopy,
+  localizeStartups,
+  SIMULATION_YEARS,
+} from "@/lib/invest-data";
 import {
   eventsForYear,
   type InvestmentAmounts,
   type SimulationResult,
 } from "@/lib/invest-sim";
+import { useI18n } from "@/lib/i18n";
 import { cn, formatCurrency, formatMultiple } from "@/lib/utils";
 
 export function SimulationStage({
@@ -28,6 +33,8 @@ export function SimulationStage({
   result: SimulationResult;
   onDone: () => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.invest.simulation;
   const [year, setYear] = useState(0);
   const [playing, setPlaying] = useState(true);
 
@@ -46,10 +53,13 @@ export function SimulationStage({
   const delta = value - previousValue;
   const totalDelta = value - 10_000;
   const events = eventsForYear(amounts, year);
-  const funded = historicalStartups.filter(
+  const startups = localizeStartups(dict);
+  const funded = startups.filter(
     (startup) => (amounts[startup.id] ?? 0) > 0,
   );
   const finished = year >= SIMULATION_YEARS;
+  const signedDelta = `${delta >= 0 ? "+" : ""}${formatCurrency(delta)}`;
+  const signedTotal = `${totalDelta >= 0 ? "+" : ""}${formatCurrency(totalDelta)}`;
 
   return (
     <div className="shell py-8 md:py-12">
@@ -61,18 +71,17 @@ export function SimulationStage({
               <span className="relative inline-flex size-2 rounded-full bg-grape" />
             </span>
             <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-              Live simulation
+              {copy.live}
             </span>
           </div>
           <h1 className="mt-3 text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[0.95] tracking-[-0.05em]">
-            Five years,{" "}
+            {copy.title}{" "}
             <span className="serif-accent font-normal text-grape">
-              fast-forwarded.
+              {copy.titleAccent}
             </span>
           </h1>
           <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
-            The portfolio moves with the historical trajectory of each company.
-            Watch the narrative, then see what it cost you.
+            {copy.body}
           </p>
         </div>
 
@@ -89,11 +98,11 @@ export function SimulationStage({
               >
                 {playing ? (
                   <>
-                    <Pause className="size-3.5" /> Pause
+                    <Pause className="size-3.5" /> {copy.pause}
                   </>
                 ) : (
                   <>
-                    <Play className="size-3.5" /> Play
+                    <Play className="size-3.5" /> {copy.play}
                   </>
                 )}
               </button>
@@ -106,7 +115,7 @@ export function SimulationStage({
                 className={buttonClass({ variant: "ghost", size: "sm" })}
               >
                 <FastForward className="size-3.5" />
-                Skip to year 5
+                {copy.skip}
               </button>
             </>
           )}
@@ -116,7 +125,7 @@ export function SimulationStage({
               onClick={onDone}
               className={buttonClass({ variant: "primary", size: "md" })}
             >
-              See the full breakdown
+              {copy.seeBreakdown}
               <ArrowRight className="size-4" />
             </button>
           )}
@@ -129,7 +138,7 @@ export function SimulationStage({
           <div className="relative">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-paper/45">
-                Portfolio value
+                {copy.portfolioValue}
               </span>
               <span
                 className={cn(
@@ -141,7 +150,7 @@ export function SimulationStage({
                       : "bg-white/10 text-paper/70",
                 )}
               >
-                Year {year} / 5
+                {t("invest.simulation.yearOf", { year })}
               </span>
             </div>
 
@@ -164,21 +173,20 @@ export function SimulationStage({
                   <TrendingDown className="size-3.5" />
                 )}
                 {year === 0
-                  ? "Starting position"
-                  : `${delta >= 0 ? "+" : ""}${formatCurrency(delta)} this year`}
+                  ? copy.startingPosition
+                  : t("invest.simulation.thisYear", { amount: signedDelta })}
               </span>
               {year > 0 && (
                 <span className="text-[10px] font-semibold text-paper/40">
-                  {totalDelta >= 0 ? "+" : ""}
-                  {formatCurrency(totalDelta)} since day one
+                  {t("invest.simulation.sinceDayOne", { amount: signedTotal })}
                 </span>
               )}
             </div>
 
             <div className="mt-8">
               <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.14em] text-paper/40">
-                <span>Timeline</span>
-                <span>{year}/5 years</span>
+                <span>{copy.timeline}</span>
+                <span>{t("invest.simulation.yearsOf", { year })}</span>
               </div>
               <div className="mt-2 flex gap-1.5" aria-hidden="true">
                 {Array.from({ length: SIMULATION_YEARS }, (_, index) => (
@@ -196,7 +204,7 @@ export function SimulationStage({
             <dl className="mt-7 grid grid-cols-2 gap-4 border-t border-white/10 pt-5">
               <div>
                 <dt className="text-[9px] font-bold uppercase tracking-[0.14em] text-paper/40">
-                  Deployed
+                  {copy.deployed}
                 </dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums">
                   {formatCurrency(result.invested)}
@@ -204,7 +212,7 @@ export function SimulationStage({
               </div>
               <div>
                 <dt className="text-[9px] font-bold uppercase tracking-[0.14em] text-paper/40">
-                  Cash left
+                  {copy.cashLeft}
                 </dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums">
                   {formatCurrency(result.cash)}
@@ -217,10 +225,10 @@ export function SimulationStage({
         <div className="rounded-[26px] border-[1.5px] border-ink/15 bg-paper p-4 sm:p-6">
           <div className="mb-3 flex items-center justify-between px-1">
             <h2 className="text-sm font-extrabold tracking-tight">
-              Portfolio trajectory
+              {copy.trajectory}
             </h2>
             <span className="rounded-full bg-cream px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-muted">
-              $10k start
+              {copy.start10k}
             </span>
           </div>
           <PortfolioChart values={result.series} visible={year + 1} />
@@ -231,50 +239,53 @@ export function SimulationStage({
         <div className="rounded-[26px] border-[1.5px] border-ink/15 bg-paper p-5 sm:p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-extrabold tracking-tight">
-              {year === 0 ? "The starting gun" : `What happened in year ${year}`}
+              {year === 0
+                ? copy.startingGun
+                : t("invest.simulation.whatHappened", { year })}
             </h2>
             <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-              {events.length} {events.length === 1 ? "event" : "events"}
+              {t("invest.simulation.events", { count: events.length })}
             </span>
           </div>
 
           {year === 0 ? (
             <div className="mt-4 rounded-2xl bg-cream p-4 text-sm leading-6 text-ink/65">
-              You start with{" "}
-              <strong className="font-extrabold text-ink">$10,000</strong>.
-              Every dollar you deployed is now on a five-year ride. Every dollar
-              you kept is still cash.
+              {t("invest.simulation.startBody", {
+                amount: formatCurrency(10_000),
+              })}
             </div>
           ) : events.length > 0 ? (
             <ul className="mt-4 space-y-2.5">
-              {events.map((event) => (
-                <li
-                  key={`${event.startup.id}-${event.text}`}
-                  className="animate-fade-up flex items-start gap-3 rounded-2xl border border-ink/10 bg-white/60 p-3.5"
-                >
-                  <span
-                    className="grid size-8 shrink-0 place-items-center rounded-xl text-base"
-                    style={{ backgroundColor: event.startup.look.chip }}
+              {events.map((event) => {
+                const eventCopy = getStartupCopy(dict, event.startup.id);
+
+                return (
+                  <li
+                    key={`${event.startup.id}-${event.year}`}
+                    className="animate-fade-up flex items-start gap-3 rounded-2xl border border-ink/10 bg-white/60 p-3.5"
                   >
-                    {event.startup.emoji}
-                  </span>
-                  <div>
-                    <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-muted">
-                      {event.startup.name}
-                    </p>
-                    <p className="mt-0.5 text-xs leading-5 text-ink/75">
-                      {event.text}
-                    </p>
-                  </div>
-                </li>
-              ))}
+                    <span
+                      className="grid size-8 shrink-0 place-items-center rounded-xl text-base"
+                      style={{ backgroundColor: event.startup.look.chip }}
+                    >
+                      {event.startup.emoji}
+                    </span>
+                    <div>
+                      <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-muted">
+                        {event.startup.name}
+                      </p>
+                      <p className="mt-0.5 text-xs leading-5 text-ink/75">
+                        {eventCopy.milestones[event.year - 1]}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <div className="mt-4 rounded-2xl border border-dashed border-ink/15 p-6 text-center">
               <p className="text-sm font-semibold text-ink/55">
-                {funded.length === 0
-                  ? "You sat this one out. Your cash did not move."
-                  : "No portfolio headlines this year. Quiet can be good."}
+                {funded.length === 0 ? copy.satOut : copy.quiet}
               </p>
             </div>
           )}
@@ -283,10 +294,10 @@ export function SimulationStage({
         <div className="rounded-[26px] border-[1.5px] border-ink/15 bg-paper p-5 sm:p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-extrabold tracking-tight">
-              Your positions
+              {copy.positions}
             </h2>
             <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-              {funded.length} funded
+              {t("invest.simulation.funded", { count: funded.length })}
             </span>
           </div>
 
@@ -310,7 +321,9 @@ export function SimulationStage({
                           {startup.name}
                         </p>
                         <p className="text-[10px] text-muted">
-                          {formatCurrency(amount)} invested
+                          {t("invest.simulation.invested", {
+                            amount: formatCurrency(amount),
+                          })}
                         </p>
                       </div>
                     </div>
@@ -326,7 +339,9 @@ export function SimulationStage({
                         {formatCurrency(positionValue)}
                       </p>
                       <p className="text-[9px] font-bold uppercase tracking-wider text-muted">
-                        {formatMultiple(multiple)} value
+                        {t("invest.simulation.value", {
+                          multiple: formatMultiple(multiple),
+                        })}
                       </p>
                     </div>
                   </li>
@@ -336,7 +351,9 @@ export function SimulationStage({
           ) : (
             <div className="mt-4 rounded-2xl border border-dashed border-ink/15 p-6 text-center">
               <p className="text-sm font-semibold text-ink/55">
-                No positions. You kept the whole $10,000 in cash.
+                {t("invest.simulation.noPositions", {
+                  amount: formatCurrency(10_000),
+                })}
               </p>
             </div>
           )}
@@ -344,7 +361,7 @@ export function SimulationStage({
           {result.cash > 0 && (
             <div className="mt-3 flex items-center justify-between rounded-xl bg-cream px-3 py-2.5">
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-                Uninvested cash
+                {copy.uninvested}
               </span>
               <span className="text-xs font-extrabold tabular-nums">
                 {formatCurrency(result.cash)}
@@ -358,11 +375,12 @@ export function SimulationStage({
         <div className="mt-7 flex flex-col items-center justify-between gap-4 rounded-[24px] border-[1.5px] border-ink bg-acid px-6 py-5 sm:flex-row">
           <div>
             <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink/55">
-              Simulation complete
+              {copy.complete}
             </p>
             <p className="mt-1 text-lg font-extrabold tracking-tight">
-              Five years later, your portfolio is{" "}
-              {formatCurrency(result.finalValue)}.
+              {t("invest.simulation.final", {
+                amount: formatCurrency(result.finalValue),
+              })}
             </p>
           </div>
           <button
@@ -370,7 +388,7 @@ export function SimulationStage({
             onClick={onDone}
             className={buttonClass({ variant: "dark", size: "md" })}
           >
-            Open the results
+            {copy.openResults}
             <ArrowRight className="size-4" />
           </button>
         </div>

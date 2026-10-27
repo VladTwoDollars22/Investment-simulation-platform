@@ -13,6 +13,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { PitchCardView } from "@/components/pitch/pitch-card-view";
 import { buttonClass } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 import type {
   PitchCard,
   Vote,
@@ -43,6 +44,8 @@ export function VoteDeck({
   onSeeResults: () => void;
   onOpenSubmit: () => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.pitch.deck;
   const [drag, setDrag] = useState({ x: 0, y: 0, active: false });
   const [flying, setFlying] = useState<"left" | "right" | null>(null);
   const startPoint = useRef({ x: 0, y: 0 });
@@ -174,23 +177,22 @@ export function VoteDeck({
           <div className="flex items-center gap-2">
             <span className="flex size-2 rounded-full bg-grape" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-              Founder Tinder
+              {copy.badge}
             </span>
             {status === "syncing" && (
               <span className="rounded-full bg-cream px-2 py-0.5 text-[9px] font-bold text-muted">
-                syncing board…
+                {copy.syncing}
               </span>
             )}
           </div>
           <h2 className="mt-2 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-            Swipe with{" "}
+            {copy.title}{" "}
             <span className="serif-accent font-normal text-grape">
-              your wallet.
+              {copy.titleAccent}
             </span>
           </h2>
           <p className="mt-2 max-w-lg text-sm leading-6 text-muted">
-            Right means you would take a meeting. Left means pass. Judge the
-            pitch, not the polish — founders only get a few seconds.
+            {copy.body}
           </p>
         </div>
 
@@ -204,7 +206,10 @@ export function VoteDeck({
             />
           </div>
           <span className="text-[11px] font-extrabold tabular-nums text-muted">
-            {reviewed}/{deck.length}
+            {t("pitch.deck.reviewed", {
+              reviewed,
+              total: deck.length,
+            })}
           </span>
         </div>
       </div>
@@ -255,14 +260,14 @@ export function VoteDeck({
                     style={{ opacity: investGlow }}
                     aria-hidden="true"
                   >
-                    INVEST
+                    {copy.investStamp}
                   </div>
                   <div
                     className="pointer-events-none absolute right-5 top-6 z-20 rotate-[10deg] rounded-xl border-[3px] border-[#b3341c] bg-[#ffd9d1] px-4 py-2 text-xl font-extrabold tracking-tight text-[#b3341c]"
                     style={{ opacity: passGlow }}
                     aria-hidden="true"
                   >
-                    PASS
+                    {copy.passStamp}
                   </div>
                 </div>
               </div>
@@ -275,14 +280,14 @@ export function VoteDeck({
                       if (latestVote) onRemoveVote(latestVote.startupId);
                     }}
                     disabled={!latestVote || Boolean(flying)}
-                    aria-label="Undo my last vote"
-                    title="Undo last vote"
+                    aria-label={copy.undoAria}
+                    title={copy.undoTitle}
                     className="grid size-11 place-items-center rounded-full border-2 border-ink/20 bg-paper text-ink/40 transition-all hover:border-ink/50 hover:text-ink disabled:opacity-30"
                   >
                     <Undo2 className="size-4" />
                   </button>
                   <span className="text-[9px] font-bold uppercase tracking-wider text-muted">
-                    Undo
+                    {copy.undo}
                   </span>
                 </div>
 
@@ -291,13 +296,13 @@ export function VoteDeck({
                     type="button"
                     onClick={() => decide("pass")}
                     disabled={Boolean(flying)}
-                    aria-label="Pass on this startup"
+                    aria-label={copy.passAria}
                     className="grid size-16 place-items-center rounded-full border-2 border-ink bg-paper text-coral shadow-[3px_3px_0_0_#14131a] transition-all hover:-translate-y-0.5 hover:bg-[#fff0ec] hover:shadow-[5px_5px_0_0_#14131a] active:translate-y-0 active:shadow-[1px_1px_0_0_#14131a] disabled:opacity-50"
                   >
                     <X className="size-7" strokeWidth={2.5} />
                   </button>
                   <span className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-muted">
-                    Pass
+                    {copy.pass}
                   </span>
                 </div>
 
@@ -306,19 +311,19 @@ export function VoteDeck({
                     type="button"
                     onClick={() => decide("invest")}
                     disabled={Boolean(flying)}
-                    aria-label="I would invest in this startup"
+                    aria-label={copy.investAria}
                     className="grid size-16 place-items-center rounded-full border-2 border-ink bg-acid text-ink shadow-[3px_3px_0_0_#14131a] transition-all hover:-translate-y-0.5 hover:bg-[#c7ec4f] hover:shadow-[5px_5px_0_0_#14131a] active:translate-y-0 active:shadow-[1px_1px_0_0_#14131a] disabled:opacity-50"
                   >
                     <Heart className="size-7" strokeWidth={2.5} />
                   </button>
                   <span className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-muted">
-                    Invest
+                    {copy.invest}
                   </span>
                 </div>
               </div>
 
               <p className="mt-4 text-center text-[10px] font-semibold text-muted">
-                Drag the card, tap a button, or use{" "}
+                {copy.hint}{" "}
                 <kbd className="rounded border border-ink/15 bg-paper px-1.5 py-0.5 font-mono text-[9px]">
                   ←
                 </kbd>{" "}
@@ -340,11 +345,10 @@ export function VoteDeck({
               {deck.length === 0 ? (
                 <>
                   <h3 className="mt-5 text-2xl font-extrabold tracking-[-0.04em]">
-                    Your pitch is on the board.
+                    {copy.ownTitle}
                   </h3>
                   <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted">
-                    Founders cannot swipe on their own startup. Share the board
-                    with the room and watch the votes come in.
+                    {copy.ownBody}
                   </p>
                   <div className="mt-6 flex flex-col justify-center gap-2 sm:flex-row">
                     <button
@@ -352,7 +356,7 @@ export function VoteDeck({
                       onClick={onSeeResults}
                       className={buttonClass({ variant: "primary", size: "md" })}
                     >
-                      See the results
+                      {copy.seeResults}
                       <ArrowRight className="size-4" />
                     </button>
                     <button
@@ -360,22 +364,23 @@ export function VoteDeck({
                       onClick={onOpenSubmit}
                       className={buttonClass({ variant: "outline", size: "md" })}
                     >
-                      Submit another
+                      {copy.submitAnother}
                     </button>
                   </div>
                 </>
               ) : (
                 <>
                   <p className="mt-5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-grape">
-                    Deck complete
+                    {copy.complete}
                   </p>
                   <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.04em]">
-                    You reviewed {reviewed}{" "}
-                    {reviewed === 1 ? "startup" : "startups"}.
+                    {t("pitch.deck.reviewedTitle", { count: reviewed })}
                   </h3>
                   <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted">
-                    {investedCount} would get a meeting, {passedCount} would
-                    not. Your votes are now part of the room&apos;s signal.
+                    {t("pitch.deck.reviewedBody", {
+                      invested: investedCount,
+                      passed: passedCount,
+                    })}
                   </p>
 
                   <div className="mx-auto mt-5 grid w-full max-w-xs grid-cols-2 gap-2">
@@ -384,7 +389,7 @@ export function VoteDeck({
                         {investedCount}
                       </p>
                       <p className="text-[9px] font-bold uppercase tracking-wider text-muted">
-                        Invested
+                        {copy.investedLabel}
                       </p>
                     </div>
                     <div className="rounded-xl bg-coral/10 px-3 py-2.5">
@@ -392,7 +397,7 @@ export function VoteDeck({
                         {passedCount}
                       </p>
                       <p className="text-[9px] font-bold uppercase tracking-wider text-muted">
-                        Passed
+                        {copy.passedLabel}
                       </p>
                     </div>
                   </div>
@@ -403,24 +408,20 @@ export function VoteDeck({
                       onClick={onSeeResults}
                       className={buttonClass({ variant: "primary", size: "md" })}
                     >
-                      See what the room thinks
+                      {copy.seeRoom}
                       <ArrowRight className="size-4" />
                     </button>
                     <button
                       type="button"
                       onClick={() => {
-                        if (
-                          window.confirm(
-                            "Clear all your votes and review the deck again?",
-                          )
-                        ) {
+                        if (window.confirm(copy.resetConfirm)) {
                           onResetVotes();
                         }
                       }}
                       className={buttonClass({ variant: "outline", size: "md" })}
                     >
                       <RotateCcw className="size-4" />
-                      Change votes
+                      {copy.changeVotes}
                     </button>
                   </div>
                 </>
@@ -428,7 +429,7 @@ export function VoteDeck({
 
               <p className="mt-5 flex items-center justify-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider text-muted">
                 <Check className="size-3 text-[#0b6749]" />
-                No real money changes hands
+                {copy.noMoney}
               </p>
             </div>
           )}

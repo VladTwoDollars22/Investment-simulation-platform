@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { I18nProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -18,8 +19,8 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "VentureU — Startup Games for Student Founders",
-    template: "%s · VentureU",
+    default: "Starcup — Startup Games for Student Founders",
+    template: "%s · Starcup",
   },
   description:
     "Two fast, interactive games for student startup events: simulate a $10,000 portfolio across five historical startups, then swipe on real student pitches and see what investors actually care about.",
@@ -31,10 +32,11 @@ export const metadata: Metadata = {
     "university entrepreneurship",
   ],
   openGraph: {
-    title: "VentureU — Startup Games",
+    title: "Starcup — Startup Games",
     description:
       "Back five historical startups with $10,000. Then swipe on student pitches. Find out what kind of investor you really are.",
     type: "website",
+    images: [{ url: "/starcup-logo.jpg", width: 2752, height: 1536 }],
   },
 };
 
@@ -52,7 +54,9 @@ export default function RootLayout({
       lang="en"
       className={`${jakarta.variable} ${instrument.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <I18nProvider>{children}</I18nProvider>
+      </body>
     </html>
   );
 }

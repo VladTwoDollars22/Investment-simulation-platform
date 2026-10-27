@@ -9,48 +9,31 @@ import {
 } from "lucide-react";
 import { buttonClass } from "@/components/ui/button";
 import { historicalStartups } from "@/lib/invest-data";
-
-const steps = [
-  {
-    number: "01",
-    title: "Read the pitch",
-    body: "Five real startups, frozen at the moment they needed money. You see the story and the risk — never the outcome.",
-  },
-  {
-    number: "02",
-    title: "Write the cheque",
-    body: "Deploy any amount from your $10,000. Go big on one bet, spread it around, or pass entirely. No take-backs.",
-  },
-  {
-    number: "03",
-    title: "Fast-forward five years",
-    body: "Watch the portfolio move year by year, then unpack what history did to your decisions and why.",
-  },
-];
+import { useI18n } from "@/lib/i18n";
 
 export function IntroStage({ onStart }: { onStart: () => void }) {
+  const { dict, t } = useI18n();
+  const copy = dict.invest.intro;
+
   return (
     <div className="shell py-10 md:py-16 lg:py-20">
       <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink/60">
             <span className="size-1.5 rounded-full bg-grape" />
-            Game 01 · Portfolio simulator
+            {copy.badge}
           </div>
 
           <h1 className="mt-6 text-[clamp(2.6rem,6vw,4.7rem)] font-extrabold leading-[0.95] tracking-[-0.055em]">
-            You get $10,000.
+            {copy.title1}
             <br />
-            Five startups.
+            {copy.title2}
             <br />
-            <span className="serif-accent text-grape">Five years.</span>
+            <span className="serif-accent text-grape">{copy.titleAccent}</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-7 text-ink/65 md:text-lg">
-            Some of these companies became legends. Some became cautionary
-            tales. All of them looked uncertain when the cheque was written.
-            Your job: decide who gets your money before history reveals the
-            answer.
+            {copy.body}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -63,7 +46,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
                 className: "w-full sm:w-auto",
               })}
             >
-              Open the deal flow
+              {copy.open}
               <ArrowRight className="size-4" />
             </button>
             <a
@@ -74,7 +57,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
                 className: "w-full sm:w-auto",
               })}
             >
-              Read the rules
+              {copy.rules}
             </a>
           </div>
 
@@ -82,19 +65,23 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
             <div>
               <p className="text-xl font-extrabold tracking-tight">$10,000</p>
               <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
-                Starting capital
+                {copy.statCapital}
               </p>
             </div>
             <div>
-              <p className="text-xl font-extrabold tracking-tight">5 deals</p>
+              <p className="text-xl font-extrabold tracking-tight">
+                {copy.deals}
+              </p>
               <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
-                No do-overs
+                {copy.statDeals}
               </p>
             </div>
             <div>
-              <p className="text-xl font-extrabold tracking-tight">5 years</p>
+              <p className="text-xl font-extrabold tracking-tight">
+                {copy.years}
+              </p>
               <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
-                One simulation
+                {copy.statYears}
               </p>
             </div>
           </div>
@@ -102,16 +89,16 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
 
         <div className="relative mx-auto w-full max-w-[470px] animate-fade-up [animation-delay:120ms]">
           <div className="absolute -right-2 -top-5 z-20 rotate-6 rounded-full border-2 border-ink bg-acid px-4 py-2 text-[10px] font-extrabold uppercase tracking-[0.14em] shadow-[3px_3px_0_0_#14131a]">
-            High variance inside
+            {copy.badgeVariance}
           </div>
 
           <div className="hard-card-lg relative overflow-hidden rounded-[28px] bg-paper">
             <div className="flex items-center justify-between border-b-[1.5px] border-ink/10 bg-cream/70 px-6 py-4">
               <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-ink/55">
-                Fund mandate
+                {copy.mandate}
               </span>
               <span className="rounded-full border border-ink/15 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-muted">
-                Confidential
+                {copy.confidential}
               </span>
             </div>
 
@@ -119,10 +106,10 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted">
-                    VentureU Student Capital
+                    {copy.fundName}
                   </p>
                   <h2 className="mt-1 text-2xl font-extrabold tracking-[-0.04em]">
-                    Fund I
+                    {copy.fund}
                   </h2>
                 </div>
                 <div className="grid size-12 place-items-center rounded-2xl bg-grape text-white">
@@ -132,21 +119,21 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
 
               <dl className="mt-6 space-y-3 text-sm">
                 <div className="flex items-center justify-between border-b border-dashed border-ink/15 pb-3">
-                  <dt className="text-muted">Committed capital</dt>
+                  <dt className="text-muted">{copy.committed}</dt>
                   <dd className="font-extrabold tabular-nums">$10,000.00</dd>
                 </div>
                 <div className="flex items-center justify-between border-b border-dashed border-ink/15 pb-3">
-                  <dt className="text-muted">Target companies</dt>
+                  <dt className="text-muted">{copy.targets}</dt>
                   <dd className="font-extrabold">5</dd>
                 </div>
                 <div className="flex items-center justify-between border-b border-dashed border-ink/15 pb-3">
-                  <dt className="text-muted">Hold period</dt>
-                  <dd className="font-extrabold">5 years</dd>
+                  <dt className="text-muted">{copy.hold}</dt>
+                  <dd className="font-extrabold">{copy.years}</dd>
                 </div>
                 <div className="flex items-center justify-between">
-                  <dt className="text-muted">Investment strategy</dt>
+                  <dt className="text-muted">{copy.strategy}</dt>
                   <dd className="rounded-full bg-acid px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider">
-                    You decide
+                    {copy.decide}
                   </dd>
                 </div>
               </dl>
@@ -154,11 +141,10 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
               <div className="mt-6 rounded-2xl bg-cream p-4">
                 <div className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.14em] text-ink/55">
                   <Sparkles className="size-3.5 text-grape" />
-                  What you are really buying
+                  {copy.buying}
                 </div>
                 <p className="mt-2 text-xs leading-5 text-ink/65">
-                  A lesson in risk, timing, and the stories we tell ourselves
-                  when a pitch sounds too good to fail.
+                  {copy.buyingBody}
                 </p>
               </div>
 
@@ -166,11 +152,11 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
                 <div>
                   <div className="h-px w-32 bg-ink/25" />
                   <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-muted">
-                    General partner
+                    {copy.partner}
                   </p>
                 </div>
                 <span className="serif-accent text-lg text-grape/70">
-                  You
+                  {copy.you}
                 </span>
               </div>
             </div>
@@ -182,7 +168,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
             </div>
             <div>
               <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-muted">
-                Portfolio value
+                {copy.portfolioValue}
               </p>
               <p className="text-sm font-extrabold tabular-nums">$10,000</p>
             </div>
@@ -190,7 +176,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
 
           <div className="absolute -right-2 bottom-14 z-10 flex rotate-3 items-center gap-2 rounded-xl border border-ink/15 bg-white px-3 py-2 text-[10px] font-bold text-ink/60 shadow-sm sm:-right-5">
             <Clock3 className="size-3.5 text-coral" />
-            5-year horizon
+            {copy.horizon}
           </div>
         </div>
       </div>
@@ -199,30 +185,29 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-              The rules
+              {copy.rulesEyebrow}
             </p>
             <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.04em] md:text-4xl">
-              Three decisions. No safety net.
+              {copy.rulesTitle}
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-6 text-muted">
-            There is no perfect portfolio. The point is to make a call, see the
-            consequences, and notice your own pattern.
+            {copy.rulesBody}
           </p>
         </div>
 
         <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {steps.map((step, index) => (
+          {copy.steps.map((step, index) => (
             <div
-              key={step.number}
+              key={step.title}
               className="group relative rounded-3xl border-[1.5px] border-ink/15 bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink/40 hover:shadow-[4px_4px_0_0_#14131a]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-extrabold tracking-[0.16em] text-grape">
-                  {step.number}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="grid size-8 place-items-center rounded-full bg-cream text-[10px] font-bold text-ink/45 transition-colors group-hover:bg-acid group-hover:text-ink">
-                  {index + 1}/3
+                  {t("invest.intro.stepOf", { current: index + 1 })}
                 </span>
               </div>
               <h3 className="mt-8 text-lg font-extrabold tracking-tight">
@@ -235,7 +220,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
 
         <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-ink/10 bg-paper/60 px-5 py-3.5 text-[11px] font-semibold text-muted">
           <span className="font-extrabold uppercase tracking-wider text-ink/55">
-            Deal flow
+            {copy.dealFlow}
           </span>
           {historicalStartups.map((startup) => (
             <span key={startup.id} className="inline-flex items-center gap-1.5">
@@ -243,7 +228,7 @@ export function IntroStage({ onStart }: { onStart: () => void }) {
               {startup.name}
             </span>
           ))}
-          <span className="text-ink/35">· outcomes hidden</span>
+          <span className="text-ink/35">{copy.outcomesHidden}</span>
         </div>
       </div>
     </div>

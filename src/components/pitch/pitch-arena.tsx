@@ -6,20 +6,22 @@ import { useEffect, useState } from "react";
 import { ResultsDashboard } from "@/components/pitch/results-dashboard";
 import { SubmitForm } from "@/components/pitch/submit-form";
 import { VoteDeck } from "@/components/pitch/vote-deck";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { usePitchBoard } from "@/lib/use-pitch-board";
 
 type Tab = "vote" | "submit" | "results";
 
-const tabs: Array<{ id: Tab; label: string; icon: typeof Heart }> = [
-  { id: "vote", label: "Vote", icon: Heart },
-  { id: "submit", label: "Submit a pitch", icon: Plus },
-  { id: "results", label: "Results", icon: BarChart3 },
-];
-
 export function PitchArena() {
+  const { dict, t } = useI18n();
+  const copy = dict.pitch.arena;
   const board = usePitchBoard();
   const [tab, setTab] = useState<Tab>("vote");
+  const tabs: Array<{ id: Tab; label: string; icon: typeof Heart }> = [
+    { id: "vote", label: copy.vote, icon: Heart },
+    { id: "submit", label: copy.submit, icon: Plus },
+    { id: "results", label: copy.results, icon: BarChart3 },
+  ];
 
   const ownIds = new Set(
     board.startups
@@ -50,12 +52,12 @@ export function PitchArena() {
 
   const statusLabel =
     board.status === "syncing"
-      ? "Syncing board"
+      ? copy.statusSyncing
       : board.status === "offline"
-        ? "Offline demo"
+        ? copy.statusOffline
         : board.persistent
-          ? "Live board"
-          : "Session board";
+          ? copy.statusLive
+          : copy.statusSession;
   const statusDot =
     board.status === "syncing"
       ? "bg-sun"
@@ -75,7 +77,7 @@ export function PitchArena() {
               href="/"
               className="text-xs font-bold text-ink/55 transition-colors hover:text-ink"
             >
-              ← All games
+              {copy.allGames}
             </Link>
             <span
               className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-cream px-3 py-1.5 md:hidden"
@@ -90,7 +92,7 @@ export function PitchArena() {
 
           <div
             role="tablist"
-            aria-label="Pitch arena sections"
+            aria-label={copy.sections}
             className="flex w-full items-center gap-1 rounded-full border border-ink/10 bg-cream p-1 md:w-auto"
           >
             {tabs.map((item) => {
@@ -141,7 +143,7 @@ export function PitchArena() {
               </span>
             </span>
             <span className="text-[10px] font-bold tabular-nums text-muted">
-              {board.allVotes.length} swipes
+              {t("pitch.arena.swipes", { count: board.allVotes.length })}
             </span>
           </div>
         </div>
@@ -150,8 +152,7 @@ export function PitchArena() {
       {board.status === "offline" && (
         <div className="border-b border-ink/10 bg-sun/25">
           <div className="shell py-2.5 text-center text-[10px] font-semibold text-ink/65 sm:text-left">
-            The shared board is unreachable, so you are in local demo mode.
-            Votes and submissions are saved on this device only.
+            {copy.offlineBanner}
           </div>
         </div>
       )}
@@ -160,7 +161,7 @@ export function PitchArena() {
         <div
           id="panel-vote"
           role="tabpanel"
-          aria-label="Vote on pitches"
+          aria-label={copy.votePanel}
           className={tab === "vote" ? "" : "hidden"}
         >
           <VoteDeck
@@ -177,8 +178,9 @@ export function PitchArena() {
           />
           {deckSize > 0 && (
             <p className="mt-6 text-center text-[10px] font-medium text-muted">
-              {board.startups.length} startups on this board · demo cohort
-              included · no real money involved
+              {t("pitch.arena.boardSummary", {
+                count: board.startups.length,
+              })}
             </p>
           )}
         </div>
@@ -186,7 +188,7 @@ export function PitchArena() {
         <div
           id="panel-submit"
           role="tabpanel"
-          aria-label="Submit a pitch"
+          aria-label={copy.submitPanel}
           className={tab === "submit" ? "" : "hidden"}
         >
           <SubmitForm
@@ -198,7 +200,7 @@ export function PitchArena() {
         <div
           id="panel-results"
           role="tabpanel"
-          aria-label="Voting results"
+          aria-label={copy.resultsPanel}
           className={tab === "results" ? "" : "hidden"}
         >
           <ResultsDashboard

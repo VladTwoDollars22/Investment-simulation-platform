@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useI18n } from "@/lib/i18n";
 import {
   buildDemoVotes,
   draftToCard,
+  localizeSeedStartup,
   seedStartups,
 } from "@/lib/pitch-data";
 import type {
@@ -16,9 +18,9 @@ import type {
 import type { DraftErrors } from "@/lib/pitch-validation";
 import { uid } from "@/lib/utils";
 
-const VOTER_KEY = "ventureu.voter.v1";
-const SUBMISSIONS_KEY = "ventureu.pitch.submissions.v1";
-const VOTES_KEY = "ventureu.pitch.votes.v1";
+const VOTER_KEY = "starcup.voter.v1";
+const SUBMISSIONS_KEY = "starcup.pitch.submissions.v1";
+const VOTES_KEY = "starcup.pitch.votes.v1";
 
 type BoardStatus = "syncing" | "ready" | "offline";
 
@@ -27,9 +29,16 @@ type LocalBoard = {
   votes: Vote[];
 };
 
+export type SubmitErrorCode =
+  | "loading"
+  | "invalid"
+  | "publish"
+  | "malformed"
+  | "server";
+
 type SubmitResult =
   | { ok: true; startup: PitchCard; offline: boolean }
-  | { ok: false; error: string; errors?: DraftErrors };
+  | { ok: false; error: SubmitErrorCode; errors?: DraftErrors };
 
 function readJson<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -81,6 +90,7 @@ function mergeStartups(server: PitchCard[], local: PitchCard[]) {
 }
 
 export function usePitchBoard() {
+  const { dict } = useI18n();
   const [voterId, setVoterId] = useState<string | null>(null);
   const [startups, setStartups] = useState<PitchCard[]>(seedStartups);
   const [votes, setVotes] = useState<Vote[]>([]);
@@ -156,7 +166,7 @@ export function usePitchBoard() {
     const id = voterRef.current;
 
     if (!id) {
-      return { ok: false, error: "The board is still loading. Try again." };
+      return { ok: false, error: "loading" };
     }
 
     try {
@@ -176,15 +186,15 @@ export function usePitchBoard() {
         if (response.status === 400 && data.errors) {
           return {
             ok: false,
-            error: data.error ?? "Please fix the highlighted fields.",
+            error: "invalid",
             errors: data.errors,
           };
         }
-        throw new Error(data.error ?? "Could not publish the startup.");
+        return { ok: false, error: "publish" };
       }
 
       if (!data.startup) {
-        throw new Error("The server did not return the published startup.");
+        return { ok: false, error: "malformed" };
       }
 
       setStartups((current) => mergeStartups(current, [data.startup!]));
@@ -278,10 +288,14 @@ export function usePitchBoard() {
   const myVotes = voterId
     ? votes.filter((vote) => vote.voterId === voterId)
     : [];
+  const localizedStartups = useMemo(
+    () => startups.map((startup) => localizeSeedStartup(startup, dict)),
+    [startups, dict],
+  );
 
   return {
     voterId,
-    startups,
+    startups: localizedStartups,
     votes,
     demoVotes,
     allVotes: [...demoVotes, ...votes],

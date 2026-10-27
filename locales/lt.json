@@ -1,0 +1,780 @@
+{
+  "brand": {
+    "home": "Starcup pradžia",
+    "tagline": "Startuolių žaidimai"
+  },
+  "language": {
+    "label": "Kalba",
+    "en": "EN",
+    "lt": "LT",
+    "ru": "RU"
+  },
+  "nav": {
+    "main": "Pagrindinė navigacija",
+    "mobile": "Mobili navigacija",
+    "home": "Pradžia",
+    "invest": "Investicijų simuliatorius",
+    "pitch": "Pitch arena",
+    "playNow": "Žaisti dabar",
+    "openMenu": "Atidaryti meniu",
+    "closeMenu": "Uždaryti meniu"
+  },
+  "footer": {
+    "description": "Du greiti žaidimai, paverčiantys startuolių teoriją sprendimais, kuriuos gali pajusti. Sukurta universitetų startuolių savaitėms, pitch vakarams ir įkūrėjų susitikimams.",
+    "badge": "Sukurta studentų · paruošta renginiui",
+    "games": "Žaidimai",
+    "gamesInvest": "Investicijų simuliatorius",
+    "gamesPitch": "Founder Tinder",
+    "gamesSubmit": "Pateikti startuolį",
+    "event": "Renginys",
+    "eventHow": "Kaip tai veikia",
+    "eventWhy": "Kodėl žaisti",
+    "eventLeaderboard": "Tiesioginė lentelė",
+    "copyright": "© Starcup. Žaisk drąsiai, mokykis garsiai.",
+    "disclaimer": "Mokomoji simuliacija. Daugikliai supaprastinti ir nėra finansinė konsultacija. Balsai už pitch yra renginio atsiliepimai, o ne investiciniai pasiūlymai."
+  },
+  "home": {
+    "marquee": [
+      "Patikrinimas",
+      "Brauk dešinėn",
+      "Prarask viską",
+      "Pivotas",
+      "Bandyk dar kartą",
+      "Vieneto ekonomika",
+      "Įsitikinimas",
+      "Dar kartą"
+    ],
+    "hero": {
+      "badge": "Universitetų startuolių savaitė",
+      "badgeDivider": "/",
+      "badgeSecond": "Du žaidimai, viena auditorija",
+      "title1": "Palaikyk kitą",
+      "title2": "didį dalyką.",
+      "titleAccent": "Arba prarask 10 tūkst. bandydamas.",
+      "body": "10 000 USD portfelis. Penki tikri startuoliai. Pilna auditorija studentų idėjų. Sužaisk du žaidimus, kurie startuolių teoriją paverčia sprendimais, kuriuos pajunti.",
+      "playInvest": "Žaisk investicijų žaidimą",
+      "playPitch": "Brauk per pitchus",
+      "social": "Sukurta įkūrėjams, būsimiems investuotojams ir tiesiog smalsiems. Finansų diplomo nereikia."
+    },
+    "showcase": {
+      "fundYear": "Fondas I · 5 metai",
+      "portfolioValue": "Portfelio vertė",
+      "return": "+318 % grąža",
+      "start": "Pradžia",
+      "y5": "5 m.",
+      "studentPitch": "Studento pitch",
+      "wouldInvest": "Investuočiau",
+      "swipeRight": "Brauk dešinėn",
+      "invest": "Investuoti",
+      "pass": "Praleisti"
+    },
+    "games": {
+      "eyebrow": "Pasirink žaidimą",
+      "title": "Du būdai žaisti.",
+      "titleAccent": "Vienas sąžiningas veidrodis.",
+      "body": "Žaisk bet kokia tvarka. Kiekvienas žaidimas trumpesnis nei kavos pertrauka ir baigiasi tuo, dėl ko verta ginčytis.",
+      "investBadge": "Portfelio simuliatorius",
+      "investTitle": "Startuolių investicijų simuliatorius",
+      "investBody": "Pradėk nuo 10 000 USD. Palaikyk penkias tikras įmones, kol dar nežinai, kuo jos baigėsi. Tada persuk penkerius metus į priekį ir gyvenk su tuo.",
+      "investTags": [
+        "5 tikri startuoliai",
+        "5 metų simuliacija",
+        "Pasirenkami čekių dydžiai"
+      ],
+      "example": "Pavyzdinis portfelis",
+      "play01": "Žaisti 1 žaidimą",
+      "investTime": "6–8 min.",
+      "pitchBadge": "Braukimas + balsavimas",
+      "pitchTitle": "Founder Tinder",
+      "pitchBody": "Brauk per tikrus studentų pitchus. Pateik savo kortelę. Tada pamatyk, kurias nišas, prašomas sumas ir idėjas auditorija tikrai vertina.",
+      "pitchTags": [
+        "Kortelių kaladė",
+        "Įkūrėjų pateiktys",
+        "Tiesioginiai rezultatai"
+      ],
+      "pitchCardPitch": "Daugkartinės išsinešimo dėžutės, sekamos programėlėje.",
+      "investChip": "Investuoti",
+      "play02": "Žaisti 2 žaidimą",
+      "pitchTime": "3–6 min."
+    },
+    "why": {
+      "eyebrow": "Kodėl žaisti",
+      "title": "Startuolių teorija tvarkinga.",
+      "titleAccent": "Sprendimai – ne.",
+      "body": "Šie žaidimai sukurti aplink netvarkingą dalį: pasirinkimą neapibrėžtumo sąlygomis ir atradimą, ką tavo pasirinkimai pasako apie tave.",
+      "statGames": "Žaidimai",
+      "statBets": "Istoriniai statymai",
+      "statRoom": "Gyva auditorija",
+      "lessons": [
+        {
+          "title": "Rizika tikra tik tada, kai ji tavo",
+          "body": "Skirti svetimus pinigus lengva. Stebėti, kaip 2 500 USD čekis virsta nuliu, išmoko daugiau nei bet kokia paskaitos skaidrė."
+        },
+        {
+          "title": "Geriausia istorija ne visada laimi",
+          "body": "Juicero turėjo dizainą, kapitalą ir antraštes. Airbnb turėjo pripučiamus čiužinius. Istorija apdovanoja įrodymus, o ne triukšmą."
+        },
+        {
+          "title": "Auditorija turi charakterį",
+          "body": "Braukimo duomenys atskleidžia, ką tavo publika iš tikrųjų vertina: nišą, prašomą sumą, įkūrėjo signalą ar tiesiog įsimintinumą."
+        }
+      ]
+    },
+    "board": {
+      "eyebrow": "Lentoje",
+      "title": "Studentų pitchai, pasiruošę tavo verdiktui.",
+      "enter": "Įeik į areną",
+      "submitTitle": "Turi savo startuolį?",
+      "submitBody": "Sukurk kortelę per dvi minutes. Be prezentacijos, be prisijungimo.",
+      "submit": "Pateikti",
+      "dataTitle": "Kiekvienas balsas tampa duomenų tašku.",
+      "dataBody": "Pamatyk nišų karštį, prašomų sumų įtaką ir tai, ką auditorija vertina labiausiai."
+    },
+    "cta": {
+      "badge": "Tavo pirmi 10 tūkst. laukia",
+      "title1": "Priimk sprendimą.",
+      "titleAccent": "Tada sužinok.",
+      "body": "Geriausias būdas suprasti riziką – priimti sprendimą ir pamatyti, kas nutiks toliau. Tą ciklą sutalpinome į kavos pertrauką.",
+      "invest": "Investuok 10 000 USD",
+      "pitch": "Brauk pitchų kaladę",
+      "footnote": "Be registracijos · be tikrų pinigų · visos pamokos"
+    }
+  },
+  "invest": {
+    "hud": {
+      "phases": {
+        "intro": "Instruktažas",
+        "invest": "Sandoriai",
+        "sim": "Simuliacija",
+        "results": "Rezultatai"
+      },
+      "allGames": "Visi žaidimai",
+      "exit": "Išeiti",
+      "round": "Ratas {current}/5",
+      "left": "liko",
+      "restart": "Iš naujo paleisti simuliaciją"
+    },
+    "intro": {
+      "badge": "1 žaidimas · Portfelio simuliatorius",
+      "title1": "Gauni 10 000 USD.",
+      "title2": "Penki startuoliai.",
+      "titleAccent": "Penkeri metai.",
+      "body": "Kai kurios iš šių įmonių tapo legendomis. Kai kurios – pamokomis. Visos atrodė neaiškios tuo metu, kai buvo rašomas čekis. Tavo užduotis: nuspręsti, kam atiteks tavo pinigai, kol istorija neatskleidė atsakymo.",
+      "open": "Atidaryk sandorių srautą",
+      "rules": "Skaityk taisykles",
+      "statCapital": "Pradinis kapitalas",
+      "statDeals": "Be antro šanso",
+      "statYears": "Viena simuliacija",
+      "badgeVariance": "Didelė dispersija viduje",
+      "mandate": "Fondo mandatas",
+      "confidential": "Konfidencialu",
+      "fundName": "Starcup studentų kapitalas",
+      "fund": "Fondas I",
+      "committed": "Įsipareigotas kapitalas",
+      "targets": "Tikslinės įmonės",
+      "hold": "Laikymo laikotarpis",
+      "strategy": "Investavimo strategija",
+      "decide": "Tu sprendi",
+      "buying": "Ką iš tikrųjų perki",
+      "buyingBody": "Pamoką apie riziką, laiką ir istorijas, kurias sau pasakojame, kai pitchas skamba per gerai, kad žlugtų.",
+      "partner": "Generalinis partneris",
+      "you": "Tu",
+      "portfolioValue": "Portfelio vertė",
+      "horizon": "5 metų horizontas",
+      "rulesEyebrow": "Taisyklės",
+      "rulesTitle": "Trys sprendimai. Jokio saugumo tinklo.",
+      "rulesBody": "Tobulo portfelio nėra. Esmė – priimti sprendimą, pamatyti pasekmes ir pastebėti savo paties modelį.",
+      "steps": [
+        {
+          "title": "Perskaityk pitchą",
+          "body": "Penki tikri startuoliai, sustabdyti tuo metu, kai jiems reikėjo pinigų. Matai istoriją ir riziką – niekada rezultato."
+        },
+        {
+          "title": "Parašyk čekį",
+          "body": "Skirk bet kokią sumą iš savo 10 000 USD. Statyk dideliai ant vieno, paskirstyk arba visiškai praleisk. Be atšaukimų."
+        },
+        {
+          "title": "Persuk penkerius metus",
+          "body": "Stebėk, kaip portfelis juda metai po metų, tada išsiaiškink, ką istorija padarė tavo sprendimams ir kodėl."
+        }
+      ],
+      "dealFlow": "Sandorių srautas",
+      "outcomesHidden": "· rezultatai paslėpti",
+      "years": "5 metai",
+      "deals": "5 sandoriai",
+      "stepOf": "{current}/3"
+    },
+    "stage": {
+      "deal": "Sandoris {current} iš 5",
+      "founded": "{sector} · Įkurta {year}",
+      "available": "Liko {amount}",
+      "pitchDeck": "Pitch kaladė · {year}",
+      "preSeed": "Priešsėjinis · atviras",
+      "story": "Istorija",
+      "pitching": "Ką jie pristato",
+      "risk": "Kas gali nepavykti",
+      "hidden": "Rezultatas lieka paslėptas iki pabaigos. Vertink verslą, o ne prekės ženklą, kurį pažįsti šiandien.",
+      "yourCall": "Tavo sprendimas",
+      "writeCheque": "Parašyk čekį",
+      "availableBudget": "Turimas biudžetas",
+      "committed": "{amount} skirta {name} · {cash} liktų grynaisiais",
+      "amount": "Investicijos suma",
+      "usd": "USD",
+      "slider": "Investicijos sumos slankiklis",
+      "max": "Maks. {amount}",
+      "maxLabel": "Maks.",
+      "helperPass": "Praleisti – teisingas sprendimas. Visas biudžetas pereina į kitą sandorį.",
+      "helperInvest": "{share} % tavo fondo sutelkta vienoje įmonėje. Vėlesniems sandoriams palieki {cash}.",
+      "invest": "Investuoti {amount}",
+      "pass": "Praleisti šį",
+      "portfolio": "Portfelis iki šiol",
+      "closed": "Uždaryta {count}/5",
+      "passed": "Praleista"
+    },
+    "simulation": {
+      "live": "Tiesioginė simuliacija",
+      "title": "Penkeri metai,",
+      "titleAccent": "persukti į priekį.",
+      "body": "Portfelis juda pagal istorinę kiekvienos įmonės trajektoriją. Stebėk istoriją, tada pamatyk, kiek tai tau kainavo.",
+      "pause": "Pristabdyti",
+      "play": "Leisti",
+      "skip": "Pereiti į 5 metus",
+      "seeBreakdown": "Žiūrėti visą ataskaitą",
+      "portfolioValue": "Portfelio vertė",
+      "yearOf": "{year} metai / 5",
+      "startingPosition": "Pradinė pozicija",
+      "thisYear": "{amount} šiais metais",
+      "sinceDayOne": "{amount} nuo pirmos dienos",
+      "timeline": "Laiko juosta",
+      "yearsOf": "{year}/5 metų",
+      "deployed": "Investuota",
+      "cashLeft": "Liko grynųjų",
+      "trajectory": "Portfelio trajektorija",
+      "start10k": "Pradžia 10 tūkst. USD",
+      "startingGun": "Starto šūvis",
+      "whatHappened": "Kas nutiko {year} metais",
+      "events": "Įvykiai: {count}",
+      "startBody": "Pradedate su {amount}. Kiekvienas investuotas doleris dabar keliauja penkerius metus. Kiekvienas pasilikęs doleris vis dar yra grynieji.",
+      "satOut": "Šį kartą praleidai. Tavo grynieji nejudėjo.",
+      "quiet": "Šiais metais portfelyje jokių antraščių. Tyla gali būti gerai.",
+      "positions": "Tavo pozicijos",
+      "funded": "Finansuota: {count}",
+      "invested": "Investuota {amount}",
+      "value": "vertė {multiple}",
+      "noPositions": "Jokių pozicijų. Visus {amount} pasilikote grynaisiais.",
+      "uninvested": "Neinvestuoti grynieji",
+      "complete": "Simuliacija baigta",
+      "final": "Po penkerių metų tavo portfelis vertas {amount}.",
+      "openResults": "Atidaryti rezultatus"
+    },
+    "results": {
+      "report": "Fondas I · 5 metų ataskaita",
+      "positions": "Pozicijos: {positions} · praleista: {passes}",
+      "profile": "Tavo investuotojo profilis",
+      "finalValue": "Galutinė portfelio vertė",
+      "return": "{roi} % grąža",
+      "vs": "{profit} lyginant su tavo {starting}",
+      "yourPortfolio": "Tavo portfelis",
+      "benchmark": "Grynųjų etalonas",
+      "deployed": "Investuota",
+      "ofFund": "{percent} % fondo",
+      "cashKept": "Pasilikta grynųjų",
+      "neverRisk": "Niekada nerizikuota",
+      "hitRate": "Pataikymų rodiklis",
+      "fundedOf": "{hits} iš {total} finansuotų",
+      "bestCall": "Geriausias sprendimas",
+      "none": "Nėra",
+      "noPositionsTaken": "Pozicijų nepriimta",
+      "truth": "Nepatogi tiesa",
+      "zero": "{name} grąžino nulį. Tai tikras rizikos kapitalo rezultatas, o ne klaida.",
+      "protected": "Apsaugojai kapitalą. Taip pat apribojai augimo potencialą. Abu – pasirinkimai.",
+      "full": "Kiekviena pozicija turėjo reikšmės. Taip atrodo visiškas investavimas.",
+      "trajectory": "Penkerių metų trajektorija",
+      "yearRange": "0 → 5 metai",
+      "where": "Kur atsidūrė pinigai",
+      "positionValue": "Pozicijos vertė",
+      "dealCard": "Sandorio kortelė",
+      "bestDecision": "Geriausias sprendimas",
+      "noFunded": "Nėra finansuotų sandorių",
+      "toughest": "Sunkiausia pamoka",
+      "receipts": "Įrodymai",
+      "everyDecision": "Kiekvienas sprendimas po penkerių metų",
+      "tap": "Bakstelėk eilutę ir pamatyk, kas iš tikrųjų nutiko.",
+      "invested": "Investuota",
+      "outcome": "Rezultatas",
+      "returned": "Sugrąžinta",
+      "whatHappened": "Kas nutiko",
+      "lesson": "Pamoka",
+      "trajectoryLabel": "Įmonės trajektorija",
+      "start": "Pradžia",
+      "year5": "5 metai",
+      "teaches": "Ko tavo portfelis tave moko",
+      "nextMove": "Kitas žingsnis",
+      "nextTitle": "Manai, kad per 3 sekundes atpažinsi laimėtoją?",
+      "nextBody": "Brauk per tikrus studentų pitchus Founder Tinder arenoje.",
+      "runBack": "Pabandyk dar kartą",
+      "founderTinder": "Founder Tinder",
+      "copied": "Nukopijuota!",
+      "share": "Dalintis",
+      "status": {
+        "none": "Jokios pozicijos",
+        "wiped": "Sunaikinta",
+        "underwater": "Po vandeniu",
+        "returned": "Sugrąžinta",
+        "moonshot": "Mėnulio šūvis"
+      },
+      "shareText": "Paverčiau {starting} į {final} Starcup startuolių investicijų simuliatoriuje. Investuotojo profilis: {emoji} {profile}. Ar gali aplenkti?",
+      "restartConfirm": "Paleisti simuliaciją iš naujo? Dabartinis portfelis bus prarastas."
+    },
+    "chart": {
+      "aria": "Portfelio vertė per penkerius metus",
+      "starting": "PRADŽIA {amount}",
+      "start": "Pradžia",
+      "year": "{year} metai"
+    },
+    "profiles": {
+      "armchair": {
+        "label": "Fotelio kapitalistas",
+        "blurb": "Pasilikote kiekvieną dolerį. Saugu, patogu ir visiškai neveikiama augimo."
+      },
+      "unicorn": {
+        "label": "Vienaragių šnabždėtojas",
+        "blurb": "Radote išskirtines įmones ir davėte joms pakankamai erdvės augti. Tai retesnis dalykas, nei atrodo."
+      },
+      "seedSavant": {
+        "label": "Sėklos stadijos žinovas",
+        "blurb": "Subalansavote įsitikinimą su pakankama diversifikacija, kad pagautumėte laimėtoją be tobulo sprendimo."
+      },
+      "steady": {
+        "label": "Tvirta ranka",
+        "blurb": "Apsaugojote nuo nuosmukio ir vis tiek paleidote pinigus į darbą. Neįspūdinga, bet fondas išgyvena."
+      },
+      "tuition": {
+        "label": "Sumokėta už mokslą",
+        "blurb": "Portfelis nukentėjo, bet pamoka vertesnė už popierinį nuostolį. Dauguma investuotojų taip pigiai nesimoko."
+      },
+      "hype": {
+        "label": "Hype išgyvenėjas",
+        "blurb": "Vienas geras sprendimas neišgelbėjo visos knygos. Žala atsirado dėl koncentracijos netinkamose vietose."
+      },
+      "fullSend": {
+        "label": "Visiškai įsitraukęs istorikas",
+        "blurb": "Statėte viską ant vienos istorijos. Istorija moka keistai imti už tai mokestį."
+      },
+      "reality": {
+        "label": "Rizikos apetitas susitinka realybę",
+        "blurb": "Paskirstėte statymus, bet radote nulius. Diversifikacija padeda, bet nepaverčia blogo verslo geru."
+      }
+    },
+    "lessons": {
+      "dryPowder": {
+        "title": "Sausi milteliai turi kainą",
+        "body": "Baigėte su nepaliestais {amount}. Grynieji saugo nuo žlugimo, bet kiekvienas neinvestuotas doleris taip pat lieka nuošalyje nuo augimo."
+      },
+      "fullDeploy": {
+        "title": "Investavote kiekvieną dolerį",
+        "body": "Visiškas investavimas rodo įsitikinimą. Tačiau jis atima galimybę padidinti statymą, kai įmonė pradeda laimėti. Rezervai yra strateginis turtas."
+      },
+      "reserve": {
+        "title": "Pasilikote tikrą rezervą",
+        "body": "Paleidote pinigus į darbą neištuštindami bako. Ši pasirinkimo laisvė padeda fondams išgyventi pirmąjį prastą derlių."
+      },
+      "concentration": {
+        "title": "Koncentracija pjauna į abi puses",
+        "body": "Daugiau nei pusė investuoto kapitalo atiteko {name}. Kai tai veikia, atrodo kaip genialumas. Kai ne – vienas sprendimas valdo visą istoriją."
+      },
+      "portfolio": {
+        "title": "Sukūrėte portfelį, o ne loterijos bilietą",
+        "body": "Paskirstėte kapitalą {count} įmonių. Tai negarantuoja pergalės, bet neleidžia vienai nesėkmei užbaigti žaidimo."
+      },
+      "fewBets": {
+        "title": "Nedaug statymų, didelė dispersija",
+        "body": "Palaikėte tik {count} įmones. Mažiau pozicijų reiškia, kad kiekvienas sprendimas svarbesnis – abiem kryptimis."
+      },
+      "greatStory": {
+        "title": "Puiki istorija nėra verslas",
+        "body": "{name} turėjo dėmesį, kapitalą ir naratyvą. Trūko tvarios vieneto ekonomikos. {lesson}"
+      },
+      "signal": {
+        "title": "Signalas slypi keistume",
+        "body": "Nė viena iš šių įmonių pradžioje neatrodė normalu. Pažvelgėte pro paviršių ir palaikėte tikro elgesio pokyčio įrodymus."
+      }
+    },
+    "startups": {
+      "juicero": {
+        "sector": "Sujungta techninė įranga",
+        "tagline": "400 USD „Wi-Fi“ sulčiaspaudė 5 USD sulčių pakeliams.",
+        "description": "„Juicero“ surinko 120 mln. USD, kad šalto spaudimo sultys būtų tokios pat paprastos kaip kava. Presas buvo gražiai sukonstruotas – ir visiškai nereikalingas. Jų sulčių pakelius buvo galima išspausti rankomis.",
+        "pitch": "Šalto spaudimo sultys namuose be valymo. Prijungtas presas, kompostuojami pakeliai ir prenumerata, kuri palaiko šaldytuvą pilną.",
+        "risk": "Aukščiausios kokybės techninė įranga, papildoma prenumerata ir produktas, kurio klientams gali tiesiog nereikėti.",
+        "outcome": {
+          "headline": "Išspausti lauk",
+          "summary": "Virusinis vaizdo įrašas parodė, kad 400 USD presas nėra geresnis už žmogaus rankas. „Juicero“ sumažino kainą, o 2017 m. užsidarė.",
+          "lesson": "Hype gali surinkti finansavimo ratą. Jis negali sukurti priežasties egzistuoti."
+        },
+        "milestones": [
+          "„Juicero“ pristato 699 USD presą ir sulaukia dizaino pasaulio plojimų.",
+          "„Bloomberg“ parodo, kad sulčių pakelius galima išspausti rankomis. Oi.",
+          "Kaina sumažinta iki 399 USD. Internetas vis dar neįtikintas.",
+          "„Juicero“ užsidaro ir bando parduoti savo mašinas.",
+          "400 USD presas tampa „eBay“ smalsumo objektu."
+        ]
+      },
+      "pets-com": {
+        "sector": "Elektroninė prekyba",
+        "tagline": "Kojinė lėlė, kuri surinko 82,5 mln. USD ir numirė per 268 dienas.",
+        "description": "„Pets.com“ tapo „dot-com“ bumo plakatu su „Super Bowl“ reklama ir miela kojine lėle. Mažiau miela dalis: 50 svarų šunų maisto maišų pardavimas žemiau savikainos.",
+        "pitch": "Viskas, ko reikia tavo augintiniui, pristatyta prie durų. Išleisime tiek, kiek reikia, kad užimtume kategoriją prieš visus kitus.",
+        "risk": "Sunkūs produktai, mažos maržos ir klientų pritraukimo kaina, suvalganti visą krepšelį.",
+        "outcome": {
+          "headline": "„Dot-com“ auka",
+          "summary": "„Pets.com“ 2000 m. vasarį išėjo į biržą, o po devynių mėnesių likvidavosi. Jos turtas parduotas maždaug už 11 mln. USD, nors iš viso buvo surinkta 300 mln. USD.",
+          "lesson": "Įsimintinas maskotas nėra apsauginis griovys. Vieneto ekonomika vis tiek turi veikti."
+        },
+        "milestones": [
+          "„Super Bowl“ reklama paverčia kojinę lėlę žinomu vardu.",
+          "IPO įvyksta – tada „dot-com“ burbulas pradeda šnypšti.",
+          "Likvidacija. Kojinė lėlė parduodama kartu su sandėliu.",
+          "Domenas keičia savininkus. Pamoka išlieka.",
+          "„Pets.com“ – pavyzdys, kaip išleisti pinigus į niekur."
+        ]
+      },
+      "airbnb": {
+        "sector": "Prekyvietė",
+        "tagline": "Pripučiami čiužiniai ant svetainės grindų. Dabar – kelionių imperija.",
+        "description": "2007 m. du dizaineriai negalėjo sumokėti nuomos. Jie pastatė tris pripučiamus čiužinius savo palėpėje ir ėmė mokestį konferencijos dalyviams už nakvynę. Investuotojai tai vadino keistu. Svečiai – magija.",
+        "pitch": "Apsistokite pas ką nors laisvame kambaryje, o ne viešbutyje. Mes tvarkome pasitikėjimą, mokėjimus ir nuotraukas. Pigiau svečiams, pelninga šeimininkams.",
+        "risk": "Nepažįstami, miegantys tavo namuose. Reguliavimas. Ir viešbučiai su tikrais rinkodaros biudžetais.",
+        "outcome": {
+          "headline": "Keistuolis laimi",
+          "summary": "„Airbnb“ pavertė laisvo kambario triuką pasauline kategorija. Ankstyvoji idėja skambėjo gėdingai; pasitikėjimo sluoksnis padarė ją neišvengiamą.",
+          "lesson": "Geriausios idėjos sėklos stadijoje dažnai skamba gėdingai. Platinimas ir pasitikėjimas buvo tikrasis produktas."
+        },
+        "milestones": [
+          "„Airbnb“ startuoja. Kritikai vadina tai sofos-nakvynės triuku.",
+          "Milijonas užsakytų naktų. Smagratis pradeda suktis.",
+          "Tarptautinė plėtra. Viešbučiai pradeda atkreipti dėmesį.",
+          "Regulatoriai supa. Modelis prisitaiko kiekviename mieste.",
+          "Gimsta kelionių milžinas – o keistumas tampa prekės ženklu."
+        ]
+      },
+      "slack": {
+        "sector": "B2B SaaS",
+        "tagline": "Nepavykęs vaizdo žaidimas, netyčia tapęs darbo programine įranga.",
+        "description": "„Tiny Speck“ kūrė kelių žaidėjų žaidimą „Glitch“. Žaidimas mirė; vidinis pokalbių įrankis, sukurtas jam išgyventi, – ne. „Slack“ viešai startavo 2013 m.",
+        "pitch": "Komandos pokalbiai, kurie žmonėms tikrai patinka. Kanalai, paieška, integracijos – viena vieta darbui vykti.",
+        "risk": "Perpildyta darbo programinės įrangos rinka, milžiniški konkurentai ir komanda, ką tik uždarė žaidimą.",
+        "outcome": {
+          "headline": "Pivotas, kuris atsipirko",
+          "summary": "„Slack“ išaugo iki milijonų kasdienių naudotojų, o 2021 m. „Salesforce“ jį įsigijo už 27,7 mlrd. USD. Pokalbių įrankis pergyveno žaidimą, kuris jį pagimdė.",
+          "lesson": "Pivotas nėra nesėkmė. Tai antras šansas su geresne informacija."
+        },
+        "milestones": [
+          "„Slack“ atsiveria visuomenei. Komandos kviečia kitas komandas.",
+          "Milijonas aktyvių kasdienių naudotojų. Apatinis smagratis dūzgia.",
+          "Prasideda įmonių sandoriai. Linksma pokalbių programėlė suauga.",
+          "„Slack“ tampa veiksmažodžiu biuruose visur.",
+          "„Salesforce“ pasibeldžia su 27,7 mlrd. USD."
+        ]
+      },
+      "twitter": {
+        "sector": "Socialiniai tinklai",
+        "tagline": "Šalutinis projektas nepavykusioje podcastų įmonėje.",
+        "description": "„Odeo“ buvo podcastų platforma, kurią sutraiškė „Apple“. Per hack savaitę Jackas Dorsey pasiūlė mažą statuso atnaujinimo įrankį. Pirmasis tvytas: „just setting up my twttr.“",
+        "pitch": "Siųsk trumpą atnaujinimą draugams. 140 simbolių. Jokio trinties, jokio blogo, jokio spaudimo.",
+        "risk": "Jokio pajamų modelio, ankstyvųjų naudotojų niša ir vardas, skambantis kaip paukščio garsas.",
+        "outcome": {
+          "headline": "140 simbolių, pasaulinis pasiekiamumas",
+          "summary": "„Twitter“ tapo pasaulio realaus laiko aikšte, 2013 m. išėjo į biržą su daugiau nei 14 mlrd. USD verte ir pakeitė žiniasklaidą, politiką bei memus.",
+          "lesson": "Paprasti produktai gali slėpti didžiulį tinklo efektą. Ankstyvas kritimas buvo triukšmas, o ne istorija."
+        },
+        "milestones": [
+          "SXSW sprogsta. 140 simbolių atnaujinimas atrodo kaip ateitis.",
+          "„Fail whale“ era. Augimas tikras, veikimas – ne.",
+          "Hashtagai ir perpublikavimai paverčia naudotojus platinimo varikliu.",
+          "Naujienos pirmiausia pasirodo „Twitter“. Formuojasi viešoji aikštė.",
+          "IPO. Šalutinis projektas vertas milijardų."
+        ]
+      }
+    }
+  },
+  "pitch": {
+    "arena": {
+      "allGames": "← Visi žaidimai",
+      "sections": "Pitch arenos skiltys",
+      "vote": "Balsuoti",
+      "submit": "Pateikti pitchą",
+      "results": "Rezultatai",
+      "statusSyncing": "Sinchronizuojama lenta",
+      "statusOffline": "Neprisijungęs demonstravimas",
+      "statusLive": "Tiesioginė lenta",
+      "statusSession": "Sesijos lenta",
+      "swipes": "Braukimai: {count}",
+      "offlineBanner": "Bendros lentos pasiekti nepavyksta, todėl veikia vietinis demonstravimo režimas. Balsai ir pateiktys saugomi tik šiame įrenginyje.",
+      "votePanel": "Balsuoti už pitchus",
+      "submitPanel": "Pateikti pitchą",
+      "resultsPanel": "Balsavimo rezultatai",
+      "boardSummary": "Šioje lentoje {count} startuolių · įtraukta demonstracinė grupė · jokių tikrų pinigų"
+    },
+    "deck": {
+      "badge": "Founder Tinder",
+      "syncing": "sinchronizuojama lenta…",
+      "title": "Brauk su",
+      "titleAccent": "savo pinigine.",
+      "body": "Dešinėn – sutiktum susitikti. Kairėn – praleidi. Vertink pitchą, o ne blizgesį – įkūrėjai turi vos kelias sekundes.",
+      "reviewed": "{reviewed}/{total}",
+      "investStamp": "INVESTUOTI",
+      "passStamp": "PRALEISTI",
+      "undo": "Atšaukti",
+      "undoAria": "Atšaukti paskutinį balsą",
+      "undoTitle": "Atšaukti paskutinį balsą",
+      "pass": "Praleisti",
+      "passAria": "Praleisti šį startuolį",
+      "invest": "Investuoti",
+      "investAria": "Investuočiau į šį startuolį",
+      "hint": "Tempk kortelę, bakstelėk mygtuką arba naudok",
+      "ownTitle": "Tavo pitchas lentoje.",
+      "ownBody": "Įkūrėjai negali braukti savo startuolio. Pasidalink lenta su auditorija ir stebėk balsus.",
+      "seeResults": "Žiūrėti rezultatus",
+      "submitAnother": "Pateikti dar vieną",
+      "complete": "Kaladė baigta",
+      "reviewedTitle": "Peržiūrėta startuolių: {count}",
+      "reviewedBody": "Susitikimai: {invested}. Praleista: {passed}. Tavo balsai dabar yra auditorijos signalo dalis.",
+      "investedLabel": "Investuota",
+      "passedLabel": "Praleista",
+      "seeRoom": "Pamatyk, ką mano auditorija",
+      "changeVotes": "Keisti balsus",
+      "resetConfirm": "Išvalyti visus balsus ir peržiūrėti kaladę iš naujo?",
+      "noMoney": "Jokie tikri pinigai nekeičiami"
+    },
+    "card": {
+      "studentPitch": "Studento pitch",
+      "thePitch": "Pitchas",
+      "targetMarket": "Tikslinė rinka",
+      "funding": "Reikalingas finansavimas",
+      "showcaseFounder": "Demonstracinis įkūrėjas",
+      "studentFounder": "Studentas įkūrėjas",
+      "demo": "Demo",
+      "live": "Tikras"
+    },
+    "submit": {
+      "badge": "Įkūrėjo režimas",
+      "title": "Įdėk savo idėją",
+      "titleAccent": "į kaladę.",
+      "body": "Viena kortelė, penki laukai, jokios prezentacijų programinės įrangos. Ji iškart atsiranda lentoje.",
+      "time": "2 min.",
+      "founder": "Įkūrėjas / komanda",
+      "founderPlaceholder": "Maya K.",
+      "startupName": "Startuolio pavadinimas",
+      "startupPlaceholder": "CampusBite",
+      "pitch": "Trumpas pitchas",
+      "pitchPlaceholder": "Ką darai, kam tai skirta ir kodėl dabar? Leisk mums pajusti problemą vienu įkvėpimu.",
+      "niche": "Niša",
+      "targetMarket": "Tikslinė rinka",
+      "targetPlaceholder": "Pirmakursiai studentai",
+      "funding": "Reikalingas finansavimas",
+      "icon": "Kortelės ikona",
+      "iconAria": "Pasirinkti {emoji} kaip kortelės ikoną",
+      "publishing": "Publikuojama…",
+      "publish": "Paskelbti pitchą",
+      "privacy": "Tavo vardas ir pitchas matomi renginio dalyviams. Negali balsuoti už savo kortelę.",
+      "preview": "Tiesioginė peržiūra",
+      "updates": "Atnaujinama rašant",
+      "previewTitle": "Tavo startuolis",
+      "previewPitch": "Tavo 30 sekundžių pitchas pasirodys čia. Padaryk problemą tikrą, tada parodyk sprendimo pleištą.",
+      "previewMarket": "Kas jaučia skausmą?",
+      "previewName": "Tavo vardas",
+      "tipsTitle": "Kas daro kortelę patrauklią?",
+      "tips": [
+        "Vienas aiškus naudotojas. Ne „visi nuo 18 iki 35 metų“.",
+        "Problema, kurią įsivaizduojame per penkias sekundes.",
+        "Pleištas, kuris dera su tavo prašoma finansavimo suma.",
+        "Gyvybės įrodymas: pilotas, laukimo sąrašas, pirmas klientas."
+      ],
+      "live": "Lentoje",
+      "saved": "Išsaugota šiame įrenginyje",
+      "successTitle": "Tavo pitchas pateiktas.",
+      "successLive": "Jis dabar yra kaladėje. Kiti dalyviai gali jį braukti – o tu negali balsuoti už save.",
+      "successOffline": "Tiesioginė lenta nepasiekiama, todėl kortelė kol kas išsaugota šiame įrenginyje. Ji vis tiek pasirodys vietiniuose rezultatuose.",
+      "seeBoard": "Žiūrėti lentą",
+      "another": "Pateikti kitą startuolį",
+      "close": "Uždaryti",
+      "errorSummary": "Keletą laukų reikia pataisyti prieš publikuojant.",
+      "errors": {
+        "titleShort": "Suteik startuoliui pavadinimą (3+ simboliai).",
+        "titleLong": "Pavadinimas turi būti iki 48 simbolių.",
+        "pitchShort": "Papasakok daugiau – bent 30 simbolių.",
+        "pitchLong": "Pitchas turi būti iki 240 simbolių.",
+        "niche": "Pasirink nišą iš sąrašo.",
+        "marketShort": "Apibūdink, kam tai skirta (3+ simboliai).",
+        "marketLong": "Tikslinė rinka turi būti iki 80 simbolių.",
+        "founder": "Įrašyk įkūrėjo ar komandos vardą.",
+        "fundingMin": "Minimali suma – 1 000 USD.",
+        "fundingMax": "Maksimali suma – 250 000 USD.",
+        "loading": "Lenta dar kraunasi. Bandyk dar kartą.",
+        "invalid": "Pataisyk pažymėtus laukus.",
+        "publish": "Nepavyko paskelbti startuolio.",
+        "malformed": "Serveris negrąžino paskelbto startuolio.",
+        "server": "Kažkas nepavyko. Bandyk dar kartą."
+      }
+    },
+    "results": {
+      "spoken": "Auditorija pasisakė",
+      "counted": "Suskaičiuota braukimų: {count}",
+      "offline": "Neprisijungusi kopija",
+      "title": "Ką investuotojams",
+      "titleAccent": "iš tikrųjų rūpi.",
+      "body": "Kiekvienas braukimas tampa signalu. Pamatyk, kurie pitchai prasiskverbia, kurios nišos neša auditoriją ir kaip prašomos sumos dydis keičia atsakymą.",
+      "swipeAgain": "Braukti dar kartą",
+      "addPitch": "Pridėti pitchą",
+      "totalSwipes": "Iš viso braukimų",
+      "startupsOnBoard": "Lentoje {count} startuolių",
+      "investRate": "Investavimo rodiklis",
+      "yesVotes": "„Taip“ balsų: {count}",
+      "livePitches": "Tikri pitchai",
+      "submitted": "Pateikė įkūrėjai",
+      "hottestNiche": "Karščiausia niša",
+      "noVotes": "Balsų dar nėra",
+      "rate": "{rate} % investavimo rodiklis",
+      "mostInvestable": "Labiausiai investuotini pitchai",
+      "ranked": "Rikiuojama pagal „taip“ balsus ir auditorijos investavimo rodiklį.",
+      "startupsCount": "Startuolių: {count}",
+      "favourite": "Auditorijos favoritas",
+      "favouriteMeta": "{rate} % investavimo rodiklis · {invests} „taip“ iš {total} braukimų",
+      "seeking": "Ieško",
+      "youYes": "Tu: taip",
+      "youPass": "Tu: praleidai",
+      "yesVotesLabel": "„taip“ balsai",
+      "newOnBoard": "Naujas lentoje – laukia pirmo braukimo.",
+      "dna": "Tavo investuotojo DNR",
+      "basedOn": "Braukimai: {count}",
+      "yesRate": "„Taip“ rodiklis",
+      "avgAsk": "Vid. prašoma suma",
+      "favNiche": "Mėgstamiausia niša",
+      "noYes": "Nėra „taip“ balsų",
+      "resetVotes": "Išvalyti mano balsus",
+      "resetConfirm": "Išvalyti visus balsus ir pradėti kaladę iš naujo?",
+      "missing": "Trūksta tavo balsavimo pirštų atspaudo.",
+      "missingBody": "Brauk kelis pitchus ir parodysime, ar esi įsitikinęs investuotojas, atrankus skeptikas, ar labai griežta auditorija.",
+      "openDeck": "Atidaryti kaladę",
+      "nicheHeat": "Nišų karštis",
+      "nicheHeatBody": "Kurios kategorijos priverčia auditoriją palinkti į priekį.",
+      "investRateLabel": "investavimo rodiklis",
+      "cheque": "Ar čekio dydis svarbus?",
+      "chequeBody": "Investavimo rodiklis pagal įkūrėjų prašomą sumą.",
+      "yes": "{invests}/{total} taip",
+      "bucketBestLarge": "{range} pitchai konvertuoja {rate} % – šioje auditorijoje ambicija nėra baudžiama.",
+      "bucketBestSmall": "{range} pitchai konvertuoja {rate} % – mažesnė rizika akivaizdžiai patraukli.",
+      "bucketBestMid": "{range} pitchai konvertuoja {rate} % – aukso vidurys egzistuoja.",
+      "notEnough": "Dar per mažai balsų, kad būtų galima palyginti čekių dydžius.",
+      "playbook": "Auditorijos vadovėlis",
+      "keepMoving": "Tegyvuoja judėjimas",
+      "sharper": "Kiekvienas braukimas daro signalą aštresnį.",
+      "summary": "Gyvi pitchai: {count} · {board} · įtraukta demonstracinė grupė",
+      "pitchSingular": "pitchas",
+      "pitchPlural": "pitchai",
+      "sharedBoard": "bendra tiesioginė lenta",
+      "sessionBoard": "tik sesijos lenta",
+      "swipeMore": "Braukti daugiau",
+      "submitPitch": "Pateikti pitchą",
+      "footer": "Rezultatai sujungia tikrus balsus su iš anksto paruošta 32 investuotojų demonstracine grupe. Tai renginio atsiliepimai, o ne investicinis pasiūlymas.",
+      "footerOffline": "Matote neprisijungusią kopiją, išsaugotą šiame įrenginyje."
+    },
+    "niches": {
+      "AI & EdTech": "AI ir švietimo technologijos",
+      "Sustainability": "Tvarumas",
+      "Marketplace": "Prekyvietė",
+      "Health & Wellbeing": "Sveikata ir savijauta",
+      "Community": "Bendruomenė",
+      "PropTech": "Nekilnojamojo turto technologijos"
+    },
+    "buckets": {
+      "small": {
+        "label": "Maža suma",
+        "range": "Iki 20 tūkst. USD"
+      },
+      "mid": {
+        "label": "Vidutinė suma",
+        "range": "20–35 tūkst. USD"
+      },
+      "large": {
+        "label": "Didelė suma",
+        "range": "Virš 35 tūkst. USD"
+      }
+    },
+    "archetypes": {
+      "conviction": {
+        "label": "Įsitikinęs investuotojas",
+        "blurb": "Sakai „taip“ dažniau nei dauguma. Tai duoda įkūrėjams pagreitį, bet reiškia, kad reikia stipraus filtro idėjoms, kurių nepalaikai."
+      },
+      "balanced": {
+        "label": "Subalansuotas rėmėjas",
+        "blurb": "Esi atviras, bet ne automatiškas. Maždaug pusė auditorijos pelno tavo dėmesį – naudingas smalsumo ir nuovokos mišinys."
+      },
+      "skeptic": {
+        "label": "Atrankus skeptikas",
+        "blurb": "Priverčiai įkūrėjus pasistengti. Mažiau „taip“, bet tie balsai turi daugiau signalo."
+      },
+      "tough": {
+        "label": "Griežta auditorija",
+        "blurb": "Praleidai beveik viską. Arba kartelė aukšta, arba pitchams dar reikia darbo. Abu – naudingi duomenys."
+      }
+    },
+    "insights": {
+      "attention": {
+        "title": "Dėmesys pasiskirstęs netolygiai",
+        "body": "{startup} paverčia {rate} % peržiūrų į susidomėjimą – {invests} „taip“ balsų iš {total} braukimų. Šešių kaladėje įsimintinumas svarbus ne mažiau nei kokybė."
+      },
+      "nicheMoment": {
+        "title": "{niche} išgyvena savo akimirką",
+        "body": "{niche} pitchai surenka {rate} % investavimo rodiklį iš {total} balsų. Auditorija apdovanoja kategoriją ne mažiau nei įmonę – tai tikras pranašumas ir tikra tendencijos rizika."
+      },
+      "smallYes": {
+        "title": "Mažesnius čekius lengviau priimti",
+        "body": "Startuoliai, prašantys iki 20 tūkst. USD, sulaukia {smallRate} % investavimo rodiklio, palyginti su {largeRate} % prašantiems virš 35 tūkst. USD. Mažesnė rizika patraukli – bet didžiausios įmonės retai pradeda pigiai."
+      },
+      "bigYes": {
+        "title": "Didelės sumos negąsdina auditorijos",
+        "body": "Startuoliai, prašantys virš 35 tūkst. USD, vis tiek konvertuoja {largeRate} % – daugiau nei mažų sumų grupė su {smallRate} %. Ambicija čia nėra baudžiama."
+      }
+    },
+    "seed": {
+      "campus-bite": {
+        "title": "CampusBite",
+        "pitch": "Pusės kainos maistas iš universiteto kavinių, išgelbėtas prieš uždarymą. Studentai taupo, virtuvės uždirba iš maisto, kuris būtų išmestas, ir niekas nebeturi valgyti liūdno „meal deal“.",
+        "targetMarket": "12 000 studentų trijuose miesteliuose",
+        "founderName": "Maya K."
+      },
+      "notewave": {
+        "title": "NoteWave",
+        "pitch": "AI, kuri netvarkingus paskaitų įrašus paverčia struktūrizuotomis pastabomis, kortelėmis ir savaitiniu kartojimo planu – apmokyta pagal tavo kursą ir universiteto kalbą.",
+        "targetMarket": "Pirmo kurso STEM studentai",
+        "founderName": "Noah ir Priya"
+      },
+      "greenloop": {
+        "title": "GreenLoop",
+        "pitch": "Daugkartinės išsinešimo dėžutės su 2 EUR užstatu, sekamos programėlėje. Kavainės atsisako vienkartinės pakuotės neįdarbindamos papildomų darbuotojų, o studentai susigrąžina užstatą.",
+        "targetMarket": "Universiteto kavinės ir 40 vietinių maitinimo vietų",
+        "founderName": "Team Loop"
+      },
+      "skillswap": {
+        "title": "SkillSwap",
+        "pitch": "Įgūdžių mainų lenta, kurioje studentai keičia valandą gitaros į valandą calculus. Jokių pinigų – tik patikrinta miestelio reputacija ir priežastis susitikti ne internete.",
+        "targetMarket": "Pirmųjų dviejų kursų studentai",
+        "founderName": "Jonas R."
+      },
+      "mindfulu": {
+        "title": "MindfulU",
+        "pitch": "Penkių minučių psichinės sveikatos patikros egzaminų sesijos metu su mokymus praėjusiais bendraamžiais ir tiesioginėmis nuorodomis į pagalbą. Privatu pagal dizainą, sukurta 2 val. nakties panikai prieš terminą.",
+        "targetMarket": "Studentai egzaminų sesijos metu",
+        "founderName": "Aisha B."
+      },
+      "rentmate": {
+        "title": "RentMate",
+        "pitch": "Patikrintas studentų būsto suderinimas, nuomos padalijimas ir sutarčių patikra vienoje vietoje. Daugiau jokių „Facebook“ grupių, vaiduoklių nuomotojų ar atradimų, kad virtuvė – tai užuolaida.",
+        "targetMarket": "Antro ir trečio kurso studentai",
+        "founderName": "RentMate komanda"
+      }
+    }
+  }
+}

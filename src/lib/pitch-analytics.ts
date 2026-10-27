@@ -1,3 +1,4 @@
+import type { Dictionary } from "@/lib/i18n";
 import {
   NICHES,
   type Niche,
@@ -23,15 +24,17 @@ export type NicheVoteStats = {
   investRate: number;
 };
 
+export type FundingBucketId = "small" | "mid" | "large";
+
 export type FundingBucket = {
-  id: "small" | "mid" | "large";
-  label: string;
-  range: string;
+  id: FundingBucketId;
   invests: number;
   passes: number;
   total: number;
   investRate: number;
 };
+
+export type ArchetypeId = keyof Dictionary["pitch"]["archetypes"];
 
 export type VoterProfile = {
   votesCast: number;
@@ -41,16 +44,17 @@ export type VoterProfile = {
   favouriteNiche: Niche | null;
   averageAsk: number;
   archetype: {
-    label: string;
+    id: ArchetypeId;
     emoji: string;
-    blurb: string;
   };
 };
 
+export type InsightId = keyof Dictionary["pitch"]["insights"];
+
 export type PitchInsight = {
-  title: string;
-  body: string;
+  id: InsightId;
   tone: "positive" | "neutral" | "warning";
+  params: Record<string, string | number>;
 };
 
 export function tallyStartupVotes(
@@ -119,33 +123,9 @@ export function tallyFundingBuckets(
 ): FundingBucket[] {
   const stats = tallyStartupVotes(startups, votes);
   const buckets: FundingBucket[] = [
-    {
-      id: "small",
-      label: "Small ask",
-      range: "Under $20k",
-      invests: 0,
-      passes: 0,
-      total: 0,
-      investRate: 0,
-    },
-    {
-      id: "mid",
-      label: "Mid ask",
-      range: "$20k–$35k",
-      invests: 0,
-      passes: 0,
-      total: 0,
-      investRate: 0,
-    },
-    {
-      id: "large",
-      label: "Big ask",
-      range: "Over $35k",
-      invests: 0,
-      passes: 0,
-      total: 0,
-      investRate: 0,
-    },
+    { id: "small", invests: 0, passes: 0, total: 0, investRate: 0 },
+    { id: "mid", invests: 0, passes: 0, total: 0, investRate: 0 },
+    { id: "large", invests: 0, passes: 0, total: 0, investRate: 0 },
   ];
 
   stats.forEach((stat) => {
@@ -183,32 +163,38 @@ export function buildPitchInsights({
 
   if (topStartup) {
     insights.push({
-      title: "Attention is not evenly distributed",
-      body: `${topStartup.startup.title} converts ${topStartup.investRate}% of views into interest — ${topStartup.invests} yes votes from ${topStartup.total} swipes. In a deck of six, being memorable matters as much as being good.`,
+      id: "attention",
       tone: "positive",
+      params: {
+        startup: topStartup.startup.title,
+        rate: topStartup.investRate,
+        invests: topStartup.invests,
+        total: topStartup.total,
+      },
     });
   }
 
   if (topNiche) {
     insights.push({
-      title: `${topNiche.niche} is having a moment`,
-      body: `Pitches in ${topNiche.niche} earn a ${topNiche.investRate}% invest rate across ${topNiche.total} votes. The room is rewarding the category as much as the company — a real advantage, and a real trend risk.`,
+      id: "nicheMoment",
       tone: "neutral",
+      params: {
+        niche: topNiche.niche,
+        rate: topNiche.investRate,
+        total: topNiche.total,
+      },
     });
   }
 
   if (small && large && small.total >= 5 && large.total >= 5) {
     const difference = small.investRate - large.investRate;
     insights.push({
-      title:
-        difference >= 0
-          ? "Smaller cheques are easier to say yes to"
-          : "Big asks are not scaring the room",
-      body:
-        difference >= 0
-          ? `Startups asking under $20k get a ${small.investRate}% invest rate versus ${large.investRate}% for asks above $35k. Lower risk is attractive — but the biggest companies rarely start cheap.`
-          : `Startups asking above $35k still convert at ${large.investRate}%, ahead of the small-ask group at ${small.investRate}%. Ambition is not being penalised here.`,
+      id: difference >= 0 ? "smallYes" : "bigYes",
       tone: "neutral",
+      params: {
+        smallRate: small.investRate,
+        largeRate: large.investRate,
+      },
     });
   }
 
@@ -254,34 +240,14 @@ export function buildVoterProfile({
     : 0;
   const investRate = percent(invested.length, mine.length);
 
-  const archetype =
+  const archetype: VoterProfile["archetype"] =
     investRate >= 75
-      ? {
-          label: "Conviction Investor",
-          emoji: "💛",
-          blurb:
-            "You say yes more than most. That gives founders momentum, but it also means you need a strong filter for the ideas you do not back.",
-        }
+      ? { id: "conviction", emoji: "💛" }
       : investRate >= 50
-        ? {
-            label: "Balanced Backer",
-            emoji: "⚖️",
-            blurb:
-              "You are open, not automatic. Roughly half the room earns your interest — a useful mix of curiosity and discernment.",
-          }
+        ? { id: "balanced", emoji: "⚖️" }
         : investRate >= 25
-          ? {
-              label: "Selective Skeptic",
-              emoji: "🔍",
-              blurb:
-                "You make founders work for it. Fewer yes votes, but the ones you give carry more signal.",
-            }
-          : {
-              label: "Tough Room",
-              emoji: "🧊",
-              blurb:
-                "You passed on almost everything. Either the bar is high, or the pitches have work to do. Both are useful data.",
-            };
+          ? { id: "skeptic", emoji: "🔍" }
+          : { id: "tough", emoji: "🧊" };
 
   return {
     votesCast: mine.length,

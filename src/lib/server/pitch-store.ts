@@ -51,7 +51,7 @@ async function load(): Promise<PersistedBoard> {
     const code = (error as NodeJS.ErrnoException).code;
     if (code !== "ENOENT" && !state.warned) {
       console.warn(
-        "[ventureu] Could not read pitch board data. Starting fresh.",
+        "[starcup] Could not read pitch board data. Starting fresh.",
         error,
       );
       state.warned = true;
@@ -74,7 +74,7 @@ async function persist() {
     state.persistent = false;
     if (!state.warned) {
       console.warn(
-        "[ventureu] Pitch board is running in memory-only mode. Set PITCH_DATA_FILE to a writable path to persist submissions.",
+        "[starcup] Pitch board is running in memory-only mode. Set PITCH_DATA_FILE to a writable path to persist submissions.",
         error,
       );
       state.warned = true;

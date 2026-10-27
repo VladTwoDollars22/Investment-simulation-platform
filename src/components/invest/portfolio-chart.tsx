@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+import { useI18n } from "@/lib/i18n";
 import { cn, formatCurrency } from "@/lib/utils";
 import { STARTING_BUDGET } from "@/lib/invest-data";
 
@@ -41,6 +42,7 @@ export function PortfolioChart({
   visible?: number;
   className?: string;
 }) {
+  const { t } = useI18n();
   const gradientId = useId().replace(/[:]/g, "");
   const width = 760;
   const height = 300;
@@ -81,7 +83,7 @@ export function PortfolioChart({
     <svg
       viewBox={`0 0 ${width} ${height}`}
       role="img"
-      aria-label="Portfolio value over five years"
+      aria-label={t("invest.chart.aria")}
       className={cn("h-auto w-full overflow-visible", className)}
     >
       <defs>
@@ -133,7 +135,9 @@ export function PortfolioChart({
         fill="#6d6a76"
         letterSpacing="0.06em"
       >
-        STARTING $10K
+        {t("invest.chart.starting", {
+          amount: formatCurrency(STARTING_BUDGET, { compact: true }),
+        })}
       </text>
 
       {area && <path d={area} fill={`url(#${gradientId})`} />}
@@ -174,26 +178,27 @@ export function PortfolioChart({
         );
       })}
 
-      {["Start", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5"].map(
-        (label, index) => (
-          <text
-            key={label}
-            x={
-              padding.left +
-              (index / Math.max(values.length - 1, 1)) * chartWidth
-            }
-            y={height - 12}
-            textAnchor={
-              index === 0 ? "start" : index === 5 ? "end" : "middle"
-            }
-            fontSize="11"
-            fontWeight="600"
-            fill={index < shown.length ? "#14131a" : "#a9a49a"}
-          >
-            {label}
-          </text>
+      {[
+        t("invest.chart.start"),
+        ...Array.from({ length: 5 }, (_, index) =>
+          t("invest.chart.year", { year: index + 1 }),
         ),
-      )}
+      ].map((label, index) => (
+        <text
+          key={label}
+          x={
+            padding.left +
+            (index / Math.max(values.length - 1, 1)) * chartWidth
+          }
+          y={height - 12}
+          textAnchor={index === 0 ? "start" : index === 5 ? "end" : "middle"}
+          fontSize="11"
+          fontWeight="600"
+          fill={index < shown.length ? "#14131a" : "#a9a49a"}
+        >
+          {label}
+        </text>
+      ))}
     </svg>
   );
 }

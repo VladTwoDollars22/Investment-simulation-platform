@@ -1,3 +1,4 @@
+import type { Dictionary } from "@/lib/i18n";
 import {
   historicalStartups,
   SIMULATION_YEARS,
@@ -17,16 +18,21 @@ export type PositionResult = {
   verdict: StartupVerdict;
 };
 
+export type InvestorProfileId = keyof Dictionary["invest"]["profiles"];
+
 export type InvestorProfile = {
-  label: string;
+  id: InvestorProfileId;
   emoji: string;
-  blurb: string;
 };
 
+export type LessonId = keyof Dictionary["invest"]["lessons"];
+
 export type Lesson = {
-  title: string;
-  body: string;
+  id: LessonId;
   tone: "positive" | "warning" | "neutral";
+  cash?: number;
+  count?: number;
+  startup?: HistoricalStartup;
 };
 
 export type SimulationResult = {
@@ -76,12 +82,9 @@ export function buildPortfolioSeries(amounts: InvestmentAmounts) {
 }
 
 export function eventsForYear(amounts: InvestmentAmounts, year: number) {
-  return historicalStartups.flatMap((startup) => {
-    if ((amounts[startup.id] ?? 0) <= 0) return [];
-    return startup.milestones
-      .filter((milestone) => milestone.year === year)
-      .map((milestone) => ({ startup, text: milestone.text }));
-  });
+  return historicalStartups
+    .filter((startup) => (amounts[startup.id] ?? 0) > 0)
+    .map((startup) => ({ startup, year }));
 }
 
 function buildProfile({
@@ -96,74 +99,34 @@ function buildProfile({
   largestBetShare: number;
 }): InvestorProfile {
   if (invested === 0) {
-    return {
-      label: "Armchair Capitalist",
-      emoji: "🛋️",
-      blurb:
-        "You kept every dollar. Safe, comfortable, and completely unexposed to the upside.",
-    };
+    return { id: "armchair", emoji: "🛋️" };
   }
 
   if (finalValue >= 30_000) {
-    return {
-      label: "Unicorn Whisperer",
-      emoji: "🦄",
-      blurb:
-        "You found the outliers and gave them enough room to compound. That is rarer than it looks.",
-    };
+    return { id: "unicorn", emoji: "🦄" };
   }
 
   if (finalValue >= 14_000) {
-    return {
-      label: "Seed-Stage Savant",
-      emoji: "🚀",
-      blurb:
-        "You balanced conviction with enough diversification to catch a winner without needing a perfect call.",
-    };
+    return { id: "seedSavant", emoji: "🚀" };
   }
 
   if (finalValue >= 10_000) {
-    return {
-      label: "Steady Hand",
-      emoji: "⚖️",
-      blurb:
-        "You protected the downside and still put money to work. Not flashy — but the fund survives.",
-    };
+    return { id: "steady", emoji: "⚖️" };
   }
 
   if (finalValue >= 5_000) {
-    return {
-      label: "Tuition Paid",
-      emoji: "🎓",
-      blurb:
-        "The portfolio took a hit, but the lesson is worth more than the paper loss. Most LPs never get this cheap a lesson.",
-    };
+    return { id: "tuition", emoji: "🎓" };
   }
 
   if (hitCount > 0) {
-    return {
-      label: "Hype Survivor",
-      emoji: "🫠",
-      blurb:
-        "One good call could not carry the book. Concentration in the wrong places did the damage.",
-    };
+    return { id: "hype", emoji: "🫠" };
   }
 
   if (largestBetShare > 0.5) {
-    return {
-      label: "Full-Send Historian",
-      emoji: "💀",
-      blurb:
-        "You went all in on a story. History has a funny way of charging tuition for that.",
-    };
+    return { id: "fullSend", emoji: "💀" };
   }
 
-  return {
-    label: "Risk Appetite, Meet Reality",
-    emoji: "📉",
-    blurb:
-      "You spread the bets but found the zeros. Diversification helps — it does not turn bad businesses into good ones.",
-  };
+  return { id: "reality", emoji: "📉" };
 }
 
 function buildLessons(
@@ -179,64 +142,33 @@ function buildLessons(
   const lessons: Lesson[] = [];
 
   if (cash >= 4_000) {
-    lessons.push({
-      title: "Dry powder has a cost",
-      body: `You finished with ${cash.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      })} untouched. Cash protects you from ruin, but every dollar sitting out also sits out of the upside.`,
-      tone: "warning",
-    });
+    lessons.push({ id: "dryPowder", tone: "warning", cash });
   } else if (cash === 0 && funded.length > 0) {
-    lessons.push({
-      title: "You deployed every dollar",
-      body: "Full deployment signals conviction. It also removes your ability to double down when a company starts winning. Reserves are a strategic asset.",
-      tone: "neutral",
-    });
+    lessons.push({ id: "fullDeploy", tone: "neutral" });
   } else {
-    lessons.push({
-      title: "You kept a real reserve",
-      body: "You put money to work without emptying the tank. That optionality is how funds survive their first bad vintage.",
-      tone: "positive",
-    });
+    lessons.push({ id: "reserve", tone: "positive" });
   }
 
   if (largestShare > 0.55 && largest) {
     lessons.push({
-      title: "Concentration cuts both ways",
-      body: `More than half of your invested capital went into ${largest.startup.name}. When it works, that feels like genius. When it does not, one decision owns the whole story.`,
+      id: "concentration",
       tone: largest.multiple > 1 ? "positive" : "warning",
+      startup: largest.startup,
     });
   } else if (funded.length >= 3) {
-    lessons.push({
-      title: "You built a portfolio, not a lottery ticket",
-      body: `You spread capital across ${funded.length} companies. That does not guarantee a win, but it keeps any single failure from ending the game.`,
-      tone: "positive",
-    });
+    lessons.push({ id: "portfolio", tone: "positive", count: funded.length });
   } else if (funded.length > 0) {
-    lessons.push({
-      title: "Few bets, high variance",
-      body: `You only backed ${funded.length} ${
-        funded.length === 1 ? "company" : "companies"
-      }. Fewer positions means every call matters more — in both directions.`,
-      tone: "neutral",
-    });
+    lessons.push({ id: "fewBets", tone: "neutral", count: funded.length });
   }
 
   if (lossMaking.length > 0) {
-    const worst = lossMaking[0];
     lessons.push({
-      title: "A great story is not a business",
-      body: `${worst.startup.name} had attention, capital, and a narrative. What it lacked was durable unit economics. ${worst.startup.outcome.lesson}`,
+      id: "greatStory",
       tone: "warning",
+      startup: lossMaking[0].startup,
     });
   } else if (winners.length > 0) {
-    lessons.push({
-      title: "Signal hides inside weird",
-      body: "None of these companies looked normal at the start. You looked past the surface and backed evidence of a real behaviour change.",
-      tone: "positive",
-    });
+    lessons.push({ id: "signal", tone: "positive" });
   }
 
   return lessons.slice(0, 3);
@@ -308,11 +240,4 @@ export function simulate(amounts: InvestmentAmounts): SimulationResult {
     }),
     lessons: buildLessons(positions, invested, cash),
   };
-}
-
-export function simulationEventLine(
-  startup: HistoricalStartup,
-  year: number,
-) {
-  return startup.milestones.find((milestone) => milestone.year === year)?.text;
 }

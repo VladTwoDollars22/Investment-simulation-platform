@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { PitchCardView } from "@/components/pitch/pitch-card-view";
 import { buttonClass } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 import {
   accentForNiche,
   EMOJIS,
@@ -20,8 +21,10 @@ import {
 } from "@/lib/pitch-types";
 import {
   sanitizeDraft,
+  type DraftErrorCode,
   type DraftErrors,
 } from "@/lib/pitch-validation";
+import type { SubmitErrorCode } from "@/lib/use-pitch-board";
 import { cn, formatCurrency } from "@/lib/utils";
 
 const emptyDraft: StartupDraft = {
@@ -53,13 +56,15 @@ export function SubmitForm({
     draft: StartupDraft,
   ) => Promise<
     | { ok: true; startup: PitchCard; offline: boolean }
-    | { ok: false; error: string; errors?: DraftErrors }
+    | { ok: false; error: SubmitErrorCode; errors?: DraftErrors }
   >;
   onSeeResults: () => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.pitch.submit;
   const [draft, setDraft] = useState<StartupDraft>({ ...emptyDraft });
   const [errors, setErrors] = useState<DraftErrors>({});
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<SubmitErrorCode | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState<PitchCard | null>(null);
   const [offline, setOffline] = useState(false);
@@ -89,6 +94,10 @@ export function SubmitForm({
     setServerError(null);
   }
 
+  function errorText(code?: DraftErrorCode) {
+    return code ? copy.errors[code] : undefined;
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
@@ -96,7 +105,7 @@ export function SubmitForm({
     const { draft: cleanDraft, errors: nextErrors } = sanitizeDraft(draft);
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setServerError("A few fields need attention before this goes live.");
+      setServerError(null);
       return;
     }
 
@@ -120,6 +129,8 @@ export function SubmitForm({
     }
   }
 
+  const hasFieldErrors = Object.keys(errors).length > 0;
+
   return (
     <>
       <div className="grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr]">
@@ -133,63 +144,62 @@ export function SubmitForm({
               <div className="flex items-center gap-2">
                 <span className="flex size-2 rounded-full bg-grape" />
                 <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-                  Founder mode
+                  {copy.badge}
                 </span>
               </div>
               <h2 className="mt-2 text-[clamp(1.9rem,4vw,2.8rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-                Put your idea{" "}
+                {copy.title}{" "}
                 <span className="serif-accent font-normal text-grape">
-                  in the deck.
+                  {copy.titleAccent}
                 </span>
               </h2>
               <p className="mt-2 max-w-lg text-sm leading-6 text-muted">
-                One card, five fields, zero pitch-deck software. It goes live on
-                the board immediately.
+                {copy.body}
               </p>
             </div>
             <span className="rounded-full border border-ink/10 bg-cream px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-muted">
-              2 min build
+              {copy.time}
             </span>
           </div>
 
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="founder-name" className={labelClass}>
-                Founder / team
+                {copy.founder}
               </label>
               <input
                 id="founder-name"
                 value={draft.founderName}
                 onChange={(event) => update("founderName", event.target.value)}
-                placeholder="Maya K."
+                placeholder={copy.founderPlaceholder}
                 maxLength={40}
                 className={inputClass}
                 aria-invalid={Boolean(errors.founderName)}
               />
-              <FieldError message={errors.founderName} />
+              <FieldError message={errorText(errors.founderName)} />
             </div>
 
             <div>
               <label htmlFor="startup-title" className={labelClass}>
-                Startup name
+                {copy.startupName}
               </label>
               <input
                 id="startup-title"
                 value={draft.title}
                 onChange={(event) => update("title", event.target.value)}
-                placeholder="CampusBite"
+                placeholder={copy.startupPlaceholder}
                 maxLength={48}
                 className={inputClass}
                 aria-invalid={Boolean(errors.title)}
               />
-              <FieldError message={errors.title} />
+              <FieldError message={errorText(errors.title)} />
             </div>
           </div>
 
           <div className="mt-4">
             <div className="flex items-baseline justify-between gap-2">
               <label htmlFor="startup-pitch" className={labelClass}>
-                Short pitch
+                {copy.pitch}
               </label>
               <span
                 className={cn(
@@ -204,17 +214,17 @@ export function SubmitForm({
               id="startup-pitch"
               value={draft.pitch}
               onChange={(event) => update("pitch", event.target.value)}
-              placeholder="What do you do, who is it for, and why now? Make us feel the problem in one breath."
+              placeholder={copy.pitchPlaceholder}
               rows={4}
               maxLength={260}
               className={cn(inputClass, "resize-none leading-6")}
               aria-invalid={Boolean(errors.pitch)}
             />
-            <FieldError message={errors.pitch} />
+            <FieldError message={errorText(errors.pitch)} />
           </div>
 
           <fieldset className="mt-4">
-            <legend className={labelClass}>Niche</legend>
+            <legend className={labelClass}>{copy.niche}</legend>
             <div className="flex flex-wrap gap-2">
               {NICHES.map((niche) => {
                 const selected = draft.niche === niche;
@@ -231,18 +241,18 @@ export function SubmitForm({
                         : "border-ink/15 bg-white text-ink/60 hover:border-ink/40 hover:text-ink",
                     )}
                   >
-                    {niche}
+                    {dict.pitch.niches[niche]}
                   </button>
                 );
               })}
             </div>
-            <FieldError message={errors.niche} />
+            <FieldError message={errorText(errors.niche)} />
           </fieldset>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="target-market" className={labelClass}>
-                Target market
+                {copy.targetMarket}
               </label>
               <input
                 id="target-market"
@@ -250,17 +260,17 @@ export function SubmitForm({
                 onChange={(event) =>
                   update("targetMarket", event.target.value)
                 }
-                placeholder="First-year students on campus"
+                placeholder={copy.targetPlaceholder}
                 maxLength={80}
                 className={inputClass}
                 aria-invalid={Boolean(errors.targetMarket)}
               />
-              <FieldError message={errors.targetMarket} />
+              <FieldError message={errorText(errors.targetMarket)} />
             </div>
 
             <div>
               <label htmlFor="funding-needed" className={labelClass}>
-                Funding needed
+                {copy.funding}
               </label>
               <div className="flex items-center rounded-xl border-[1.5px] border-ink/15 bg-white px-3.5 transition-colors focus-within:border-grape">
                 <span className="text-sm font-extrabold text-ink/30">$</span>
@@ -278,7 +288,7 @@ export function SubmitForm({
                   aria-invalid={Boolean(errors.fundingNeeded)}
                 />
               </div>
-              <FieldError message={errors.fundingNeeded} />
+              <FieldError message={errorText(errors.fundingNeeded)} />
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {[10_000, 20_000, 30_000, 50_000].map((amount) => (
                   <button
@@ -300,7 +310,7 @@ export function SubmitForm({
           </div>
 
           <fieldset className="mt-5">
-            <legend className={labelClass}>Card icon</legend>
+            <legend className={labelClass}>{copy.icon}</legend>
             <div className="flex flex-wrap gap-1.5">
               {EMOJIS.map((emoji) => (
                 <button
@@ -308,7 +318,7 @@ export function SubmitForm({
                   type="button"
                   onClick={() => update("emoji", emoji)}
                   aria-pressed={draft.emoji === emoji}
-                  aria-label={`Choose ${emoji} as card icon`}
+                  aria-label={t("pitch.submit.iconAria", { emoji })}
                   className={cn(
                     "grid size-9 place-items-center rounded-xl border text-lg transition-all",
                     draft.emoji === emoji
@@ -327,7 +337,16 @@ export function SubmitForm({
               role="alert"
               className="mt-5 rounded-xl border border-coral/30 bg-coral/10 px-3.5 py-2.5 text-xs font-semibold text-[#a93218]"
             >
-              {serverError}
+              {copy.errors[serverError]}
+            </div>
+          )}
+
+          {hasFieldErrors && !serverError && (
+            <div
+              role="alert"
+              className="mt-5 rounded-xl border border-coral/30 bg-coral/10 px-3.5 py-2.5 text-xs font-semibold text-[#a93218]"
+            >
+              {copy.errorSummary}
             </div>
           )}
 
@@ -343,11 +362,11 @@ export function SubmitForm({
             {submitting ? (
               <>
                 <span className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                Publishing…
+                {copy.publishing}
               </>
             ) : (
               <>
-                Publish my pitch
+                {copy.publish}
                 <Send className="size-4" />
               </>
             )}
@@ -355,8 +374,7 @@ export function SubmitForm({
 
           <p className="mt-3 flex items-start gap-1.5 text-[10px] leading-4 text-muted">
             <Check className="mt-0.5 size-3 shrink-0 text-[#0b6749]" />
-            Your name and pitch are visible to event participants. You cannot
-            vote on your own card.
+            {copy.privacy}
           </p>
         </form>
 
@@ -364,24 +382,22 @@ export function SubmitForm({
           <div>
             <div className="mb-2 flex items-center justify-between px-1">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-muted">
-                Live preview
+                {copy.preview}
               </p>
               <span className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-grape">
                 <Sparkles className="size-3" />
-                Updates as you type
+                {copy.updates}
               </span>
             </div>
             <div className="rounded-[24px] border border-ink/10 bg-cream/60 p-3">
               <PitchCardView
                 startup={{
                   ...preview,
-                  title: preview.title || "Your startup",
-                  pitch:
-                    preview.pitch ||
-                    "Your 30-second pitch will appear here. Make the problem feel real, then show the wedge.",
+                  title: preview.title || copy.previewTitle,
+                  pitch: preview.pitch || copy.previewPitch,
                   targetMarket:
-                    preview.targetMarket || "Who feels the pain?",
-                  founderName: preview.founderName || "Your name",
+                    preview.targetMarket || copy.previewMarket,
+                  founderName: preview.founderName || copy.previewName,
                 }}
                 compact
               />
@@ -393,17 +409,10 @@ export function SubmitForm({
               <div className="grid size-8 place-items-center rounded-lg bg-sun/40">
                 <Lightbulb className="size-4" />
               </div>
-              <h3 className="text-xs font-extrabold">
-                What makes a card swipeable?
-              </h3>
+              <h3 className="text-xs font-extrabold">{copy.tipsTitle}</h3>
             </div>
             <ul className="mt-3 space-y-2 text-[11px] leading-5 text-ink/60">
-              {[
-                "One clear user. Not “everyone aged 18–35”.",
-                "A problem we can picture in five seconds.",
-                "A wedge that makes sense with your funding ask.",
-                "Proof of life: a pilot, a waitlist, a first customer.",
-              ].map((tip) => (
+              {copy.tips.map((tip) => (
                 <li key={tip} className="flex gap-2">
                   <span className="mt-1.5 size-1 shrink-0 rounded-full bg-grape" />
                   {tip}
@@ -428,7 +437,7 @@ export function SubmitForm({
             <button
               type="button"
               onClick={() => setSuccess(null)}
-              aria-label="Close"
+              aria-label={copy.close}
               className="absolute right-4 top-4 z-10 grid size-8 place-items-center rounded-full border border-ink/10 bg-white text-ink/50 transition-colors hover:text-ink"
             >
               <X className="size-4" />
@@ -438,18 +447,16 @@ export function SubmitForm({
               <Check className="size-6" />
             </div>
             <p className="mt-4 text-[10px] font-extrabold uppercase tracking-[0.18em] text-grape">
-              {offline ? "Saved on this device" : "Live on the board"}
+              {offline ? copy.saved : copy.live}
             </p>
             <h2
               id="pitch-published-title"
               className="mt-1 text-2xl font-extrabold tracking-[-0.04em]"
             >
-              Your pitch is in.
+              {copy.successTitle}
             </h2>
             <p className="mt-2 text-sm leading-6 text-muted">
-              {offline
-                ? "The live board is offline, so your card is saved on this device for now. It will still appear in your local results."
-                : "It is now part of the deck. Other participants can swipe on it — and you cannot vote for yourself."}
+              {offline ? copy.successOffline : copy.successLive}
             </p>
 
             <div className="mt-4">
@@ -465,7 +472,7 @@ export function SubmitForm({
                 }}
                 className={buttonClass({ variant: "primary", size: "md" })}
               >
-                See the board
+                {copy.seeBoard}
                 <ArrowRight className="size-4" />
               </button>
               <button
@@ -473,7 +480,7 @@ export function SubmitForm({
                 onClick={() => setSuccess(null)}
                 className={buttonClass({ variant: "outline", size: "md" })}
               >
-                Submit another startup
+                {copy.another}
               </button>
             </div>
           </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   ArrowUpRight,
@@ -18,44 +20,18 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { buttonClass } from "@/components/ui/button";
 import { Sparkline } from "@/components/ui/sparkline";
-import { seedStartups } from "@/lib/pitch-data";
+import { localizeSeedStartups } from "@/lib/pitch-data";
+import { useI18n } from "@/lib/i18n";
 
-const marqueeItems = [
-  "Due diligence",
-  "Swipe right",
-  "Lose it all",
-  "Pivot",
-  "Run it back",
-  "Unit economics",
-  "Conviction",
-  "Try again",
-];
-
-const lessons = [
-  {
-    icon: LineChart,
-    number: "01",
-    title: "Risk only feels real when it is yours",
-    body: "Allocating someone else's money is easy. Watching a $2,500 cheque become zero teaches more than a lecture slide ever will.",
-    tint: "bg-sky/40",
-  },
-  {
-    icon: Lightbulb,
-    number: "02",
-    title: "The best story does not always win",
-    body: "Juicero had design, capital, and headlines. Airbnb had air mattresses. History rewards evidence, not volume.",
-    tint: "bg-acid/60",
-  },
-  {
-    icon: Users,
-    number: "03",
-    title: "A room has a personality",
-    body: "Swipe data exposes what your audience actually rewards: niche, ask size, founder signal, or raw memorability.",
-    tint: "bg-coral/15",
-  },
-];
+const lessonIcons = [LineChart, Lightbulb, Users];
+const lessonTints = ["bg-sky/40", "bg-acid/60", "bg-coral/15"];
 
 export default function Home() {
+  const { dict } = useI18n();
+  const home = dict.home;
+  const seed = dict.pitch.seed;
+  const featuredPitches = localizeSeedStartups(dict).slice(0, 3);
+
   return (
     <>
       <SiteHeader />
@@ -69,24 +45,22 @@ export default function Home() {
             <div className="animate-fade-up">
               <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-ink/15 bg-paper px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-ink/60">
                 <span className="size-1.5 rounded-full bg-grape" />
-                University startup week
-                <span className="text-ink/25">/</span>
-                Two games, one room
+                {home.hero.badge}
+                <span className="text-ink/25">{home.hero.badgeDivider}</span>
+                {home.hero.badgeSecond}
               </div>
 
               <h1 className="mt-6 text-[clamp(3rem,7.2vw,5.6rem)] font-extrabold leading-[0.9] tracking-[-0.06em]">
-                Back the next
+                {home.hero.title1}
                 <br />
-                big thing.{" "}
+                {home.hero.title2}{" "}
                 <span className="serif-accent block text-grape">
-                  Or lose $10k trying.
+                  {home.hero.titleAccent}
                 </span>
               </h1>
 
               <p className="mt-6 max-w-xl text-base leading-7 text-ink/65 md:text-lg">
-                A $10,000 portfolio. Five real startups. One room full of
-                student pitches. Play the two games that turn startup theory
-                into decisions you can feel.
+                {home.hero.body}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -99,7 +73,7 @@ export default function Home() {
                   })}
                 >
                   <LineChart className="size-4" />
-                  Play the investment game
+                  {home.hero.playInvest}
                 </Link>
                 <Link
                   href="/pitch"
@@ -110,7 +84,7 @@ export default function Home() {
                   })}
                 >
                   <Heart className="size-4" />
-                  Swipe on pitches
+                  {home.hero.playPitch}
                 </Link>
               </div>
 
@@ -131,8 +105,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="max-w-[230px] text-[11px] font-semibold leading-4 text-muted">
-                  Built for founders, aspiring investors, and the merely
-                  curious. No finance degree required.
+                  {home.hero.social}
                 </p>
               </div>
             </div>
@@ -146,19 +119,19 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.14em] text-paper/60">
                       <span className="size-1.5 rounded-full bg-acid" />
-                      Fund I · Year 5
+                      {home.showcase.fundYear}
                     </span>
                     <TrendingUp className="size-4 text-acid" />
                   </div>
                   <p className="mt-4 text-[9px] font-bold uppercase tracking-[0.14em] text-paper/40">
-                    Portfolio value
+                    {home.showcase.portfolioValue}
                   </p>
                   <p className="mt-0.5 text-4xl font-extrabold tracking-[-0.05em] tabular-nums">
                     $41,800
                   </p>
                   <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-acid px-2 py-1 text-[9px] font-extrabold text-ink">
                     <TrendingUp className="size-3" />
-                    +318% return
+                    {home.showcase.return}
                   </div>
                   <Sparkline
                     values={[10_000, 13_200, 11_800, 26_000, 35_500, 41_800]}
@@ -167,9 +140,9 @@ export default function Home() {
                     className="mt-4 h-16"
                   />
                   <div className="mt-2 flex justify-between text-[8px] font-bold uppercase tracking-wider text-paper/35">
-                    <span>Start</span>
+                    <span>{home.showcase.start}</span>
                     <span>Airbnb · Slack · Twitter</span>
-                    <span>Y5</span>
+                    <span>{home.showcase.y5}</span>
                   </div>
                 </div>
               </div>
@@ -178,7 +151,7 @@ export default function Home() {
                 <div className="hard-card rounded-[24px] bg-paper p-4">
                   <div className="flex items-center justify-between">
                     <span className="rounded-full bg-[#E1EDFF] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#1557A8]">
-                      AI & EdTech
+                      {dict.pitch.niches["AI & EdTech"]}
                     </span>
                     <span className="rounded-full bg-cream px-2.5 py-1 text-[8px] font-extrabold text-ink/60">
                       $40k
@@ -190,24 +163,23 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-ink/35">
-                        Student pitch
+                        {home.showcase.studentPitch}
                       </p>
                       <p className="text-xl font-extrabold tracking-[-0.04em]">
-                        NoteWave
+                        {seed.notewave.title}
                       </p>
                     </div>
                   </div>
                   <p className="mt-2 text-[10px] leading-4 text-ink/60">
-                    AI that turns messy lecture recordings into notes,
-                    flashcards, and a weekly revision plan.
+                    {seed.notewave.pitch}
                   </p>
                   <div className="mt-3 flex items-center justify-between border-t border-dashed border-ink/10 pt-2.5">
                     <span className="text-[8px] font-bold uppercase tracking-wider text-muted">
-                      Noah &amp; Priya
+                      {seed.notewave.founderName}
                     </span>
                     <span className="inline-flex items-center gap-1 text-[8px] font-extrabold uppercase tracking-wider text-[#0b6749]">
                       <Check className="size-3" />
-                      Would invest
+                      {home.showcase.wouldInvest}
                     </span>
                   </div>
                 </div>
@@ -215,16 +187,16 @@ export default function Home() {
 
               <div className="absolute -right-1 top-16 z-30 rotate-[7deg] rounded-xl border-2 border-ink bg-acid px-3 py-2 shadow-[3px_3px_0_0_#14131a] sm:right-2">
                 <p className="text-[8px] font-extrabold uppercase tracking-[0.14em] text-ink/55">
-                  Swipe right
+                  {home.showcase.swipeRight}
                 </p>
                 <p className="flex items-center gap-1 text-sm font-extrabold">
-                  <Heart className="size-3.5" /> Invest
+                  <Heart className="size-3.5" /> {home.showcase.invest}
                 </p>
               </div>
 
               <div className="absolute -left-2 bottom-20 z-30 -rotate-6 rounded-xl border-2 border-ink bg-paper px-3 py-2 shadow-[3px_3px_0_0_#14131a] sm:-left-4">
                 <p className="flex items-center gap-1 text-xs font-extrabold">
-                  <X className="size-3.5 text-coral" /> Pass
+                  <X className="size-3.5 text-coral" /> {home.showcase.pass}
                 </p>
               </div>
             </div>
@@ -239,7 +211,7 @@ export default function Home() {
                 className="flex shrink-0 items-center"
                 aria-hidden={copy === 1}
               >
-                {marqueeItems.map((item) => (
+                {home.marquee.map((item) => (
                   <span
                     key={`${copy}-${item}`}
                     className="flex items-center gap-6 px-6 text-[10px] font-extrabold uppercase tracking-[0.2em]"
@@ -257,18 +229,17 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-                Pick your game
+                {home.games.eyebrow}
               </p>
               <h2 className="mt-2 text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-                Two ways to play.{" "}
+                {home.games.title}{" "}
                 <span className="serif-accent font-normal text-grape">
-                  One honest mirror.
+                  {home.games.titleAccent}
                 </span>
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-6 text-muted">
-              Play in any order. Each game takes less time than a coffee break
-              and ends with something to argue about.
+              {home.games.body}
             </p>
           </div>
 
@@ -281,10 +252,10 @@ export default function Home() {
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-cream px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-ink/55">
                     <LineChart className="size-3" />
-                    Portfolio simulator
+                    {home.games.investBadge}
                   </span>
                   <h3 className="mt-5 max-w-sm text-3xl font-extrabold leading-[0.98] tracking-[-0.05em] sm:text-4xl">
-                    Startup Investment Simulator
+                    {home.games.investTitle}
                   </h3>
                 </div>
                 <span className="grid size-11 shrink-0 place-items-center rounded-full border-2 border-ink bg-acid transition-transform duration-300 group-hover:rotate-45">
@@ -293,28 +264,25 @@ export default function Home() {
               </div>
 
               <p className="mt-4 max-w-md text-sm leading-6 text-ink/60">
-                Start with $10,000. Back five real companies before you know
-                how they ended. Then fast-forward five years and live with it.
+                {home.games.investBody}
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {["5 real startups", "5-year simulation", "Custom cheque sizes"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-ink/10 px-2.5 py-1 text-[9px] font-bold text-ink/50"
-                    >
-                      {tag}
-                    </span>
-                  ),
-                )}
+                {home.games.investTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-ink/10 px-2.5 py-1 text-[9px] font-bold text-ink/50"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
 
               <div className="mt-6 rounded-2xl border border-ink/10 bg-cream/70 p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-muted">
-                      Example portfolio
+                      {home.games.example}
                     </p>
                     <p className="text-xl font-extrabold tabular-nums">
                       $10,000 → $24,600
@@ -329,10 +297,10 @@ export default function Home() {
 
               <div className="mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-grape">
-                  Play game 01
+                  {home.games.play01}
                 </span>
                 <span className="text-[10px] font-semibold text-muted">
-                  6–8 min
+                  {home.games.investTime}
                 </span>
               </div>
             </Link>
@@ -346,10 +314,10 @@ export default function Home() {
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-white/70">
                     <Heart className="size-3" />
-                    Swipe + pitch voting
+                    {home.games.pitchBadge}
                   </span>
                   <h3 className="mt-5 max-w-sm text-3xl font-extrabold leading-[0.98] tracking-[-0.05em] sm:text-4xl">
-                    Founder Tinder
+                    {home.games.pitchTitle}
                   </h3>
                 </div>
                 <span className="grid size-11 shrink-0 place-items-center rounded-full border-2 border-white/70 bg-acid text-ink transition-transform duration-300 group-hover:rotate-45">
@@ -358,21 +326,18 @@ export default function Home() {
               </div>
 
               <p className="relative mt-4 max-w-md text-sm leading-6 text-white/70">
-                Swipe on real student pitches. Submit your own card. Then see
-                which niches, ask sizes, and ideas the room actually rewards.
+                {home.games.pitchBody}
               </p>
 
               <div className="relative mt-5 flex flex-wrap gap-2">
-                {["Swipe deck", "Founder submissions", "Live results"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/20 px-2.5 py-1 text-[9px] font-bold text-white/65"
-                    >
-                      {tag}
-                    </span>
-                  ),
-                )}
+                {home.games.pitchTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/20 px-2.5 py-1 text-[9px] font-bold text-white/65"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
 
               <div className="relative mt-6 flex items-center gap-2">
@@ -384,13 +349,15 @@ export default function Home() {
                       🌱
                     </span>
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold">GreenLoop</p>
+                      <p className="text-sm font-extrabold">
+                        {seed.greenloop.title}
+                      </p>
                       <p className="truncate text-[9px] text-muted">
-                        Reusable takeaway boxes, tracked by app.
+                        {home.games.pitchCardPitch}
                       </p>
                       <div className="mt-1.5 flex gap-1">
                         <span className="rounded-full bg-mint px-1.5 py-0.5 text-[7px] font-extrabold uppercase text-[#0b6749]">
-                          Invest
+                          {home.games.investChip}
                         </span>
                         <span className="rounded-full bg-cream px-1.5 py-0.5 text-[7px] font-bold uppercase text-muted">
                           $30k
@@ -403,10 +370,10 @@ export default function Home() {
 
               <div className="relative mt-6 flex items-center justify-between">
                 <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-acid">
-                  Play game 02
+                  {home.games.play02}
                 </span>
                 <span className="text-[10px] font-semibold text-white/50">
-                  3–6 min
+                  {home.games.pitchTime}
                 </span>
               </div>
             </Link>
@@ -418,60 +385,58 @@ export default function Home() {
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-acid">
-                  Why play
+                  {home.why.eyebrow}
                 </p>
                 <h2 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-                  Startup theory is tidy.
+                  {home.why.title}
                   <span className="serif-accent block text-acid">
-                    Decisions are not.
+                    {home.why.titleAccent}
                   </span>
                 </h2>
                 <p className="mt-4 max-w-sm text-sm leading-6 text-white/55">
-                  These games are built around the messy part: choosing under
-                  uncertainty, then discovering what your choices reveal about
-                  you.
+                  {home.why.body}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-4">
                   <div>
                     <p className="text-2xl font-extrabold">2</p>
                     <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
-                      Games
+                      {home.why.statGames}
                     </p>
                   </div>
                   <div className="h-8 w-px bg-white/10" />
                   <div>
                     <p className="text-2xl font-extrabold">5</p>
                     <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
-                      Historical bets
+                      {home.why.statBets}
                     </p>
                   </div>
                   <div className="h-8 w-px bg-white/10" />
                   <div>
                     <p className="text-2xl font-extrabold">1</p>
                     <p className="text-[9px] font-bold uppercase tracking-wider text-white/40">
-                      Live room
+                      {home.why.statRoom}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className="grid gap-3">
-                {lessons.map((lesson) => {
-                  const Icon = lesson.icon;
+                {home.why.lessons.map((lesson, index) => {
+                  const Icon = lessonIcons[index] ?? Lightbulb;
                   return (
                     <div
-                      key={lesson.number}
+                      key={lesson.title}
                       className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
                     >
                       <div
-                        className={`grid size-10 shrink-0 place-items-center rounded-xl text-ink ${lesson.tint}`}
+                        className={`grid size-10 shrink-0 place-items-center rounded-xl text-ink ${lessonTints[index] ?? "bg-acid/60"}`}
                       >
                         <Icon className="size-4" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-[8px] font-extrabold tracking-[0.16em] text-white/30">
-                            {lesson.number}
+                            {String(index + 1).padStart(2, "0")}
                           </span>
                           <h3 className="text-xs font-extrabold">
                             {lesson.title}
@@ -494,23 +459,23 @@ export default function Home() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-                  On the board
+                  {home.board.eyebrow}
                 </p>
                 <h2 className="mt-2 text-[clamp(1.9rem,3.6vw,2.8rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-                  Student pitches, ready for your verdict.
+                  {home.board.title}
                 </h2>
               </div>
               <Link
                 href="/pitch"
                 className={buttonClass({ variant: "outline", size: "md" })}
               >
-                Enter the arena
+                {home.board.enter}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
 
             <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {seedStartups.slice(0, 3).map((startup) => (
+              {featuredPitches.map((startup) => (
                 <div key={startup.id} className="h-[360px]">
                   <PitchCardView startup={startup} compact />
                 </div>
@@ -524,17 +489,17 @@ export default function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="text-sm font-extrabold">
-                    Got a startup of your own?
+                    {home.board.submitTitle}
                   </h3>
                   <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                    Build a card in two minutes. No deck, no login.
+                    {home.board.submitBody}
                   </p>
                 </div>
                 <Link
                   href="/pitch#submit"
                   className="shrink-0 rounded-full border-2 border-ink bg-paper px-3.5 py-2 text-[10px] font-extrabold transition-colors hover:bg-ink hover:text-paper"
                 >
-                  Submit
+                  {home.board.submit}
                 </Link>
               </div>
 
@@ -544,11 +509,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-sm font-extrabold">
-                    Every vote becomes a data point.
+                    {home.board.dataTitle}
                   </h3>
                   <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                    See niche heat, ask-size bias, and what the room rewards
-                    most.
+                    {home.board.dataBody}
                   </p>
                 </div>
               </div>
@@ -564,19 +528,17 @@ export default function Home() {
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-white/40 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.16em]">
                   <Zap className="size-3" />
-                  Your first $10k is waiting
+                  {home.cta.badge}
                 </div>
                 <h2 className="mt-4 text-[clamp(2.2rem,5vw,4rem)] font-extrabold leading-[0.92] tracking-[-0.055em]">
-                  Make a call.
+                  {home.cta.title1}
                   <br />
                   <span className="serif-accent font-normal">
-                    Then find out.
+                    {home.cta.titleAccent}
                   </span>
                 </h2>
                 <p className="mt-4 max-w-md text-sm leading-6 text-ink/60">
-                  The best way to understand risk is to make a decision and see
-                  what happens next. We made that loop fit inside a coffee
-                  break.
+                  {home.cta.body}
                 </p>
               </div>
 
@@ -590,7 +552,7 @@ export default function Home() {
                   })}
                 >
                   <LineChart className="size-4" />
-                  Deploy $10,000
+                  {home.cta.invest}
                   <ArrowRight className="size-4" />
                 </Link>
                 <Link
@@ -602,10 +564,10 @@ export default function Home() {
                   })}
                 >
                   <Heart className="size-4" />
-                  Swipe the pitch deck
+                  {home.cta.pitch}
                 </Link>
                 <p className="mt-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-ink/40">
-                  No sign-up · no real money · all the lessons
+                  {home.cta.footnote}
                 </p>
               </div>
             </div>

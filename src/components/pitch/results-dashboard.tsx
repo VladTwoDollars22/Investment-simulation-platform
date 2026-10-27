@@ -16,6 +16,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { buttonClass } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 import {
   buildPitchInsights,
   buildVoterProfile,
@@ -23,7 +24,7 @@ import {
   tallyNicheVotes,
   tallyStartupVotes,
 } from "@/lib/pitch-analytics";
-import type { PitchCard, Vote } from "@/lib/pitch-types";
+import type { Niche, PitchCard, Vote } from "@/lib/pitch-types";
 import { cn, formatCurrency, percent } from "@/lib/utils";
 
 const insightStyles = {
@@ -65,6 +66,8 @@ export function ResultsDashboard({
   onSubmit: () => void;
   onResetVotes: () => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.pitch.results;
   const startupStats = tallyStartupVotes(startups, allVotes);
   const nicheStats = tallyNicheVotes(startups, allVotes);
   const buckets = tallyFundingBuckets(startups, allVotes);
@@ -74,6 +77,9 @@ export function ResultsDashboard({
     fundingBuckets: buckets,
   });
   const profile = buildVoterProfile({ startups, votes: allVotes, voterId });
+  const archetypeCopy = profile
+    ? dict.pitch.archetypes[profile.archetype.id]
+    : null;
 
   const totalVotes = allVotes.length;
   const totalInvests = startupStats.reduce(
@@ -98,6 +104,56 @@ export function ResultsDashboard({
     .filter((bucket) => bucket.total > 0)
     .sort((a, b) => b.investRate - a.investRate)[0];
 
+  const stats = [
+    {
+      label: copy.totalSwipes,
+      value: totalVotes.toLocaleString("en-US"),
+      detail: t("pitch.results.startupsOnBoard", {
+        count: startups.length,
+      }),
+      icon: Users,
+    },
+    {
+      label: copy.investRate,
+      value: `${overallRate}%`,
+      detail: t("pitch.results.yesVotes", {
+        count: totalInvests.toLocaleString("en-US"),
+      }),
+      icon: Heart,
+    },
+    {
+      label: copy.livePitches,
+      value: liveStartups.toLocaleString("en-US"),
+      detail: copy.submitted,
+      icon: Sparkles,
+    },
+    {
+      label: copy.hottestNiche,
+      value: topNiche ? dict.pitch.niches[topNiche.niche] : "—",
+      detail: topNiche
+        ? t("pitch.results.rate", { rate: topNiche.investRate })
+        : copy.noVotes,
+      icon: Target,
+    },
+  ];
+
+  function bucketSummary() {
+    if (!bestBucket) return copy.notEnough;
+
+    const range = dict.pitch.buckets[bestBucket.id].range;
+    const key =
+      bestBucket.id === "large"
+        ? "bucketBestLarge"
+        : bestBucket.id === "small"
+          ? "bucketBestSmall"
+          : "bucketBestMid";
+
+    return t(`pitch.results.${key}`, {
+      range,
+      rate: bestBucket.investRate,
+    });
+  }
+
   return (
     <div>
       <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
@@ -105,27 +161,25 @@ export function ResultsDashboard({
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex size-2 rounded-full bg-grape" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-grape">
-              The room has spoken
+              {copy.spoken}
             </span>
             <span className="rounded-full border border-ink/10 bg-paper px-2 py-0.5 text-[9px] font-bold text-muted">
-              {totalVotes} swipes counted
+              {t("pitch.results.counted", { count: totalVotes })}
             </span>
             {status === "offline" && (
               <span className="rounded-full bg-coral/15 px-2 py-0.5 text-[9px] font-bold text-[#b3341c]">
-                Offline snapshot
+                {copy.offline}
               </span>
             )}
           </div>
           <h2 className="mt-2 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[0.98] tracking-[-0.05em]">
-            What investors{" "}
+            {copy.title}{" "}
             <span className="serif-accent font-normal text-grape">
-              actually care about.
+              {copy.titleAccent}
             </span>
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
-            Every swipe becomes a signal. See which pitches cut through, which
-            niches carry the room, and how the size of the ask changes the
-            answer.
+            {copy.body}
           </p>
         </div>
 
@@ -136,7 +190,7 @@ export function ResultsDashboard({
             className={buttonClass({ variant: "outline", size: "sm" })}
           >
             <RotateCcw className="size-3.5" />
-            Swipe again
+            {copy.swipeAgain}
           </button>
           <button
             type="button"
@@ -144,40 +198,13 @@ export function ResultsDashboard({
             className={buttonClass({ variant: "primary", size: "sm" })}
           >
             <Plus className="size-3.5" />
-            Add a pitch
+            {copy.addPitch}
           </button>
         </div>
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {[
-          {
-            label: "Total swipes",
-            value: totalVotes.toLocaleString("en-US"),
-            detail: `${startups.length} startups on the board`,
-            icon: Users,
-          },
-          {
-            label: "Invest rate",
-            value: `${overallRate}%`,
-            detail: `${totalInvests.toLocaleString("en-US")} yes votes`,
-            icon: Heart,
-          },
-          {
-            label: "Live pitches",
-            value: liveStartups.toLocaleString("en-US"),
-            detail: "Submitted by founders",
-            icon: Sparkles,
-          },
-          {
-            label: "Hottest niche",
-            value: topNiche ? topNiche.niche : "—",
-            detail: topNiche
-              ? `${topNiche.investRate}% invest rate`
-              : "No votes yet",
-            icon: Target,
-          },
-        ].map((stat) => {
+        {stats.map((stat) => {
           const Icon = stat.icon;
           return (
             <div
@@ -208,15 +235,13 @@ export function ResultsDashboard({
               <div className="flex items-center gap-2">
                 <Trophy className="size-4 text-grape" />
                 <h3 className="text-sm font-extrabold tracking-tight">
-                  Most investable pitches
+                  {copy.mostInvestable}
                 </h3>
               </div>
-              <p className="mt-1 text-[10px] text-muted">
-                Ranked by yes votes, with the room&apos;s invest rate.
-              </p>
+              <p className="mt-1 text-[10px] text-muted">{copy.ranked}</p>
             </div>
             <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-muted">
-              {ranked.length} startups
+              {t("pitch.results.startupsCount", { count: ranked.length })}
             </span>
           </div>
 
@@ -227,19 +252,22 @@ export function ResultsDashboard({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-grape">
-                  Room favourite
+                  {copy.favourite}
                 </p>
                 <p className="mt-0.5 truncate text-sm font-extrabold">
                   {leader.startup.emoji} {leader.startup.title}
                 </p>
                 <p className="truncate text-[10px] text-muted">
-                  {leader.investRate}% invest rate · {leader.invests} yes of{" "}
-                  {leader.total} swipes
+                  {t("pitch.results.favouriteMeta", {
+                    rate: leader.investRate,
+                    invests: leader.invests,
+                    total: leader.total,
+                  })}
                 </p>
               </div>
               <div className="hidden text-right sm:block">
                 <p className="text-[9px] font-bold uppercase tracking-wider text-muted">
-                  Seeking
+                  {copy.seeking}
                 </p>
                 <p className="text-xs font-extrabold tabular-nums">
                   {formatCurrency(leader.startup.fundingNeeded, {
@@ -283,7 +311,7 @@ export function ResultsDashboard({
                           {stat.startup.title}
                         </p>
                         <span className="rounded-full bg-cream px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted">
-                          {stat.startup.niche}
+                          {dict.pitch.niches[stat.startup.niche]}
                         </span>
                         {mine && (
                           <span
@@ -294,7 +322,7 @@ export function ResultsDashboard({
                                 : "bg-coral/15 text-[#b3341c]",
                             )}
                           >
-                            {mine === "invest" ? "You: yes" : "You: pass"}
+                            {mine === "invest" ? copy.youYes : copy.youPass}
                           </span>
                         )}
                       </div>
@@ -320,13 +348,13 @@ export function ResultsDashboard({
                         {stat.invests} / {stat.total}
                       </p>
                       <p className="text-[8px] font-bold uppercase tracking-wider text-muted">
-                        yes votes
+                        {copy.yesVotesLabel}
                       </p>
                     </div>
                   </div>
                   {stat.total === 0 && (
                     <p className="ml-10 mt-1 text-[9px] font-medium text-muted">
-                      New on the board — waiting for its first swipe.
+                      {copy.newOnBoard}
                     </p>
                   )}
                 </li>
@@ -338,12 +366,12 @@ export function ResultsDashboard({
         <section className="rounded-[26px] border-[1.5px] border-ink bg-grape p-5 text-white shadow-[5px_5px_0_0_#14131a] sm:p-6">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-white/55">
-              Your investor DNA
+              {copy.dna}
             </span>
             <BarChart3 className="size-4 text-acid" />
           </div>
 
-          {profile ? (
+          {profile && archetypeCopy ? (
             <>
               <div className="mt-4 flex items-center gap-3">
                 <span className="text-3xl" aria-hidden="true">
@@ -351,21 +379,21 @@ export function ResultsDashboard({
                 </span>
                 <div>
                   <h3 className="text-xl font-extrabold tracking-[-0.03em]">
-                    {profile.archetype.label}
+                    {archetypeCopy.label}
                   </h3>
                   <p className="text-[10px] font-semibold text-white/50">
-                    Based on {profile.votesCast} swipes
+                    {t("pitch.results.basedOn", { count: profile.votesCast })}
                   </p>
                 </div>
               </div>
               <p className="mt-3 text-xs leading-5 text-white/70">
-                {profile.archetype.blurb}
+                {archetypeCopy.blurb}
               </p>
 
               <div className="mt-5 grid grid-cols-2 gap-2">
                 <div className="rounded-xl bg-white/10 p-3">
                   <p className="text-[9px] font-bold uppercase tracking-wider text-white/45">
-                    Yes rate
+                    {copy.yesRate}
                   </p>
                   <p className="mt-0.5 text-xl font-extrabold tabular-nums">
                     {profile.investRate}%
@@ -373,7 +401,7 @@ export function ResultsDashboard({
                 </div>
                 <div className="rounded-xl bg-white/10 p-3">
                   <p className="text-[9px] font-bold uppercase tracking-wider text-white/45">
-                    Avg. ask backed
+                    {copy.avgAsk}
                   </p>
                   <p className="mt-0.5 text-base font-extrabold tabular-nums">
                     {profile.averageAsk > 0
@@ -385,10 +413,12 @@ export function ResultsDashboard({
 
               <div className="mt-3 flex items-center justify-between rounded-xl bg-white/10 px-3 py-2.5">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-white/45">
-                  Favourite niche
+                  {copy.favNiche}
                 </span>
                 <span className="rounded-full bg-acid px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-ink">
-                  {profile.favouriteNiche ?? "No yes votes"}
+                  {profile.favouriteNiche
+                    ? dict.pitch.niches[profile.favouriteNiche]
+                    : copy.noYes}
                 </span>
               </div>
 
@@ -396,18 +426,14 @@ export function ResultsDashboard({
                 <button
                   type="button"
                   onClick={() => {
-                    if (
-                      window.confirm(
-                        "Clear all your votes and start the deck again?",
-                      )
-                    ) {
+                    if (window.confirm(copy.resetConfirm)) {
                       onResetVotes();
                     }
                   }}
                   className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold text-white/55 transition-colors hover:text-white"
                 >
                   <RotateCcw className="size-3" />
-                  Reset my votes
+                  {copy.resetVotes}
                 </button>
               )}
             </>
@@ -417,11 +443,10 @@ export function ResultsDashboard({
                 <Heart className="size-5 text-acid" />
               </div>
               <h3 className="mt-4 text-lg font-extrabold tracking-tight">
-                Your voting fingerprint is missing.
+                {copy.missing}
               </h3>
               <p className="mt-2 text-xs leading-5 text-white/65">
-                Swipe a few pitches and we will show you whether you are a
-                conviction investor, a selective skeptic, or a very tough room.
+                {copy.missingBody}
               </p>
               <button
                 type="button"
@@ -432,7 +457,7 @@ export function ResultsDashboard({
                   className: "mt-4",
                 })}
               >
-                Open the deck
+                {copy.openDeck}
                 <ArrowRight className="size-3.5" />
               </button>
             </div>
@@ -445,14 +470,14 @@ export function ResultsDashboard({
           <div className="flex items-end justify-between gap-2">
             <div>
               <h3 className="text-sm font-extrabold tracking-tight">
-                Niche heat
+                {copy.nicheHeat}
               </h3>
               <p className="mt-1 text-[10px] text-muted">
-                Which categories make the room lean in.
+                {copy.nicheHeatBody}
               </p>
             </div>
             <span className="rounded-full bg-cream px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-muted">
-              invest rate
+              {copy.investRateLabel}
             </span>
           </div>
 
@@ -464,7 +489,7 @@ export function ResultsDashboard({
                     {index === 0 && niche.total > 0 && (
                       <Trophy className="size-3 text-grape" />
                     )}
-                    {niche.niche}
+                    {dict.pitch.niches[niche.niche]}
                   </span>
                   <span className="text-[10px] font-extrabold tabular-nums">
                     {niche.investRate}%
@@ -491,10 +516,10 @@ export function ResultsDashboard({
           <div className="flex items-end justify-between gap-2">
             <div>
               <h3 className="text-sm font-extrabold tracking-tight">
-                Does cheque size matter?
+                {copy.cheque}
               </h3>
               <p className="mt-1 text-[10px] text-muted">
-                Invest rate by the amount founders asked for.
+                {copy.chequeBody}
               </p>
             </div>
             <Wallet className="size-4 text-grape" />
@@ -523,25 +548,20 @@ export function ResultsDashboard({
                   </div>
                 </div>
                 <p className="mt-2 text-[10px] font-extrabold">
-                  {bucket.range}
+                  {dict.pitch.buckets[bucket.id].range}
                 </p>
                 <p className="text-[8px] font-bold uppercase tracking-wider text-muted">
-                  {bucket.invests}/{bucket.total} yes
+                  {t("pitch.results.yes", {
+                    invests: bucket.invests,
+                    total: bucket.total,
+                  })}
                 </p>
               </div>
             ))}
           </div>
 
           <p className="mt-5 rounded-xl bg-cream px-3 py-2.5 text-[10px] leading-4 text-ink/60">
-            {bestBucket
-              ? `${bestBucket.range} pitches convert at ${bestBucket.investRate}% — ${
-                  bestBucket.id === "large"
-                    ? "ambition is not being penalised in this room."
-                    : bestBucket.id === "small"
-                      ? "lower risk is clearly attractive."
-                      : "there is a sweet spot in the middle."
-                }`
-              : "Not enough votes yet to compare cheque sizes."}
+            {bucketSummary()}
           </p>
         </section>
       </div>
@@ -550,16 +570,21 @@ export function ResultsDashboard({
         <div className="flex items-center gap-2">
           <Lightbulb className="size-4 text-grape" />
           <h3 className="text-lg font-extrabold tracking-[-0.03em]">
-            The room&apos;s playbook
+            {copy.playbook}
           </h3>
         </div>
         <div className="mt-3 grid gap-3 md:grid-cols-3">
           {insights.map((insight) => {
             const style = insightStyles[insight.tone];
             const Icon = style.icon;
+            const params = { ...insight.params };
+            if (insight.id === "nicheMoment" && typeof params.niche === "string") {
+              params.niche = dict.pitch.niches[params.niche as Niche];
+            }
+
             return (
               <div
-                key={insight.title}
+                key={insight.id}
                 className={cn(
                   "rounded-[22px] border border-ink/10 p-5",
                   style.className,
@@ -574,10 +599,10 @@ export function ResultsDashboard({
                   <Icon className="size-3.5" />
                 </div>
                 <h4 className="mt-3 text-xs font-extrabold tracking-tight">
-                  {insight.title}
+                  {t(`pitch.insights.${insight.id}.title`, params)}
                 </h4>
                 <p className="mt-1.5 text-[11px] leading-5 text-ink/60">
-                  {insight.body}
+                  {t(`pitch.insights.${insight.id}.body`, params)}
                 </p>
               </div>
             );
@@ -588,15 +613,16 @@ export function ResultsDashboard({
       <section className="mt-6 flex flex-col items-start justify-between gap-4 rounded-[24px] border-[1.5px] border-ink bg-acid p-5 sm:flex-row sm:items-center">
         <div>
           <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink/55">
-            Keep the room moving
+            {copy.keepMoving}
           </p>
           <p className="mt-1 text-lg font-extrabold tracking-tight">
-            Every swipe makes the signal sharper.
+            {copy.sharper}
           </p>
           <p className="mt-1 text-[10px] font-medium text-ink/55">
-            {liveStartups} live {liveStartups === 1 ? "pitch" : "pitches"} ·{" "}
-            {persistent ? "shared live board" : "session-only board"} · demo
-            cohort included
+            {t("pitch.results.summary", {
+              count: liveStartups,
+              board: persistent ? copy.sharedBoard : copy.sessionBoard,
+            })}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -605,7 +631,7 @@ export function ResultsDashboard({
             onClick={onVote}
             className={buttonClass({ variant: "dark", size: "md" })}
           >
-            Swipe more
+            {copy.swipeMore}
             <ArrowRight className="size-4" />
           </button>
           <button
@@ -614,16 +640,14 @@ export function ResultsDashboard({
             className={buttonClass({ variant: "outline", size: "md" })}
           >
             <Plus className="size-4" />
-            Submit a pitch
+            {copy.submitPitch}
           </button>
         </div>
       </section>
 
       <p className="mt-4 text-center text-[10px] leading-4 text-muted">
-        Results combine live votes with a seeded demo cohort of 32 investors.
-        This is event feedback, not an investment offer.{" "}
-        {status === "offline" &&
-          "You are viewing an offline snapshot stored on this device."}
+        {copy.footer}{" "}
+        {status === "offline" && copy.footerOffline}
       </p>
     </div>
   );

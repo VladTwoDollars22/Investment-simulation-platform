@@ -1,6 +1,6 @@
-# VentureU — Startup Games
+# Starcup — Startup Games
 
-Two interactive mini-games for university startup events, built with Next.js and Tailwind CSS.
+Two interactive mini-games for university startup events, built with Next.js and Tailwind CSS. The interface is fully localized in English, Lithuanian, and Russian.
 
 1. **Startup Investment Simulator** — start with a virtual $10,000, back five real historical startups before seeing the outcomes, then watch a five-year portfolio simulation and unpack the lessons.
 2. **Founder Tinder** — founders publish startup cards, participants swipe right (invest) or left (pass), and a live results dashboard shows which pitches, niches, and funding asks the room actually rewards.
@@ -11,6 +11,7 @@ Two interactive mini-games for university startup events, built with Next.js and
 - **React 19**
 - **Tailwind CSS v4**
 - **Lucide React** icons
+- **Client-side i18n** with EN / LT / RU dictionaries and persisted language choice
 - **Route Handlers** for the shared pitch board
 - File-backed JSON persistence with an in-memory fallback
 
@@ -70,7 +71,7 @@ The pitch board is served by:
 By default, submissions and votes are written to `data/pitch-board.json`. Set `PITCH_DATA_FILE` to use another writable path:
 
 ```bash
-PITCH_DATA_FILE=/var/data/ventureu-board.json npm run start
+PITCH_DATA_FILE=/var/data/starcup-board.json npm run start
 ```
 
 If the filesystem is read-only or the write fails, the app keeps working in **session-only memory mode** and labels the UI accordingly. Each participant also has a local fallback for offline/demo use.

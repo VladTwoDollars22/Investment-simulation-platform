@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { buttonClass } from "@/components/ui/button";
-import { historicalStartups, type HistoricalStartup } from "@/lib/invest-data";
+import { localizeStartups, type LocalizedStartup } from "@/lib/invest-data";
 import type { InvestmentAmounts } from "@/lib/invest-sim";
+import { useI18n } from "@/lib/i18n";
 import { cn, formatCurrency } from "@/lib/utils";
 
 export function InvestStage({
@@ -22,17 +23,19 @@ export function InvestStage({
   remaining,
   onLock,
 }: {
-  startup: HistoricalStartup;
+  startup: LocalizedStartup;
   roundIndex: number;
   amounts: InvestmentAmounts;
   remaining: number;
   onLock: (amount: number) => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.invest.stage;
   const [draft, setDraft] = useState(0);
   const max = remaining;
   const shareOfFund = Math.round((draft / 10_000) * 100);
   const shareOfRemaining = max > 0 ? Math.round((draft / max) * 100) : 0;
-  const previous = historicalStartups.slice(0, roundIndex);
+  const previous = localizeStartups(dict).slice(0, roundIndex);
 
   const quickOptions = [0, 1_000, 2_500, 5_000]
     .filter((value) => value <= max)
@@ -47,15 +50,15 @@ export function InvestStage({
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <span className="rounded-full bg-ink px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-paper">
-            Deal {roundIndex + 1} of 5
+            {t("invest.stage.deal", { current: roundIndex + 1 })}
           </span>
           <span className="text-xs font-semibold text-muted">
-            {startup.sector} · Founded {startup.founded}
+            {t("invest.stage.founded", { year: startup.founded, sector: startup.sector })}
           </span>
         </div>
         <div className="flex items-center gap-2 text-xs font-bold text-muted">
           <Wallet className="size-3.5 text-grape" />
-          {formatCurrency(remaining)} available
+          {t("invest.stage.available", { amount: formatCurrency(remaining) })}
         </div>
       </div>
 
@@ -85,12 +88,12 @@ export function InvestStage({
                       {startup.sector}
                     </span>
                     <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/45">
-                      Pitch deck · {startup.founded}
+                      {t("invest.stage.pitchDeck", { year: startup.founded })}
                     </p>
                   </div>
                 </div>
                 <span className="hidden rounded-full border border-ink/15 bg-white/50 px-3 py-1.5 text-[10px] font-bold text-ink/55 sm:block">
-                  Pre-seed · open
+                  {copy.preSeed}
                 </span>
               </div>
 
@@ -109,7 +112,7 @@ export function InvestStage({
           <div className="space-y-7 px-6 py-7 sm:px-8">
             <section>
               <h2 className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-ink/45">
-                The story
+                {copy.story}
               </h2>
               <p className="mt-2.5 text-[15px] leading-7 text-ink/75">
                 {startup.description}
@@ -119,7 +122,7 @@ export function InvestStage({
             <section className="rounded-2xl border-l-[3px] border-grape bg-grape/[0.04] px-5 py-4">
               <div className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-grape">
                 <Quote className="size-3.5" />
-                What they are pitching
+                {copy.pitching}
               </div>
               <p className="serif-accent mt-2 text-lg leading-7 text-ink/85">
                 &ldquo;{startup.pitch}&rdquo;
@@ -129,17 +132,14 @@ export function InvestStage({
             <section className="rounded-2xl border border-coral/25 bg-coral/[0.07] px-5 py-4">
               <div className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#b83a24]">
                 <AlertTriangle className="size-3.5" />
-                What could go wrong
+                {copy.risk}
               </div>
               <p className="mt-2 text-sm leading-6 text-ink/70">{startup.risk}</p>
             </section>
 
             <div className="flex items-start gap-2.5 border-t border-dashed border-ink/10 pt-5 text-[11px] leading-5 text-muted">
               <Info className="mt-0.5 size-3.5 shrink-0 text-grape" />
-              <p>
-                The outcome stays hidden until the end. Judge the business, not
-                the brand you know today.
-              </p>
+              <p>{copy.hidden}</p>
             </div>
           </div>
         </article>
@@ -155,10 +155,10 @@ export function InvestStage({
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-grape">
-                  Your call
+                  {copy.yourCall}
                 </p>
                 <h2 className="mt-1 text-2xl font-extrabold tracking-[-0.04em]">
-                  Write the cheque
+                  {copy.writeCheque}
                 </h2>
               </div>
               <div className="grid size-10 place-items-center rounded-full bg-acid">
@@ -169,7 +169,7 @@ export function InvestStage({
             <div className="mt-5 rounded-2xl bg-cream p-4">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">
-                  Available budget
+                  {copy.availableBudget}
                 </span>
                 <span className="text-sm font-extrabold tabular-nums">
                   {formatCurrency(remaining)}
@@ -182,8 +182,11 @@ export function InvestStage({
                 />
               </div>
               <p className="mt-2 text-[10px] font-medium text-muted">
-                {formatCurrency(draft)} committed to {startup.name} ·{" "}
-                {formatCurrency(max - draft)} would stay in cash
+                {t("invest.stage.committed", {
+                  amount: formatCurrency(draft),
+                  name: startup.name,
+                  cash: formatCurrency(max - draft),
+                })}
               </p>
             </div>
 
@@ -191,7 +194,7 @@ export function InvestStage({
               htmlFor="investment-amount"
               className="mt-6 block text-[10px] font-extrabold uppercase tracking-[0.16em] text-muted"
             >
-              Investment amount
+              {copy.amount}
             </label>
             <div className="mt-2 flex items-center rounded-2xl border-[1.5px] border-ink/15 bg-white px-4 py-3 transition-colors focus-within:border-grape">
               <span className="text-2xl font-extrabold text-ink/30">$</span>
@@ -209,7 +212,7 @@ export function InvestStage({
                 aria-describedby="investment-helper"
               />
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-                USD
+                {copy.usd}
               </span>
             </div>
 
@@ -221,13 +224,13 @@ export function InvestStage({
               value={draft}
               disabled={max === 0}
               onChange={(event) => updateDraft(Number(event.target.value))}
-              aria-label="Investment amount slider"
+              aria-label={copy.slider}
               className="mt-5 h-2 w-full cursor-pointer appearance-none rounded-full bg-ink/10 accent-grape disabled:cursor-not-allowed"
               style={{ accentColor: "#5438f5" }}
             />
             <div className="mt-1.5 flex justify-between text-[9px] font-bold uppercase tracking-wider text-muted">
               <span>$0</span>
-              <span>{formatCurrency(max)} max</span>
+              <span>{t("invest.stage.max", { amount: formatCurrency(max) })}</span>
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
@@ -244,7 +247,7 @@ export function InvestStage({
                   )}
                 >
                   {option === max && max !== 0
-                    ? "Max"
+                    ? copy.maxLabel
                     : formatCurrency(option, { compact: true })}
                 </button>
               ))}
@@ -257,8 +260,11 @@ export function InvestStage({
               <Check className="mt-0.5 size-3 shrink-0 text-[#167a4b]" />
               <p>
                 {draft === 0
-                  ? "A pass is a valid decision. Your full budget rolls into the next deal."
-                  : `${shareOfFund}% of your fund, concentrated in one company. You keep ${formatCurrency(max - draft)} for later deals.`}
+                  ? copy.helperPass
+                  : t("invest.stage.helperInvest", {
+                      share: shareOfFund,
+                      cash: formatCurrency(max - draft),
+                    })}
               </p>
             </div>
 
@@ -271,8 +277,8 @@ export function InvestStage({
               })}
             >
               {draft > 0
-                ? `Invest ${formatCurrency(draft)}`
-                : "Pass on this one"}
+                ? t("invest.stage.invest", { amount: formatCurrency(draft) })
+                : copy.pass}
               <ArrowRight className="size-4" />
             </button>
           </form>
@@ -281,10 +287,10 @@ export function InvestStage({
             <div className="rounded-2xl border border-ink/10 bg-paper/70 p-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-ink/45">
-                  Portfolio so far
+                  {copy.portfolio}
                 </h3>
                 <span className="text-[10px] font-bold text-muted">
-                  {previous.length}/5 closed
+                  {t("invest.stage.closed", { count: previous.length })}
                 </span>
               </div>
               <ul className="mt-3 space-y-1.5">
@@ -305,7 +311,7 @@ export function InvestStage({
                           amount === 0 ? "text-ink/30" : "text-ink",
                         )}
                       >
-                        {amount === 0 ? "Passed" : formatCurrency(amount)}
+                        {amount === 0 ? copy.passed : formatCurrency(amount)}
                       </span>
                     </li>
                   );

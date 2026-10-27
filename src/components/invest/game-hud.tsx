@@ -2,16 +2,10 @@
 
 import { ArrowLeft, RotateCcw, Wallet } from "lucide-react";
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n";
 import { formatCurrency } from "@/lib/utils";
 
 export type GamePhase = "intro" | "invest" | "sim" | "results";
-
-const phaseLabels: Record<GamePhase, string> = {
-  intro: "Briefing",
-  invest: "Deal flow",
-  sim: "Simulation",
-  results: "Results",
-};
 
 export function GameHud({
   phase,
@@ -24,6 +18,9 @@ export function GameHud({
   remaining: number;
   onRestart: () => void;
 }) {
+  const { dict, t } = useI18n();
+  const copy = dict.invest.hud;
+
   return (
     <div className="border-b border-ink/10 bg-paper/60">
       <div className="shell flex h-16 items-center justify-between gap-3">
@@ -32,13 +29,13 @@ export function GameHud({
           className="inline-flex items-center gap-2 text-xs font-bold text-ink/60 transition-colors hover:text-ink"
         >
           <ArrowLeft className="size-4" />
-          <span className="hidden sm:inline">All games</span>
-          <span className="sm:hidden">Exit</span>
+          <span className="hidden sm:inline">{copy.allGames}</span>
+          <span className="sm:hidden">{copy.exit}</span>
         </Link>
 
         <div className="hidden items-center gap-3 md:flex">
           <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-muted">
-            {phaseLabels[phase]}
+            {copy.phases[phase]}
           </span>
           <div className="flex items-center gap-1.5" aria-hidden="true">
             {Array.from({ length: 5 }, (_, index) => (
@@ -57,7 +54,7 @@ export function GameHud({
           </div>
           {phase === "invest" && (
             <span className="text-[11px] font-bold tabular-nums text-muted">
-              Round {roundIndex + 1}/5
+              {t("invest.hud.round", { current: roundIndex + 1 })}
             </span>
           )}
         </div>
@@ -69,15 +66,15 @@ export function GameHud({
               {formatCurrency(remaining)}
             </span>
             <span className="hidden text-[9px] font-bold uppercase tracking-wider text-muted sm:inline">
-              left
+              {copy.left}
             </span>
           </div>
           {phase !== "intro" && (
             <button
               type="button"
               onClick={onRestart}
-              aria-label="Restart the simulation"
-              title="Restart simulation"
+              aria-label={copy.restart}
+              title={copy.restart}
               className="grid size-9 place-items-center rounded-full border border-ink/10 bg-paper text-ink/65 transition-colors hover:border-ink/25 hover:text-ink"
             >
               <RotateCcw className="size-3.5" />

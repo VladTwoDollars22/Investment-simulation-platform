@@ -1,27 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GameHud, type GamePhase } from "@/components/invest/game-hud";
 import { IntroStage } from "@/components/invest/intro-stage";
 import { InvestStage } from "@/components/invest/invest-stage";
 import { ResultsStage } from "@/components/invest/results-stage";
 import { SimulationStage } from "@/components/invest/simulation-stage";
-import { historicalStartups } from "@/lib/invest-data";
+import { localizeStartups } from "@/lib/invest-data";
 import {
   remainingBudget,
   simulate,
   type InvestmentAmounts,
   type SimulationResult,
 } from "@/lib/invest-sim";
+import { useI18n } from "@/lib/i18n";
 import { clamp } from "@/lib/utils";
 
 export function InvestmentGame() {
+  const { dict } = useI18n();
   const [phase, setPhase] = useState<GamePhase>("intro");
   const [roundIndex, setRoundIndex] = useState(0);
   const [amounts, setAmounts] = useState<InvestmentAmounts>({});
   const [result, setResult] = useState<SimulationResult | null>(null);
+  const startups = useMemo(() => localizeStartups(dict), [dict]);
 
-  const currentStartup = historicalStartups[roundIndex];
+  const currentStartup = startups[roundIndex];
   const remaining = remainingBudget(amounts);
 
   useEffect(() => {
@@ -44,7 +47,7 @@ export function InvestmentGame() {
 
     setAmounts(nextAmounts);
 
-    if (roundIndex === historicalStartups.length - 1) {
+    if (roundIndex === startups.length - 1) {
       setResult(simulate(nextAmounts));
       setPhase("sim");
       return;
@@ -55,9 +58,7 @@ export function InvestmentGame() {
 
   function restartGame() {
     if (phase !== "intro") {
-      const confirmed = window.confirm(
-        "Restart the simulation? Your current portfolio will be lost.",
-      );
+      const confirmed = window.confirm(dict.invest.results.restartConfirm);
       if (!confirmed) return;
     }
 

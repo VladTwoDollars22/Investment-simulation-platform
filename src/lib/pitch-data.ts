@@ -1,3 +1,4 @@
+import type { Dictionary } from "@/lib/i18n";
 import {
   accentForNiche,
   type PitchCard,
@@ -5,18 +6,17 @@ import {
   type Vote,
 } from "@/lib/pitch-types";
 
-export const DEMO_VOTER_COUNT = 32;
+export type SeedStartupId = keyof Dictionary["pitch"]["seed"];
 
-export const seedStartups: PitchCard[] = [
+const seedStartupMeta: Array<
+  Omit<PitchCard, "title" | "pitch" | "targetMarket" | "founderName"> & {
+    id: SeedStartupId;
+  }
+> = [
   {
     id: "campus-bite",
-    title: "CampusBite",
-    pitch:
-      "Half-price meals from campus cafés, rescued before closing time. Students save money, kitchens earn from food that would be binned, and nobody has to eat another sad meal deal.",
     niche: "Marketplace",
-    targetMarket: "12,000 students across 3 campuses",
     fundingNeeded: 25_000,
-    founderName: "Maya K.",
     emoji: "🍜",
     accent: accentForNiche("Marketplace"),
     createdAt: "2026-10-01T09:00:00.000Z",
@@ -24,13 +24,8 @@ export const seedStartups: PitchCard[] = [
   },
   {
     id: "notewave",
-    title: "NoteWave",
-    pitch:
-      "AI that turns messy lecture recordings into structured notes, flashcards, and a weekly revision plan — trained on your course, in your university's own language.",
     niche: "AI & EdTech",
-    targetMarket: "First-year STEM students",
     fundingNeeded: 40_000,
-    founderName: "Noah & Priya",
     emoji: "📚",
     accent: accentForNiche("AI & EdTech"),
     createdAt: "2026-10-01T09:05:00.000Z",
@@ -38,13 +33,8 @@ export const seedStartups: PitchCard[] = [
   },
   {
     id: "greenloop",
-    title: "GreenLoop",
-    pitch:
-      "Reusable takeaway boxes with a €2 deposit, tracked in an app. Cafés ditch single-use packaging without hiring extra staff, and students get their deposit back.",
     niche: "Sustainability",
-    targetMarket: "Campus cafés and 40 local eateries",
     fundingNeeded: 30_000,
-    founderName: "Team Loop",
     emoji: "🌱",
     accent: accentForNiche("Sustainability"),
     createdAt: "2026-10-01T09:10:00.000Z",
@@ -52,13 +42,8 @@ export const seedStartups: PitchCard[] = [
   },
   {
     id: "skillswap",
-    title: "SkillSwap",
-    pitch:
-      "A skill-bartering board where students trade an hour of guitar for an hour of calculus. No money, just verified campus reputation and a reason to meet people offline.",
     niche: "Community",
-    targetMarket: "Students in their first two years",
     fundingNeeded: 15_000,
-    founderName: "Jonas R.",
     emoji: "🤝",
     accent: accentForNiche("Community"),
     createdAt: "2026-10-01T09:15:00.000Z",
@@ -66,13 +51,8 @@ export const seedStartups: PitchCard[] = [
   },
   {
     id: "mindfulu",
-    title: "MindfulU",
-    pitch:
-      "Five-minute, exam-week mental health check-ins with peer-trained responders and instant links to campus support. Private by design, built for the 2am panic before a deadline.",
     niche: "Health & Wellbeing",
-    targetMarket: "Students during exam season",
     fundingNeeded: 20_000,
-    founderName: "Aisha B.",
     emoji: "🧠",
     accent: accentForNiche("Health & Wellbeing"),
     createdAt: "2026-10-01T09:20:00.000Z",
@@ -80,19 +60,46 @@ export const seedStartups: PitchCard[] = [
   },
   {
     id: "rentmate",
-    title: "RentMate",
-    pitch:
-      "Verified student housing matching, rent splitting, and contract checks in one place. No more Facebook groups, ghost landlords, or discovering the kitchen is a curtain.",
     niche: "PropTech",
-    targetMarket: "Second and third-year students",
     fundingNeeded: 50_000,
-    founderName: "The RentMate crew",
     emoji: "🏠",
     accent: accentForNiche("PropTech"),
     createdAt: "2026-10-01T09:25:00.000Z",
     demo: true,
   },
 ];
+
+const seedIds = new Set<string>(seedStartupMeta.map((startup) => startup.id));
+
+/**
+ * Server-side seed cards only need IDs and numeric metadata. All copy is
+ * hydrated from the active locale on the client.
+ */
+export const seedStartups: PitchCard[] = seedStartupMeta.map((startup) => ({
+  ...startup,
+  title: "",
+  pitch: "",
+  targetMarket: "",
+  founderName: "",
+}));
+
+export function localizeSeedStartups(dict: Dictionary): PitchCard[] {
+  return seedStartupMeta.map((startup) => ({
+    ...startup,
+    ...dict.pitch.seed[startup.id],
+  }));
+}
+
+export function localizeSeedStartup(card: PitchCard, dict: Dictionary): PitchCard {
+  if (!seedIds.has(card.id)) return card;
+
+  return {
+    ...card,
+    ...dict.pitch.seed[card.id as SeedStartupId],
+  };
+}
+
+export const DEMO_VOTER_COUNT = 32;
 
 const demoInvestRate: Record<string, number> = {
   "campus-bite": 0.64,

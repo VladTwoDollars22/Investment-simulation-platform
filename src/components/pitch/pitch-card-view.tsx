@@ -1,4 +1,7 @@
+"use client";
+
 import { ACCENTS, type PitchCard } from "@/lib/pitch-types";
+import { useI18n } from "@/lib/i18n";
 import { cn, formatCurrency } from "@/lib/utils";
 
 function initials(name: string) {
@@ -20,6 +23,8 @@ export function PitchCardView({
   compact?: boolean;
   className?: string;
 }) {
+  const { dict } = useI18n();
+  const copy = dict.pitch.card;
   const accent = ACCENTS[startup.accent];
 
   return (
@@ -49,7 +54,7 @@ export function PitchCardView({
               compact ? "text-[8px]" : "text-[9px]",
             )}
           >
-            {startup.niche}
+            {dict.pitch.niches[startup.niche]}
           </span>
           <span className="inline-flex items-center rounded-full border border-ink/10 bg-white/55 px-2.5 py-1 text-[9px] font-extrabold text-ink/70">
             {formatCurrency(startup.fundingNeeded, { compact: true })}
@@ -72,7 +77,7 @@ export function PitchCardView({
           </div>
           <div className="min-w-0 pb-0.5">
             <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-ink/40">
-              Student pitch
+              {copy.studentPitch}
             </p>
             <h3
               className={cn(
@@ -93,7 +98,7 @@ export function PitchCardView({
         )}
       >
         <p className="text-[9px] font-extrabold uppercase tracking-[0.18em] text-ink/40">
-          The pitch
+          {copy.thePitch}
         </p>
         <p
           className={cn(
@@ -112,7 +117,7 @@ export function PitchCardView({
         >
           <div className="rounded-xl bg-cream px-2.5 py-2">
             <p className="text-[8px] font-bold uppercase tracking-[0.12em] text-muted">
-              Target market
+              {copy.targetMarket}
             </p>
             <p
               className={cn(
@@ -125,7 +130,7 @@ export function PitchCardView({
           </div>
           <div className="rounded-xl bg-cream px-2.5 py-2">
             <p className="text-[8px] font-bold uppercase tracking-[0.12em] text-muted">
-              Funding needed
+              {copy.funding}
             </p>
             <p
               className={cn(
@@ -165,12 +170,12 @@ export function PitchCardView({
                 {startup.founderName}
               </p>
               <p className="text-[8px] font-medium uppercase tracking-wider text-muted">
-                {startup.demo ? "Showcase founder" : "Student founder"}
+                {startup.demo ? copy.showcaseFounder : copy.studentFounder}
               </p>
             </div>
           </div>
           <span className="shrink-0 rounded-full border border-ink/10 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted">
-            {startup.demo ? "Demo" : "Live"}
+            {startup.demo ? copy.demo : copy.live}
           </span>
         </div>
       </div>

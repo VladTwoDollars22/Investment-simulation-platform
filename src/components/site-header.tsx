@@ -5,18 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Wordmark } from "@/components/brand";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { buttonClass } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/invest", label: "Invest Simulator" },
-  { href: "/pitch", label: "Pitch Arena" },
-];
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { dict } = useI18n();
   const [open, setOpen] = useState(false);
+  const links = [
+    { href: "/", label: dict.nav.home },
+    { href: "/invest", label: dict.nav.invest },
+    { href: "/pitch", label: dict.nav.pitch },
+  ];
 
   useEffect(() => {
     if (!open) return;
@@ -28,13 +30,13 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b-[1.5px] border-ink/10 bg-cream/85 backdrop-blur-xl">
-      <div className="shell flex h-[70px] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-white/60 bg-cream/80 backdrop-blur-xl">
+      <div className="shell flex h-[70px] items-center justify-between gap-3">
         <Wordmark />
 
         <nav
-          aria-label="Main navigation"
-          className="hidden items-center gap-1 rounded-full border border-ink/10 bg-paper/70 p-1.5 md:flex"
+          aria-label={dict.nav.main}
+          className="hidden items-center gap-1 rounded-full border border-white/70 bg-paper/60 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,.8)] backdrop-blur-md lg:flex"
         >
           {links.map((link) => {
             const active =
@@ -48,10 +50,10 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-4 py-2 text-[13px] font-bold transition-colors",
+                  "rounded-full px-3.5 py-2 text-[13px] font-bold transition-colors",
                   active
-                    ? "bg-ink text-paper"
-                    : "text-ink/65 hover:bg-ink/5 hover:text-ink",
+                    ? "bg-[#1E1B4B] text-paper"
+                    : "text-[#1E1B4B]/65 hover:bg-white/70 hover:text-[#1E1B4B]",
                 )}
               >
                 {link.label}
@@ -61,23 +63,24 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <Link
             href="/invest"
             className={buttonClass({
               variant: "primary",
               size: "sm",
-              className: "hidden sm:inline-flex",
+              className: "hidden xl:inline-flex",
             })}
           >
-            Play now
+            {dict.nav.playNow}
           </Link>
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="grid size-10 place-items-center rounded-full border-2 border-ink bg-paper text-ink md:hidden"
+            aria-label={open ? dict.nav.closeMenu : dict.nav.openMenu}
+            className="grid size-10 place-items-center rounded-full border-2 border-ink bg-paper text-ink lg:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -87,9 +90,9 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-ink/10 bg-cream px-5 pb-5 pt-3 md:hidden"
+          className="border-t border-ink/10 bg-cream px-5 pb-5 pt-3 lg:hidden"
         >
-          <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
+          <nav aria-label={dict.nav.mobile} className="flex flex-col gap-1">
             {links.map((link) => {
               const active =
                 link.href === "/"
@@ -103,7 +106,9 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className={cn(
                     "rounded-xl px-3 py-3 text-sm font-bold",
-                    active ? "bg-ink text-paper" : "hover:bg-ink/5",
+                    active
+                      ? "bg-[#1E1B4B] text-paper"
+                      : "hover:bg-ink/5",
                   )}
                 >
                   {link.label}
@@ -119,7 +124,7 @@ export function SiteHeader() {
                 className: "mt-3 w-full",
               })}
             >
-              Play now
+              {dict.nav.playNow}
             </Link>
           </nav>
         </div>

@@ -1,0 +1,780 @@
+{
+  "brand": {
+    "home": "Starcup home",
+    "tagline": "Startup games"
+  },
+  "language": {
+    "label": "Language",
+    "en": "EN",
+    "lt": "LT",
+    "ru": "RU"
+  },
+  "nav": {
+    "main": "Main navigation",
+    "mobile": "Mobile navigation",
+    "home": "Home",
+    "invest": "Invest Simulator",
+    "pitch": "Pitch Arena",
+    "playNow": "Play now",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "description": "Two quick games that turn startup theory into decisions you can feel. Built for university startup weeks, pitch nights and founder mixers.",
+    "badge": "Student-built · event-ready",
+    "games": "Games",
+    "gamesInvest": "Investment Simulator",
+    "gamesPitch": "Founder Tinder",
+    "gamesSubmit": "Submit a startup",
+    "event": "Event",
+    "eventHow": "How it works",
+    "eventWhy": "Why play",
+    "eventLeaderboard": "Live leaderboard",
+    "copyright": "© Starcup. Play boldly, learn loudly.",
+    "disclaimer": "Educational simulation. Multiples are simplified and not financial advice. Pitch votes are event feedback, not investment offers."
+  },
+  "home": {
+    "marquee": [
+      "Due diligence",
+      "Swipe right",
+      "Lose it all",
+      "Pivot",
+      "Run it back",
+      "Unit economics",
+      "Conviction",
+      "Try again"
+    ],
+    "hero": {
+      "badge": "University startup week",
+      "badgeDivider": "/",
+      "badgeSecond": "Two games, one room",
+      "title1": "Back the next",
+      "title2": "big thing.",
+      "titleAccent": "Or lose $10k trying.",
+      "body": "A $10,000 portfolio. Five real startups. One room full of student pitches. Play the two games that turn startup theory into decisions you can feel.",
+      "playInvest": "Play the investment game",
+      "playPitch": "Swipe on pitches",
+      "social": "Built for founders, aspiring investors, and the merely curious. No finance degree required."
+    },
+    "showcase": {
+      "fundYear": "Fund I · Year 5",
+      "portfolioValue": "Portfolio value",
+      "return": "+318% return",
+      "start": "Start",
+      "y5": "Y5",
+      "studentPitch": "Student pitch",
+      "wouldInvest": "Would invest",
+      "swipeRight": "Swipe right",
+      "invest": "Invest",
+      "pass": "Pass"
+    },
+    "games": {
+      "eyebrow": "Pick your game",
+      "title": "Two ways to play.",
+      "titleAccent": "One honest mirror.",
+      "body": "Play in any order. Each game takes less time than a coffee break and ends with something to argue about.",
+      "investBadge": "Portfolio simulator",
+      "investTitle": "Startup Investment Simulator",
+      "investBody": "Start with $10,000. Back five real companies before you know how they ended. Then fast-forward five years and live with it.",
+      "investTags": [
+        "5 real startups",
+        "5-year simulation",
+        "Custom cheque sizes"
+      ],
+      "example": "Example portfolio",
+      "play01": "Play game 01",
+      "investTime": "6–8 min",
+      "pitchBadge": "Swipe + pitch voting",
+      "pitchTitle": "Founder Tinder",
+      "pitchBody": "Swipe on real student pitches. Submit your own card. Then see which niches, ask sizes, and ideas the room actually rewards.",
+      "pitchTags": [
+        "Swipe deck",
+        "Founder submissions",
+        "Live results"
+      ],
+      "pitchCardPitch": "Reusable takeaway boxes, tracked by app.",
+      "investChip": "Invest",
+      "play02": "Play game 02",
+      "pitchTime": "3–6 min"
+    },
+    "why": {
+      "eyebrow": "Why play",
+      "title": "Startup theory is tidy.",
+      "titleAccent": "Decisions are not.",
+      "body": "These games are built around the messy part: choosing under uncertainty, then discovering what your choices reveal about you.",
+      "statGames": "Games",
+      "statBets": "Historical bets",
+      "statRoom": "Live room",
+      "lessons": [
+        {
+          "title": "Risk only feels real when it is yours",
+          "body": "Allocating someone else's money is easy. Watching a $2,500 cheque become zero teaches more than a lecture slide ever will."
+        },
+        {
+          "title": "The best story does not always win",
+          "body": "Juicero had design, capital, and headlines. Airbnb had air mattresses. History rewards evidence, not volume."
+        },
+        {
+          "title": "A room has a personality",
+          "body": "Swipe data exposes what your audience actually rewards: niche, ask size, founder signal, or raw memorability."
+        }
+      ]
+    },
+    "board": {
+      "eyebrow": "On the board",
+      "title": "Student pitches, ready for your verdict.",
+      "enter": "Enter the arena",
+      "submitTitle": "Got a startup of your own?",
+      "submitBody": "Build a card in two minutes. No deck, no login.",
+      "submit": "Submit",
+      "dataTitle": "Every vote becomes a data point.",
+      "dataBody": "See niche heat, ask-size bias, and what the room rewards most."
+    },
+    "cta": {
+      "badge": "Your first $10k is waiting",
+      "title1": "Make a call.",
+      "titleAccent": "Then find out.",
+      "body": "The best way to understand risk is to make a decision and see what happens next. We made that loop fit inside a coffee break.",
+      "invest": "Deploy $10,000",
+      "pitch": "Swipe the pitch deck",
+      "footnote": "No sign-up · no real money · all the lessons"
+    }
+  },
+  "invest": {
+    "hud": {
+      "phases": {
+        "intro": "Briefing",
+        "invest": "Deal flow",
+        "sim": "Simulation",
+        "results": "Results"
+      },
+      "allGames": "All games",
+      "exit": "Exit",
+      "round": "Round {current}/5",
+      "left": "left",
+      "restart": "Restart the simulation"
+    },
+    "intro": {
+      "badge": "Game 01 · Portfolio simulator",
+      "title1": "You get $10,000.",
+      "title2": "Five startups.",
+      "titleAccent": "Five years.",
+      "body": "Some of these companies became legends. Some became cautionary tales. All of them looked uncertain when the cheque was written. Your job: decide who gets your money before history reveals the answer.",
+      "open": "Open the deal flow",
+      "rules": "Read the rules",
+      "statCapital": "Starting capital",
+      "statDeals": "No do-overs",
+      "statYears": "One simulation",
+      "badgeVariance": "High variance inside",
+      "mandate": "Fund mandate",
+      "confidential": "Confidential",
+      "fundName": "Starcup Student Capital",
+      "fund": "Fund I",
+      "committed": "Committed capital",
+      "targets": "Target companies",
+      "hold": "Hold period",
+      "strategy": "Investment strategy",
+      "decide": "You decide",
+      "buying": "What you are really buying",
+      "buyingBody": "A lesson in risk, timing, and the stories we tell ourselves when a pitch sounds too good to fail.",
+      "partner": "General partner",
+      "you": "You",
+      "portfolioValue": "Portfolio value",
+      "horizon": "5-year horizon",
+      "rulesEyebrow": "The rules",
+      "rulesTitle": "Three decisions. No safety net.",
+      "rulesBody": "There is no perfect portfolio. The point is to make a call, see the consequences, and notice your own pattern.",
+      "steps": [
+        {
+          "title": "Read the pitch",
+          "body": "Five real startups, frozen at the moment they needed money. You see the story and the risk — never the outcome."
+        },
+        {
+          "title": "Write the cheque",
+          "body": "Deploy any amount from your $10,000. Go big on one bet, spread it around, or pass entirely. No take-backs."
+        },
+        {
+          "title": "Fast-forward five years",
+          "body": "Watch the portfolio move year by year, then unpack what history did to your decisions and why."
+        }
+      ],
+      "dealFlow": "Deal flow",
+      "outcomesHidden": "· outcomes hidden",
+      "years": "5 years",
+      "deals": "5 deals",
+      "stepOf": "{current}/3"
+    },
+    "stage": {
+      "deal": "Deal {current} of 5",
+      "founded": "{sector} · Founded {year}",
+      "available": "{amount} available",
+      "pitchDeck": "Pitch deck · {year}",
+      "preSeed": "Pre-seed · open",
+      "story": "The story",
+      "pitching": "What they are pitching",
+      "risk": "What could go wrong",
+      "hidden": "The outcome stays hidden until the end. Judge the business, not the brand you know today.",
+      "yourCall": "Your call",
+      "writeCheque": "Write the cheque",
+      "availableBudget": "Available budget",
+      "committed": "{amount} committed to {name} · {cash} would stay in cash",
+      "amount": "Investment amount",
+      "usd": "USD",
+      "slider": "Investment amount slider",
+      "max": "{amount} max",
+      "maxLabel": "Max",
+      "helperPass": "A pass is a valid decision. Your full budget rolls into the next deal.",
+      "helperInvest": "{share}% of your fund, concentrated in one company. You keep {cash} for later deals.",
+      "invest": "Invest {amount}",
+      "pass": "Pass on this one",
+      "portfolio": "Portfolio so far",
+      "closed": "{count}/5 closed",
+      "passed": "Passed"
+    },
+    "simulation": {
+      "live": "Live simulation",
+      "title": "Five years,",
+      "titleAccent": "fast-forwarded.",
+      "body": "The portfolio moves with the historical trajectory of each company. Watch the narrative, then see what it cost you.",
+      "pause": "Pause",
+      "play": "Play",
+      "skip": "Skip to year 5",
+      "seeBreakdown": "See the full breakdown",
+      "portfolioValue": "Portfolio value",
+      "yearOf": "Year {year} / 5",
+      "startingPosition": "Starting position",
+      "thisYear": "{amount} this year",
+      "sinceDayOne": "{amount} since day one",
+      "timeline": "Timeline",
+      "yearsOf": "{year}/5 years",
+      "deployed": "Deployed",
+      "cashLeft": "Cash left",
+      "trajectory": "Portfolio trajectory",
+      "start10k": "$10k start",
+      "startingGun": "The starting gun",
+      "whatHappened": "What happened in year {year}",
+      "events": "Events: {count}",
+      "startBody": "You start with {amount}. Every dollar you deployed is now on a five-year ride. Every dollar you kept is still cash.",
+      "satOut": "You sat this one out. Your cash did not move.",
+      "quiet": "No portfolio headlines this year. Quiet can be good.",
+      "positions": "Your positions",
+      "funded": "{count} funded",
+      "invested": "{amount} invested",
+      "value": "{multiple} value",
+      "noPositions": "No positions. You kept the whole {amount} in cash.",
+      "uninvested": "Uninvested cash",
+      "complete": "Simulation complete",
+      "final": "Five years later, your portfolio is {amount}.",
+      "openResults": "Open the results"
+    },
+    "results": {
+      "report": "Fund I · 5-year report",
+      "positions": "{positions} positions · {passes} passes",
+      "profile": "Your investor profile",
+      "finalValue": "Final portfolio value",
+      "return": "{roi}% return",
+      "vs": "{profit} vs your {starting}",
+      "yourPortfolio": "Your portfolio",
+      "benchmark": "Cash benchmark",
+      "deployed": "Deployed",
+      "ofFund": "{percent}% of the fund",
+      "cashKept": "Cash kept",
+      "neverRisk": "Never at risk",
+      "hitRate": "Hit rate",
+      "fundedOf": "{hits} of {total} funded",
+      "bestCall": "Best call",
+      "none": "None",
+      "noPositionsTaken": "No positions taken",
+      "truth": "The uncomfortable truth",
+      "zero": "{name} returned zero. That is a real venture outcome, not a bug.",
+      "protected": "You protected capital. You also capped the upside. Both are choices.",
+      "full": "Every position mattered. That is what full deployment feels like.",
+      "trajectory": "The five-year trajectory",
+      "yearRange": "Year 0 → Year 5",
+      "where": "Where the money ended up",
+      "positionValue": "Position value",
+      "dealCard": "Deal card",
+      "bestDecision": "Best decision",
+      "noFunded": "No funded deals",
+      "toughest": "Toughest lesson",
+      "receipts": "The receipts",
+      "everyDecision": "Every decision, five years later",
+      "tap": "Tap a row to see what actually happened.",
+      "invested": "Invested",
+      "outcome": "Outcome",
+      "returned": "Returned",
+      "whatHappened": "What happened",
+      "lesson": "The lesson",
+      "trajectoryLabel": "Company trajectory",
+      "start": "Start",
+      "year5": "Year 5",
+      "teaches": "What your portfolio teaches you",
+      "nextMove": "Next move",
+      "nextTitle": "Think you can spot a winner in 3 seconds?",
+      "nextBody": "Swipe on real student pitches in the Founder Tinder arena.",
+      "runBack": "Run it back",
+      "founderTinder": "Founder Tinder",
+      "copied": "Copied!",
+      "share": "Share",
+      "status": {
+        "none": "No position",
+        "wiped": "Wiped out",
+        "underwater": "Underwater",
+        "returned": "Returned",
+        "moonshot": "Moonshot"
+      },
+      "shareText": "I turned {starting} into {final} in Starcup's Startup Investment Simulator. Investor profile: {emoji} {profile}. Can you beat it?",
+      "restartConfirm": "Restart the simulation? Your current portfolio will be lost."
+    },
+    "chart": {
+      "aria": "Portfolio value over five years",
+      "starting": "STARTING {amount}",
+      "start": "Start",
+      "year": "Year {year}"
+    },
+    "profiles": {
+      "armchair": {
+        "label": "Armchair Capitalist",
+        "blurb": "You kept every dollar. Safe, comfortable, and completely unexposed to the upside."
+      },
+      "unicorn": {
+        "label": "Unicorn Whisperer",
+        "blurb": "You found the outliers and gave them enough room to compound. That is rarer than it looks."
+      },
+      "seedSavant": {
+        "label": "Seed-Stage Savant",
+        "blurb": "You balanced conviction with enough diversification to catch a winner without needing a perfect call."
+      },
+      "steady": {
+        "label": "Steady Hand",
+        "blurb": "You protected the downside and still put money to work. Not flashy — but the fund survives."
+      },
+      "tuition": {
+        "label": "Tuition Paid",
+        "blurb": "The portfolio took a hit, but the lesson is worth more than the paper loss. Most LPs never get this cheap a lesson."
+      },
+      "hype": {
+        "label": "Hype Survivor",
+        "blurb": "One good call could not carry the book. Concentration in the wrong places did the damage."
+      },
+      "fullSend": {
+        "label": "Full-Send Historian",
+        "blurb": "You went all in on a story. History has a funny way of charging tuition for that."
+      },
+      "reality": {
+        "label": "Risk Appetite, Meet Reality",
+        "blurb": "You spread the bets but found the zeros. Diversification helps — it does not turn bad businesses into good ones."
+      }
+    },
+    "lessons": {
+      "dryPowder": {
+        "title": "Dry powder has a cost",
+        "body": "You finished with {amount} untouched. Cash protects you from ruin, but every dollar sitting out also sits out of the upside."
+      },
+      "fullDeploy": {
+        "title": "You deployed every dollar",
+        "body": "Full deployment signals conviction. It also removes your ability to double down when a company starts winning. Reserves are a strategic asset."
+      },
+      "reserve": {
+        "title": "You kept a real reserve",
+        "body": "You put money to work without emptying the tank. That optionality is how funds survive their first bad vintage."
+      },
+      "concentration": {
+        "title": "Concentration cuts both ways",
+        "body": "More than half of your invested capital went into {name}. When it works, that feels like genius. When it does not, one decision owns the whole story."
+      },
+      "portfolio": {
+        "title": "You built a portfolio, not a lottery ticket",
+        "body": "You spread capital across {count} companies. That does not guarantee a win, but it keeps any single failure from ending the game."
+      },
+      "fewBets": {
+        "title": "Few bets, high variance",
+        "body": "You only backed {count} companies. Fewer positions means every call matters more — in both directions."
+      },
+      "greatStory": {
+        "title": "A great story is not a business",
+        "body": "{name} had attention, capital, and a narrative. What it lacked was durable unit economics. {lesson}"
+      },
+      "signal": {
+        "title": "Signal hides inside weird",
+        "body": "None of these companies looked normal at the start. You looked past the surface and backed evidence of a real behaviour change."
+      }
+    },
+    "startups": {
+      "juicero": {
+        "sector": "Connected hardware",
+        "tagline": "A $400 Wi-Fi juicer for $5 juice packs.",
+        "description": "Juicero raised $120M to make cold-press juice as easy as coffee. The press was beautifully engineered — and completely unnecessary. Its juice packs could be squeezed by hand.",
+        "pitch": "Cold-press juice at home without the cleanup. A connected press, compostable packs, and a subscription that keeps the fridge full.",
+        "risk": "Premium hardware, a recurring subscription on top, and a product customers may not actually need.",
+        "outcome": {
+          "headline": "Squeezed out",
+          "summary": "A viral video showed the $400 press was no better than human hands. Juicero cut the price, then shut down in 2017.",
+          "lesson": "Hype can raise a round. It cannot manufacture a reason to exist."
+        },
+        "milestones": [
+          "Juicero launches its $699 press to design-world applause.",
+          "Bloomberg shows the juice packs can be squeezed by hand. Uh-oh.",
+          "Price cut to $399. The internet remains unconvinced.",
+          "Juicero shuts down and tries to sell its machines.",
+          "The $400 press becomes an eBay curiosity."
+        ]
+      },
+      "pets-com": {
+        "sector": "E-commerce",
+        "tagline": "The sock puppet that raised $82.5M and died in 268 days.",
+        "description": "Pets.com became the poster child of the dot-com boom with a Super Bowl ad and a lovable sock puppet. The less cute part: selling 50-pound bags of dog food below cost.",
+        "pitch": "Everything your pet needs, delivered to the door. We will spend whatever it takes to own the category before anyone else does.",
+        "risk": "Heavy products, thin margins, and a customer acquisition cost that eats the entire basket.",
+        "outcome": {
+          "headline": "Dot-com casualty",
+          "summary": "Pets.com went public in February 2000 and liquidated nine months later. Its assets sold for roughly $11M after raising $300M in total.",
+          "lesson": "A memorable mascot is not a moat. Unit economics still have to work."
+        },
+        "milestones": [
+          "A Super Bowl ad makes the sock puppet a household name.",
+          "IPO lands — then the dot-com bubble starts to hiss.",
+          "Liquidation. The sock puppet is sold off with the warehouse.",
+          "The domain changes hands. The lesson sticks around.",
+          "Pets.com is a case study in spending your way to nowhere."
+        ]
+      },
+      "airbnb": {
+        "sector": "Marketplace",
+        "tagline": "Air mattresses on a living-room floor. Now a travel empire.",
+        "description": "In 2007, two designers could not pay rent. They put three air mattresses in their loft and charged conference-goers to stay. Investors called it weird. Guests called it magic.",
+        "pitch": "Stay in someone's spare room instead of a hotel. We handle trust, payments, and photos. Cheaper for guests, lucrative for hosts.",
+        "risk": "Strangers sleeping in your home. Regulation. And hotels with actual marketing budgets.",
+        "outcome": {
+          "headline": "The weird one wins",
+          "summary": "Airbnb turned a spare-room hack into a global category. The early idea sounded embarrassing; the trust layer made it inevitable.",
+          "lesson": "The best ideas often sound embarrassing at seed stage. Distribution and trust were the real product."
+        },
+        "milestones": [
+          "Airbnb launches. Critics call it a couch-surfing gimmick.",
+          "One million nights booked. The flywheel starts to spin.",
+          "International expansion. Hotels start paying attention.",
+          "Regulators circle. The model adapts city by city.",
+          "A travel giant is born — and the weirdness becomes the brand."
+        ]
+      },
+      "slack": {
+        "sector": "B2B SaaS",
+        "tagline": "A failed video game that accidentally became work software.",
+        "description": "Tiny Speck was building a multiplayer game called Glitch. The game died; the internal chat tool built to survive it did not. Slack launched to the public in 2013.",
+        "pitch": "Team chat that people actually enjoy. Channels, search, integrations — one place for work to happen.",
+        "risk": "A crowded workplace software market, giant incumbents, and a team that just shut down a game.",
+        "outcome": {
+          "headline": "The pivot that printed",
+          "summary": "Slack grew to millions of daily users and was acquired by Salesforce for $27.7B in 2021. The chat tool outlived the game that birthed it.",
+          "lesson": "A pivot is not a failure. It is a second shot with better information."
+        },
+        "milestones": [
+          "Slack opens to the public. Teams invite other teams.",
+          "One million daily active users. The bottom-up flywheel hums.",
+          "Enterprise deals begin. The fun chat app grows up.",
+          "Slack becomes a verb in offices everywhere.",
+          "Salesforce comes knocking with $27.7B."
+        ]
+      },
+      "twitter": {
+        "sector": "Social",
+        "tagline": "A side project inside a failed podcast company.",
+        "description": "Odeo was a podcast platform that got steamrolled by Apple. During a hack week, Jack Dorsey pitched a tiny status-update tool. The first tweet: 'just setting up my twttr.'",
+        "pitch": "Send a short update to your friends. 140 characters. No friction, no blog, no pressure.",
+        "risk": "No revenue model, a niche of early adopters, and a name that sounds like a bird noise.",
+        "outcome": {
+          "headline": "140 characters, global reach",
+          "summary": "Twitter became the world's real-time public square, went public in 2013 at a $14B+ valuation, and reshaped media, politics, and memes.",
+          "lesson": "Simple products can hide enormous network effects. The early dip was noise, not the story."
+        },
+        "milestones": [
+          "SXSW explodes. A 140-character update feels like the future.",
+          "The fail whale era. Growth is real, uptime is not.",
+          "Hashtags and retweets turn users into a distribution engine.",
+          "News breaks on Twitter first. The public square forms.",
+          "IPO. The side project is worth billions."
+        ]
+      }
+    }
+  },
+  "pitch": {
+    "arena": {
+      "allGames": "← All games",
+      "sections": "Pitch arena sections",
+      "vote": "Vote",
+      "submit": "Submit a pitch",
+      "results": "Results",
+      "statusSyncing": "Syncing board",
+      "statusOffline": "Offline demo",
+      "statusLive": "Live board",
+      "statusSession": "Session board",
+      "swipes": "{count} swipes",
+      "offlineBanner": "The shared board is unreachable, so you are in local demo mode. Votes and submissions are saved on this device only.",
+      "votePanel": "Vote on pitches",
+      "submitPanel": "Submit a pitch",
+      "resultsPanel": "Voting results",
+      "boardSummary": "{count} startups on this board · demo cohort included · no real money involved"
+    },
+    "deck": {
+      "badge": "Founder Tinder",
+      "syncing": "syncing board…",
+      "title": "Swipe with",
+      "titleAccent": "your wallet.",
+      "body": "Right means you would take a meeting. Left means pass. Judge the pitch, not the polish — founders only get a few seconds.",
+      "reviewed": "{reviewed}/{total}",
+      "investStamp": "INVEST",
+      "passStamp": "PASS",
+      "undo": "Undo",
+      "undoAria": "Undo my last vote",
+      "undoTitle": "Undo last vote",
+      "pass": "Pass",
+      "passAria": "Pass on this startup",
+      "invest": "Invest",
+      "investAria": "I would invest in this startup",
+      "hint": "Drag the card, tap a button, or use",
+      "ownTitle": "Your pitch is on the board.",
+      "ownBody": "Founders cannot swipe on their own startup. Share the board with the room and watch the votes come in.",
+      "seeResults": "See the results",
+      "submitAnother": "Submit another",
+      "complete": "Deck complete",
+      "reviewedTitle": "Startups reviewed: {count}",
+      "reviewedBody": "Meetings: {invested}. Passes: {passed}. Your votes are now part of the room's signal.",
+      "investedLabel": "Invested",
+      "passedLabel": "Passed",
+      "seeRoom": "See what the room thinks",
+      "changeVotes": "Change votes",
+      "resetConfirm": "Clear all your votes and review the deck again?",
+      "noMoney": "No real money changes hands"
+    },
+    "card": {
+      "studentPitch": "Student pitch",
+      "thePitch": "The pitch",
+      "targetMarket": "Target market",
+      "funding": "Funding needed",
+      "showcaseFounder": "Showcase founder",
+      "studentFounder": "Student founder",
+      "demo": "Demo",
+      "live": "Live"
+    },
+    "submit": {
+      "badge": "Founder mode",
+      "title": "Put your idea",
+      "titleAccent": "in the deck.",
+      "body": "One card, five fields, zero pitch-deck software. It goes live on the board immediately.",
+      "time": "2 min build",
+      "founder": "Founder / team",
+      "founderPlaceholder": "Maya K.",
+      "startupName": "Startup name",
+      "startupPlaceholder": "CampusBite",
+      "pitch": "Short pitch",
+      "pitchPlaceholder": "What do you do, who is it for, and why now? Make us feel the problem in one breath.",
+      "niche": "Niche",
+      "targetMarket": "Target market",
+      "targetPlaceholder": "First-year students on campus",
+      "funding": "Funding needed",
+      "icon": "Card icon",
+      "iconAria": "Choose {emoji} as card icon",
+      "publishing": "Publishing…",
+      "publish": "Publish my pitch",
+      "privacy": "Your name and pitch are visible to event participants. You cannot vote on your own card.",
+      "preview": "Live preview",
+      "updates": "Updates as you type",
+      "previewTitle": "Your startup",
+      "previewPitch": "Your 30-second pitch will appear here. Make the problem feel real, then show the wedge.",
+      "previewMarket": "Who feels the pain?",
+      "previewName": "Your name",
+      "tipsTitle": "What makes a card swipeable?",
+      "tips": [
+        "One clear user. Not “everyone aged 18–35”.",
+        "A problem we can picture in five seconds.",
+        "A wedge that makes sense with your funding ask.",
+        "Proof of life: a pilot, a waitlist, a first customer."
+      ],
+      "live": "Live on the board",
+      "saved": "Saved on this device",
+      "successTitle": "Your pitch is in.",
+      "successLive": "It is now part of the deck. Other participants can swipe on it — and you cannot vote for yourself.",
+      "successOffline": "The live board is offline, so your card is saved on this device for now. It will still appear in your local results.",
+      "seeBoard": "See the board",
+      "another": "Submit another startup",
+      "close": "Close",
+      "errorSummary": "A few fields need attention before this goes live.",
+      "errors": {
+        "titleShort": "Give your startup a name (3+ characters).",
+        "titleLong": "Keep the name under 48 characters.",
+        "pitchShort": "Tell us a little more — at least 30 characters.",
+        "pitchLong": "Keep the pitch under 240 characters.",
+        "niche": "Pick a niche from the list.",
+        "marketShort": "Describe who this is for (3+ characters).",
+        "marketLong": "Keep the target market under 80 characters.",
+        "founder": "Add a founder or team name.",
+        "fundingMin": "Minimum ask is $1,000.",
+        "fundingMax": "Maximum ask is $250,000.",
+        "loading": "The board is still loading. Try again.",
+        "invalid": "Please fix the highlighted fields.",
+        "publish": "Could not publish the startup.",
+        "malformed": "The server did not return the published startup.",
+        "server": "Something went wrong. Try again."
+      }
+    },
+    "results": {
+      "spoken": "The room has spoken",
+      "counted": "{count} swipes counted",
+      "offline": "Offline snapshot",
+      "title": "What investors",
+      "titleAccent": "actually care about.",
+      "body": "Every swipe becomes a signal. See which pitches cut through, which niches carry the room, and how the size of the ask changes the answer.",
+      "swipeAgain": "Swipe again",
+      "addPitch": "Add a pitch",
+      "totalSwipes": "Total swipes",
+      "startupsOnBoard": "{count} startups on the board",
+      "investRate": "Invest rate",
+      "yesVotes": "{count} yes votes",
+      "livePitches": "Live pitches",
+      "submitted": "Submitted by founders",
+      "hottestNiche": "Hottest niche",
+      "noVotes": "No votes yet",
+      "rate": "{rate}% invest rate",
+      "mostInvestable": "Most investable pitches",
+      "ranked": "Ranked by yes votes, with the room's invest rate.",
+      "startupsCount": "{count} startups",
+      "favourite": "Room favourite",
+      "favouriteMeta": "{rate}% invest rate · {invests} yes of {total} swipes",
+      "seeking": "Seeking",
+      "youYes": "You: yes",
+      "youPass": "You: pass",
+      "yesVotesLabel": "yes votes",
+      "newOnBoard": "New on the board — waiting for its first swipe.",
+      "dna": "Your investor DNA",
+      "basedOn": "Swipes: {count}",
+      "yesRate": "Yes rate",
+      "avgAsk": "Avg. ask backed",
+      "favNiche": "Favourite niche",
+      "noYes": "No yes votes",
+      "resetVotes": "Reset my votes",
+      "resetConfirm": "Clear all your votes and start the deck again?",
+      "missing": "Your voting fingerprint is missing.",
+      "missingBody": "Swipe a few pitches and we will show you whether you are a conviction investor, a selective skeptic, or a very tough room.",
+      "openDeck": "Open the deck",
+      "nicheHeat": "Niche heat",
+      "nicheHeatBody": "Which categories make the room lean in.",
+      "investRateLabel": "invest rate",
+      "cheque": "Does cheque size matter?",
+      "chequeBody": "Invest rate by the amount founders asked for.",
+      "yes": "{invests}/{total} yes",
+      "bucketBestLarge": "{range} pitches convert at {rate}% — ambition is not being penalised in this room.",
+      "bucketBestSmall": "{range} pitches convert at {rate}% — lower risk is clearly attractive.",
+      "bucketBestMid": "{range} pitches convert at {rate}% — there is a sweet spot in the middle.",
+      "notEnough": "Not enough votes yet to compare cheque sizes.",
+      "playbook": "The room's playbook",
+      "keepMoving": "Keep the room moving",
+      "sharper": "Every swipe makes the signal sharper.",
+      "summary": "Live pitches: {count} · {board} · demo cohort included",
+      "pitchSingular": "pitch",
+      "pitchPlural": "pitches",
+      "sharedBoard": "shared live board",
+      "sessionBoard": "session-only board",
+      "swipeMore": "Swipe more",
+      "submitPitch": "Submit a pitch",
+      "footer": "Results combine live votes with a seeded demo cohort of 32 investors. This is event feedback, not an investment offer.",
+      "footerOffline": "You are viewing an offline snapshot stored on this device."
+    },
+    "niches": {
+      "AI & EdTech": "AI & EdTech",
+      "Sustainability": "Sustainability",
+      "Marketplace": "Marketplace",
+      "Health & Wellbeing": "Health & Wellbeing",
+      "Community": "Community",
+      "PropTech": "PropTech"
+    },
+    "buckets": {
+      "small": {
+        "label": "Small ask",
+        "range": "Under $20k"
+      },
+      "mid": {
+        "label": "Mid ask",
+        "range": "$20k–$35k"
+      },
+      "large": {
+        "label": "Big ask",
+        "range": "Over $35k"
+      }
+    },
+    "archetypes": {
+      "conviction": {
+        "label": "Conviction Investor",
+        "blurb": "You say yes more than most. That gives founders momentum, but it also means you need a strong filter for the ideas you do not back."
+      },
+      "balanced": {
+        "label": "Balanced Backer",
+        "blurb": "You are open, not automatic. Roughly half the room earns your interest — a useful mix of curiosity and discernment."
+      },
+      "skeptic": {
+        "label": "Selective Skeptic",
+        "blurb": "You make founders work for it. Fewer yes votes, but the ones you give carry more signal."
+      },
+      "tough": {
+        "label": "Tough Room",
+        "blurb": "You passed on almost everything. Either the bar is high, or the pitches have work to do. Both are useful data."
+      }
+    },
+    "insights": {
+      "attention": {
+        "title": "Attention is not evenly distributed",
+        "body": "{startup} converts {rate}% of views into interest — {invests} yes votes from {total} swipes. In a deck of six, being memorable matters as much as being good."
+      },
+      "nicheMoment": {
+        "title": "{niche} is having a moment",
+        "body": "Pitches in {niche} earn a {rate}% invest rate across {total} votes. The room is rewarding the category as much as the company — a real advantage, and a real trend risk."
+      },
+      "smallYes": {
+        "title": "Smaller cheques are easier to say yes to",
+        "body": "Startups asking under $20k get a {smallRate}% invest rate versus {largeRate}% for asks above $35k. Lower risk is attractive — but the biggest companies rarely start cheap."
+      },
+      "bigYes": {
+        "title": "Big asks are not scaring the room",
+        "body": "Startups asking above $35k still convert at {largeRate}%, ahead of the small-ask group at {smallRate}%. Ambition is not being penalised here."
+      }
+    },
+    "seed": {
+      "campus-bite": {
+        "title": "CampusBite",
+        "pitch": "Half-price meals from campus cafés, rescued before closing time. Students save money, kitchens earn from food that would be binned, and nobody has to eat another sad meal deal.",
+        "targetMarket": "12,000 students across 3 campuses",
+        "founderName": "Maya K."
+      },
+      "notewave": {
+        "title": "NoteWave",
+        "pitch": "AI that turns messy lecture recordings into structured notes, flashcards, and a weekly revision plan — trained on your course, in your university's own language.",
+        "targetMarket": "First-year STEM students",
+        "founderName": "Noah & Priya"
+      },
+      "greenloop": {
+        "title": "GreenLoop",
+        "pitch": "Reusable takeaway boxes with a €2 deposit, tracked in an app. Cafés ditch single-use packaging without hiring extra staff, and students get their deposit back.",
+        "targetMarket": "Campus cafés and 40 local eateries",
+        "founderName": "Team Loop"
+      },
+      "skillswap": {
+        "title": "SkillSwap",
+        "pitch": "A skill-bartering board where students trade an hour of guitar for an hour of calculus. No money, just verified campus reputation and a reason to meet people offline.",
+        "targetMarket": "Students in their first two years",
+        "founderName": "Jonas R."
+      },
+      "mindfulu": {
+        "title": "MindfulU",
+        "pitch": "Five-minute, exam-week mental health check-ins with peer-trained responders and instant links to campus support. Private by design, built for the 2am panic before a deadline.",
+        "targetMarket": "Students during exam season",
+        "founderName": "Aisha B."
+      },
+      "rentmate": {
+        "title": "RentMate",
+        "pitch": "Verified student housing matching, rent splitting, and contract checks in one place. No more Facebook groups, ghost landlords, or discovering the kitchen is a curtain.",
+        "targetMarket": "Second and third-year students",
+        "founderName": "The RentMate crew"
+      }
+    }
+  }
+}

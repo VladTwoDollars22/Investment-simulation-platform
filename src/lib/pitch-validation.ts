@@ -5,7 +5,19 @@ import {
   type StartupDraft,
 } from "@/lib/pitch-types";
 
-export type DraftErrors = Partial<Record<keyof StartupDraft, string>>;
+export type DraftErrorCode =
+  | "titleShort"
+  | "titleLong"
+  | "pitchShort"
+  | "pitchLong"
+  | "niche"
+  | "marketShort"
+  | "marketLong"
+  | "founder"
+  | "fundingMin"
+  | "fundingMax";
+
+export type DraftErrors = Partial<Record<keyof StartupDraft, DraftErrorCode>>;
 
 const pitchLimit = 240;
 
@@ -38,29 +50,21 @@ export function sanitizeDraft(value: unknown): {
 
   const errors: DraftErrors = {};
 
-  if (title.length < 3) errors.title = "Give your startup a name (3+ characters).";
-  if (title.length > 48) errors.title = "Keep the name under 48 characters.";
+  if (title.length < 3) errors.title = "titleShort";
+  if (title.length > 48) errors.title = "titleLong";
 
-  if (pitch.length < 30)
-    errors.pitch = "Tell us a little more — at least 30 characters.";
-  if (pitch.length > pitchLimit)
-    errors.pitch = `Keep the pitch under ${pitchLimit} characters.`;
+  if (pitch.length < 30) errors.pitch = "pitchShort";
+  if (pitch.length > pitchLimit) errors.pitch = "pitchLong";
 
-  if (!NICHES.includes(nicheValue as Niche))
-    errors.niche = "Pick a niche from the list.";
+  if (!NICHES.includes(nicheValue as Niche)) errors.niche = "niche";
 
-  if (targetMarket.length < 3)
-    errors.targetMarket = "Describe who this is for (3+ characters).";
-  if (targetMarket.length > 80)
-    errors.targetMarket = "Keep the target market under 80 characters.";
+  if (targetMarket.length < 3) errors.targetMarket = "marketShort";
+  if (targetMarket.length > 80) errors.targetMarket = "marketLong";
 
-  if (founderName.length < 2)
-    errors.founderName = "Add a founder or team name.";
+  if (founderName.length < 2) errors.founderName = "founder";
 
-  if (fundingNeeded < 1_000)
-    errors.fundingNeeded = "Minimum ask is $1,000.";
-  if (fundingNeeded > 250_000)
-    errors.fundingNeeded = "Maximum ask is $250,000.";
+  if (fundingNeeded < 1_000) errors.fundingNeeded = "fundingMin";
+  if (fundingNeeded > 250_000) errors.fundingNeeded = "fundingMax";
 
   return {
     draft: {

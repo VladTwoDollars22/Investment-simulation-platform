@@ -1,9 +1,5 @@
-export function cn(...classes: Array<string | false | null | undefined>) {
+﻿export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
-}
-
-export function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
 }
 
 export function formatCurrency(
@@ -28,31 +24,11 @@ export function formatCurrency(
   }).format(value);
 }
 
-export function formatNumber(value: number) {
-  return new Intl.NumberFormat("en-US").format(value);
-}
-
 export function formatMultiple(multiple: number) {
   if (multiple === 0) return "0×";
   if (multiple < 0.1) return `${multiple.toFixed(2)}×`;
   if (multiple < 10) return `${Number(multiple.toFixed(2))}×`;
   return `${Number(multiple.toFixed(1))}×`;
-}
-
-export function percent(value: number, total: number) {
-  if (total <= 0) return 0;
-  return Math.round((value / total) * 100);
-}
-
-export function sum(values: number[]) {
-  return values.reduce((total, value) => total + value, 0);
-}
-
-export function uid(prefix = "id") {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return `${prefix}-${crypto.randomUUID()}`;
-  }
-  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
 export function polylinePoints(values: number[], width = 120, height = 40) {
@@ -70,3 +46,4 @@ export function polylinePoints(values: number[], width = 120, height = 40) {
     })
     .join(" ");
 }
+

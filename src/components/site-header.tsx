@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -16,8 +16,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const links = [
     { href: "/", label: dict.nav.home },
-    { href: "/invest", label: dict.nav.invest },
-    { href: "/pitch", label: dict.nav.pitch },
+    { href: "/play", label: dict.nav.invest },
+    { href: "/host", label: dict.nav.host },
   ];
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <Link
-            href="/invest"
+            href="/play"
             className={buttonClass({
               variant: "primary",
               size: "sm",
@@ -116,7 +116,7 @@ export function SiteHeader() {
               );
             })}
             <Link
-              href="/invest"
+              href="/play"
               onClick={() => setOpen(false)}
               className={buttonClass({
                 variant: "primary",
@@ -132,3 +132,5 @@ export function SiteHeader() {
     </header>
   );
 }
+
+

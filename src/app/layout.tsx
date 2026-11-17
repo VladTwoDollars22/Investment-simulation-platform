@@ -18,23 +18,26 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
   title: {
-    default: "Starcup — Startup Games for Student Founders",
+    default: "Starcup — Startup Investment Quiz",
     template: "%s · Starcup",
   },
   description:
-    "Two fast, interactive games for student startup events: simulate a $10,000 portfolio across five historical startups, then swipe on real student pitches and see what investors actually care about.",
+    "A live $10,000 investment quiz across five real companies from 2015. Allocate, lock your portfolio, and unlock the 2020 result when the host reveals the code.",
   keywords: [
     "student startups",
     "startup game",
     "investment simulator",
-    "pitch voting",
+    "investment quiz",
     "university entrepreneurship",
   ],
   openGraph: {
-    title: "Starcup — Startup Games",
+    title: "Starcup — Startup Investment Quiz",
     description:
-      "Back five historical startups with $10,000. Then swipe on student pitches. Find out what kind of investor you really are.",
+      "Back five real 2015 companies with a virtual $10,000. Lock your portfolio and wait for the room to unlock what history did.",
     type: "website",
     images: [{ url: "/starcup-logo.jpg", width: 2752, height: 1536 }],
   },

@@ -184,6 +184,66 @@
     background-size: 18px 18px;
   }
 
+  .allocation-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    border-radius: 999px;
+    background: #e9e5ff;
+    cursor: pointer;
+    touch-action: pan-y;
+    outline: none;
+  }
+
+  .allocation-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 3px solid #ffffff;
+    background: #7c3aed;
+    box-shadow: 0 5px 14px rgba(76, 29, 149, 0.35);
+    cursor: grab;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .allocation-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 3px solid #ffffff;
+    background: #7c3aed;
+    box-shadow: 0 5px 14px rgba(76, 29, 149, 0.35);
+    cursor: grab;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .allocation-slider:active::-webkit-slider-thumb {
+    transform: scale(1.08);
+    cursor: grabbing;
+  }
+
+  .allocation-slider:active::-moz-range-thumb {
+    transform: scale(1.08);
+    cursor: grabbing;
+  }
+
+  .allocation-slider:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .allocation-slider:disabled::-webkit-slider-thumb {
+    background: #94a3b8;
+    cursor: not-allowed;
+  }
+
+  .allocation-slider:disabled::-moz-range-thumb {
+    background: #94a3b8;
+    cursor: not-allowed;
+  }
+
   .hard-card {
     border: 1.5px solid var(--color-ink);
     box-shadow: var(--shadow-hard);

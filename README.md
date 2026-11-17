@@ -1,21 +1,18 @@
-# Starcup — Startup Games
+# Starcup — Startup Investment Quiz
 
-Two interactive mini-games for university startup events, built with Next.js and Tailwind CSS. The interface is fully localized in English, Lithuanian, and Russian.
+One live investment quiz for university startup events. The host creates a room and displays a QR code. Players scan it, enter a name, allocate a virtual **$10,000** across five real companies from 2015 on a single mobile screen, and unlock the 2020 result when the host reveals the secret code.
 
-1. **Startup Investment Simulator** — start with a virtual $10,000, back five real historical startups before seeing the outcomes, then watch a five-year portfolio simulation and unpack the lessons.
-2. **Founder Tinder** — founders publish startup cards, participants swipe right (invest) or left (pass), and a live results dashboard shows which pitches, niches, and funding asks the room actually rewards.
+The interface is fully localized in **English**, **Lithuanian**, and **Russian**.
 
 ## Tech stack
 
 - **Next.js 16** (App Router, TypeScript, Turbopack)
 - **React 19**
 - **Tailwind CSS v4**
+- **Supabase** (Postgres + REST, called only from server Route Handlers)
 - **Lucide React** icons
-- **Client-side i18n** with EN / LT / RU dictionaries and persisted language choice
-- **Route Handlers** for the shared pitch board
-- File-backed JSON persistence with an in-memory fallback
-
-No database, auth provider, or external API keys are required.
+- **qrcode.react** for the host join QR
+- Stateless REST endpoints — **no Supabase Realtime or WebSockets**
 
 ## Getting started
 
@@ -35,89 +32,97 @@ npm run lint    # ESLint
 npm run typecheck
 ```
 
-## The games
+## Supabase setup
 
-### Game 01 — Startup Investment Simulator
+1. Create a Supabase project.
+2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor. It creates `games` and `submissions`, enables RLS, and leaves all access to the server secret key.
+3. Add the environment variables:
 
-- $10,000 starting budget across five deals: Juicero, Pets.com, Airbnb, Slack, and Twitter.
-- Custom cheque sizes with a slider, numeric input, quick amounts, or a full pass.
-- Outcomes stay hidden until every deal is closed.
-- Animated five-year simulation with portfolio chart, yearly events, and current positions.
-- Final report with ROI, hit rate, best/worst call, per-startup breakdown, historical context, and a personalised investor profile.
-- Shareable result summary (copied to the clipboard).
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SECRET_KEY=your-server-secret-key
+```
 
-Multiples are intentionally simplified for gameplay and are not financial advice. The historical summaries are real, the five-year return paths are illustrative.
+The API also accepts `SUPABASE_URL`, `SECRET_KEY`, or `SUPABASE_SERVICE_ROLE_KEY` as fallbacks. Never expose the secret key to the browser; it is only read in `src/lib/server/supabase.ts`.
 
-### Game 02 — Founder Tinder
+The publishable key is not required because the browser never talks to Supabase directly.
 
-- Swipeable card deck with pointer drag, buttons, and keyboard arrows (`←` / `→`).
-- Founder submission form with client/server validation and a live card preview.
-- Cards store title, pitch, niche, target market, funding needed, founder name, and an icon.
-- Results dashboard: startup leaderboard, niche "heat" bars, cheque-size bias, room-wide insights, and a personal investor archetype.
-- A deterministic **demo cohort of 32 investors** (192 seeded votes) makes the dashboard useful on first load. Live votes are added on top and clearly labelled.
-- Founders cannot vote on their own cards.
+## How the game runs
 
-## Shared board persistence
+1. **Host** opens `/host` and presses **Create New Game**. The screen shows a 5-character room code, a secret unlock code, a large join URL, and a QR code pointing to `/play/[roomCode]`.
+2. **Players** scan the QR or open `/play/[roomCode]`, then enter the name that should appear on the leaderboard.
+3. The allocation screen renders all five companies at once with only a logo, name, $0–remaining slider (step $500), and allocated amount. Uninvested cash stays at 1:1.
+4. `POST /api/games/submit` validates the budget, calculates the portfolio server-side, and saves it. The response does **not** include the final balance.
+5. The player sees the locked waiting screen. When the host reveals the secret code, `POST /api/games/unlock` verifies it and returns the $10,000 starting budget, 2020 final balance, ROI, per-company breakdown, and localized outcomes.
+6. The host leaderboard shows rank, player, initial $10,000 budget, 2020 balance, and percentage return. It supports manual refresh and an optional 10-second polling toggle. No WebSockets.
 
-The pitch board is served by:
+`/invest` redirects to `/play` for compatibility with older links.
+
+For a live event, open the host screen from the same public or LAN URL that players can reach; the QR is built from the browser origin.
+
+## API
 
 | Route | Purpose |
 | --- | --- |
-| `GET /api/board` | Seed startups, submitted startups, live votes, demo votes |
-| `POST /api/startups` | Publish a pitch card |
-| `POST /api/votes` | Cast or update a vote |
-| `DELETE /api/votes` | Clear one vote or all votes for a voter |
+| `POST /api/games/create` | Create a room with a generated or custom unlock code |
+| `POST /api/games/submit` | Validate a portfolio and save it as locked |
+| `POST /api/games/unlock` | Verify the unlock code and return results |
+| `GET /api/games/[roomCode]/leaderboard` | All submissions, sorted by `final_balance` descending |
+| `GET /api/games/[roomCode]` | Public room existence and submission count |
 
-By default, submissions and votes are written to `data/pitch-board.json`. Set `PITCH_DATA_FILE` to use another writable path:
+## Dataset
 
-```bash
-PITCH_DATA_FILE=/var/data/starcup-board.json npm run start
-```
+[`src/data/startups.json`](src/data/startups.json) contains five real 2015–2020 stock outcomes:
 
-If the filesystem is read-only or the write fails, the app keeps working in **session-only memory mode** and labels the UI accordingly. Each participant also has a local fallback for offline/demo use.
+| Company | Ticker | 2015–2020 multiple |
+| --- | --- | --- |
+| Etsy | ETSY | 22.862069× |
+| Wayfair | W | 4.754896× |
+| Yelp | YELP | 1.1545× |
+| GoPro | GPRO | 0.487872× |
+| Fitbit | FIT | 0.217303× |
 
-### Running the event
+Each entry stores the annual closing prices, the exact `multiplier2015to2020`, a clean icon identifier, and localized profile and outcome copy for `en`, `lt`, and `ru`. The player bundle only receives the logo, name, and colour metadata; descriptions and outcomes stay on the server until unlock.
 
-For votes and submissions to be shared across phones:
-
-1. Run the app on one machine (or deploy to a persistent Node host).
-2. Make sure all participants can reach the same URL.
-3. Keep the server process alive for the event.
-
-Deploying to a serverless platform works, but `data/` does not persist across instances/restarts there. For a real multi-device event, use a host with a persistent disk or replace `src/lib/server/pitch-store.ts` with your database of choice.
+Multipliers are based on split-adjusted calendar-year closes and are simplified for gameplay. They are not financial advice.
 
 ## Project structure
 
 ```text
 src/
 ├── app/
-│   ├── api/                 # board, startups, votes route handlers
-│   ├── invest/              # Game 01 page
-│   ├── pitch/               # Game 02 page
-│   ├── globals.css          # Tailwind v4 theme + design system
+│   ├── api/games/           # create, submit, unlock, room + leaderboard
+│   ├── host/                # projector host screen
+│   ├── play/                # room-code landing + /play/[roomCode]
+│   ├── invest/              # legacy redirect to /play
+│   ├── globals.css          # Tailwind v4 theme + slider styles
 │   ├── layout.tsx
 │   └── page.tsx             # landing page
 ├── components/
-│   ├── invest/              # investment game stages + chart
-│   ├── pitch/               # swipe deck, submission form, dashboard
+│   ├── host/                # host dashboard, QR + leaderboard
+│   ├── play/                # join, allocation, locked, results
+│   ├── invest/              # shared startup icon
 │   ├── ui/                  # button styles, sparkline
 │   ├── brand.tsx
+│   ├── home-content.tsx
 │   ├── site-header.tsx
 │   └── site-footer.tsx
+├── data/
+│   └── startups.json        # 2015–2020 dataset + localized outcomes
 └── lib/
-    ├── invest-data.ts       # historical startup dataset
-    ├── invest-sim.ts        # portfolio engine + scoring
-    ├── pitch-analytics.ts   # vote aggregation + insights
-    ├── pitch-data.ts        # seed pitches + demo cohort
-    ├── pitch-types.ts
-    ├── pitch-validation.ts
-    ├── server/pitch-store.ts
-    └── use-pitch-board.ts   # client board state + offline fallback
+    ├── game-client.ts       # browser API wrapper
+    ├── game-types.ts        # shared API contracts
+    ├── startup-types.ts     # player-safe types and constants
+    ├── startups.ts          # server-only dataset access + calculations
+    └── server/
+        ├── api-response.ts
+        ├── game-validation.ts
+        └── supabase.ts      # server-only Supabase REST client
 ```
 
 ## Design notes
 
-- Warm editorial palette (cream, ink, grape, acid) with hard offset shadows, serif display accents, and student-friendly typography.
-- Fully responsive layouts for phones and projectors.
-- Keyboard-accessible voting, labelled controls, reduced-motion support, and visible focus states.
-- No real money, no real investment advice. Pitch votes are event feedback, not investment offers.
+- Deep indigo (`#1E1B4B`) text, violet gradients (`#6366F1` → `#7C3AED`), and frosted glass cards (`bg-white/75 backdrop-blur-md`).
+- Mobile-first player flow with large touch sliders; desktop/projector host layout with a scannable QR and wide leaderboard.
+- The player device never renders company descriptions or historical hints.
+- No real money, no sign-up, no WebSocket connection limits.

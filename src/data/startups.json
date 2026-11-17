@@ -1,0 +1,316 @@
+{
+  "startYear": 2015,
+  "endYear": 2020,
+  "startups": [
+    {
+      "id": "etsy",
+      "name": "Etsy",
+      "ticker": "ETSY",
+      "logoIcon": "store",
+      "founded": 2005,
+      "annualClose": [
+        8.7,
+        11.3,
+        17.45,
+        47.45,
+        44.45,
+        198.9
+      ],
+      "multiplier2015to2020": 22.862069,
+      "look": {
+        "from": "#FFF1E6",
+        "to": "#FFD7B8",
+        "ink": "#8A3B00",
+        "chip": "#FFE4CC"
+      },
+      "locales": {
+        "en": {
+          "sector": "Handmade marketplace",
+          "tagline": "A craft fair at internet scale.",
+          "description": "Etsy listed in 2015 with a homespun brand and a business model Wall Street was still learning to read. Sellers want soul; shareholders want growth.",
+          "pitch": "A global marketplace where independent makers sell directly to people who care where things come from.",
+          "risk": "A niche audience, soft margins, and a brand that could alienate sellers if it chased scale too hard."
+        },
+        "lt": {
+          "sector": "Rankdarbių prekyvietė",
+          "tagline": "Amatai interneto mastu.",
+          "description": "Etsy 2015 m. išėjo į biržą su jaukiu prekės ženklu ir verslo modeliu, kurį Volstritas dar mokėsi suprasti. Pardavėjai nori sielos, akcininkai – augimo.",
+          "pitch": "Pasaulinė prekyvietė, kurioje nepriklausomi kūrėjai tiesiogiai parduoda žmonėms, kuriems svarbu, iš kur daiktas.",
+          "risk": "Nišinė auditorija, plonos maržos ir prekės ženklas, galintis atstumti pardavėjus, jei per smarkiai vytųsi masto."
+        },
+        "ru": {
+          "sector": "Маркетплейс ручной работы",
+          "tagline": "Ярмарка ремёсел в масштабе интернета.",
+          "description": "Etsy вышла на биржу в 2015 году с домашним брендом и бизнес-моделью, которую Уолл-стрит ещё училась понимать. Продавцы хотят души, акционеры — роста.",
+          "pitch": "Глобальный маркетплейс, где независимые мастера продают напрямую людям, которым важно происхождение вещей.",
+          "risk": "Нишевая аудитория, тонкие маржи и бренд, который может оттолкнуть продавцов, если слишком гнаться за масштабом."
+        }
+      },
+      "outcomes": {
+        "en": {
+          "headline": "From craft fair to 22×",
+          "summary": "Etsy fell below its IPO price in 2015, then rebuilt around focused categories and a pandemic boom in handmade goods. By the end of 2020 the stock was up about 22.9×.",
+          "lesson": "A loyal niche can compound faster than a generic giant."
+        },
+        "lt": {
+          "headline": "Nuo mugės iki 22×",
+          "summary": "Etsy 2015 m. nukrito žemiau IPO kainos, paskui persitvarkė aplink aiškias kategorijas, o pandemija sukėlė rankdarbių bumą. 2020 m. pabaigoje akcija buvo apie 22,9× brangesnė.",
+          "lesson": "Ištikima niša gali augti greičiau nei bendras milžinas."
+        },
+        "ru": {
+          "headline": "От ярмарки до 22×",
+          "summary": "В 2015 году Etsy упала ниже цены IPO, затем перестроилась вокруг фокусных категорий, а пандемия вызвала бум ручной работы. К концу 2020 года акции выросли примерно в 22,9 раза.",
+          "lesson": "Лояльная ниша может расти быстрее универсального гиганта."
+        }
+      }
+    },
+    {
+      "id": "wayfair",
+      "name": "Wayfair",
+      "ticker": "W",
+      "logoIcon": "armchair",
+      "founded": 2002,
+      "annualClose": [
+        47.49,
+        39.3,
+        67.3,
+        91,
+        90.4,
+        225.81
+      ],
+      "multiplier2015to2020": 4.754896,
+      "look": {
+        "from": "#EEE9FF",
+        "to": "#D8C9FF",
+        "ink": "#4B2AC7",
+        "chip": "#E8E0FF"
+      },
+      "locales": {
+        "en": {
+          "sector": "Furniture e-commerce",
+          "tagline": "Selling sofas online at a scale that should not work.",
+          "description": "Wayfair has spent years convincing people to buy bulky furniture without touching it first. Investors tolerate thin margins because revenue keeps growing.",
+          "pitch": "One online store for everything in the home, with fast delivery and a catalogue deep enough to make showrooms nervous.",
+          "risk": "Heavy logistics, brutal delivery costs, and a model that needs constant marketing spend to keep growing."
+        },
+        "lt": {
+          "sector": "Baldų e. prekyba",
+          "tagline": "Sofų pardavimas internetu tokiu mastu, kuris neturėtų veikti.",
+          "description": "Wayfair jau metų metus įtikinėja žmones pirkti didelius baldus nelietus jų rankomis. Investuotojai toleruoja plonas maržas, nes pajamos auga.",
+          "pitch": "Viena internetinė parduotuvė viskam namuose, su greitu pristatymu ir katalogu, kuris neramina salonus.",
+          "risk": "Sunki logistika, didelės pristatymo sąnaudos ir modelis, reikalaujantis nuolatinių rinkodaros išlaidų augimui."
+        },
+        "ru": {
+          "sector": "Мебель в e-commerce",
+          "tagline": "Продажа диванов онлайн в масштабе, который не должен работать.",
+          "description": "Wayfair годами убеждает людей покупать громоздкую мебель, не трогая её руками. Инвесторы терпят тонкие маржи, потому что выручка растёт.",
+          "pitch": "Один интернет-магазин для всего для дома, с быстрой доставкой и каталогом, который нервирует шоурумы.",
+          "risk": "Тяжёлая логистика, жестокие расходы на доставку и модель, требующая постоянных затрат на маркетинг."
+        }
+      },
+      "outcomes": {
+        "en": {
+          "headline": "The pandemic growth spurt",
+          "summary": "Wayfair lost money for years, then lockdowns sent home-furnishing orders through the roof. The stock ended 2020 almost 4.8× above its 2015 close.",
+          "lesson": "Losses are tolerable when growth eventually shows a path to profit."
+        },
+        "lt": {
+          "headline": "Pandemijos augimo šuolis",
+          "summary": "Wayfair metų metus dirbo nuostolingai, o karantinas sprogino baldų užsakymus. 2020 m. pabaigoje akcija buvo beveik 4,8× aukštesnė nei 2015 m.",
+          "lesson": "Nuostoliai toleruojami, kai augimas galiausiai parodo kelią į pelną."
+        },
+        "ru": {
+          "headline": "Пандемийный рывок",
+          "summary": "Wayfair годами была убыточной, а локдауны взорвали заказы мебели. К концу 2020 года акции стоили почти в 4,8 раза дороже, чем в 2015 году.",
+          "lesson": "Убытки терпимы, когда рост в итоге показывает путь к прибыли."
+        }
+      }
+    },
+    {
+      "id": "yelp",
+      "name": "Yelp",
+      "ticker": "YELP",
+      "logoIcon": "utensils",
+      "founded": 2004,
+      "annualClose": [
+        28.22,
+        38.09,
+        41.93,
+        34.75,
+        34.55,
+        32.58
+      ],
+      "multiplier2015to2020": 1.1545,
+      "look": {
+        "from": "#FFE9E4",
+        "to": "#FFC9BC",
+        "ink": "#A93218",
+        "chip": "#FFDCD3"
+      },
+      "locales": {
+        "en": {
+          "sector": "Local discovery",
+          "tagline": "The review site everyone uses and nobody loves.",
+          "description": "Yelp owns local business reviews while social feeds start competing for attention. It has traffic, sales muscle, and a reputation problem with the businesses it covers.",
+          "pitch": "A trusted place to find local restaurants and services, powered by reviews and paid visibility for businesses.",
+          "risk": "Platform dependence, review fatigue, and competitors with deeper pockets and newer formats."
+        },
+        "lt": {
+          "sector": "Vietinė paieška",
+          "tagline": "Atsiliepimų svetainė, kurią visi naudoja, bet niekas nemėgsta.",
+          "description": "Yelp valdo vietinių verslų atsiliepimus, o socialiniai srautai jau konkuruoja dėl dėmesio. Jis turi lankytojų, pardavimų jėgos ir reputacijos problemą su verslais.",
+          "pitch": "Patikima vieta rasti vietinius restoranus ir paslaugas, paremta atsiliepimais ir mokamu matomumu verslams.",
+          "risk": "Priklausomybė nuo platformos, atsiliepimų nuovargis ir konkurentai su gilesnėmis kišenėmis bei naujesniais formatais."
+        },
+        "ru": {
+          "sector": "Локальный поиск",
+          "tagline": "Сайт отзывов, которым все пользуются, но никто не любит.",
+          "description": "Yelp владеет отзывами о местном бизнесе, пока соцленты начинают конкурировать за внимание. У него есть трафик, сила продаж и проблема репутации среди бизнесов.",
+          "pitch": "Надёжное место для поиска местных ресторанов и услуг на основе отзывов и платной видимости для бизнеса.",
+          "risk": "Зависимость от платформы, усталость от отзывов и конкуренты с более глубокими карманами и новыми форматами."
+        }
+      },
+      "outcomes": {
+        "en": {
+          "headline": "A steady, unglamorous 1.15×",
+          "summary": "Yelp never repeated its early hypergrowth, but it kept the cash coming. Five years later the stock was up about 15%, a reminder that survival is also a return.",
+          "lesson": "Not all public companies are rockets. Some just keep the lights on."
+        },
+        "lt": {
+          "headline": "Tolygus, neįspūdingas 1,15×",
+          "summary": "Yelp nebeatkartojo ankstyvojo hiperaugimo, bet pinigai tekėjo toliau. Po penkerių metų akcija buvo apie 15 % aukštesnė – priminimas, kad išgyvenimas taip pat yra grąža.",
+          "lesson": "Ne visos viešos kompanijos yra raketos. Kai kurios tiesiog palaiko šviesą."
+        },
+        "ru": {
+          "headline": "Ровные, неяркие 1,15×",
+          "summary": "Yelp так и не повторил ранний гиперрост, но продолжал генерировать деньги. Через пять лет акции были примерно на 15% выше — напоминание, что выживание тоже доходность.",
+          "lesson": "Не все публичные компании — ракеты. Некоторые просто не дают погаснуть свету."
+        }
+      }
+    },
+    {
+      "id": "gopro",
+      "name": "GoPro",
+      "ticker": "GPRO",
+      "logoIcon": "camera",
+      "founded": 2002,
+      "annualClose": [
+        18.14,
+        8.65,
+        9.35,
+        4.85,
+        4.45,
+        8.85
+      ],
+      "multiplier2015to2020": 0.487872,
+      "look": {
+        "from": "#E3F2FF",
+        "to": "#C2DEFF",
+        "ink": "#1557A8",
+        "chip": "#D3E5FF"
+      },
+      "locales": {
+        "en": {
+          "sector": "Action cameras",
+          "tagline": "A tiny camera for people who want their weekend to look like an ad.",
+          "description": "GoPro turned weekend adrenaline into a consumer hardware business. The camera is beloved; the question is whether a single hero product can keep growing.",
+          "pitch": "A tiny rugged camera for surfers, skiers, and anyone who wants their weekend to look like an ad.",
+          "risk": "Smartphones absorbing the casual market, hardware inventory risk, and the pressure to follow a hit product with another one."
+        },
+        "lt": {
+          "sector": "Veiksmo kameros",
+          "tagline": "Maža kamera žmonėms, kurie nori, kad savaitgalis atrodytų kaip reklama.",
+          "description": "GoPro pavertė savaitgalio adrenalitą vartotojų technikos verslu. Kamera mylima; klausimas, ar vienas herojaus produktas gali augti toliau.",
+          "pitch": "Maža, tvirta kamera banglentininkams, slidininkams ir visiems, kas nori, kad savaitgalis atrodytų kaip reklama.",
+          "risk": "Išmanieji telefonai gali atimti atsitiktinę rinką, techninės įrangos atsargų rizika ir spaudimas po hito pristatyti dar vieną."
+        },
+        "ru": {
+          "sector": "Экшн-камеры",
+          "tagline": "Маленькая камера для тех, кто хочет, чтобы выходные выглядели как реклама.",
+          "description": "GoPro превратила адреналин выходных в бизнес потребительской техники. Камера любима; вопрос в том, сможет ли один геройский продукт расти дальше.",
+          "pitch": "Маленькая прочная камера для сёрферов, лыжников и всех, кто хочет, чтобы выходные выглядели как реклама.",
+          "risk": "Смартфоны могут забрать casual-рынок, риск складских запасов и давление после хита выпустить следующий."
+        }
+      },
+      "outcomes": {
+        "en": {
+          "headline": "The fall from hero footage",
+          "summary": "After a blockbuster IPO in 2014, GoPro struggled with slowing sales, the Karma drone recall, and layoffs. By the end of 2020 the stock was worth about half its 2015 price.",
+          "lesson": "A beloved gadget is not a moat if the next phone can do the job."
+        },
+        "lt": {
+          "headline": "Kritimas nuo herojaus filmuotos medžiagos",
+          "summary": "Po sėkmingo 2014 m. IPO GoPro kentėjo dėl lėtėjančių pardavimų, Karma drono atšaukimo ir atleidimų. 2020 m. pabaigoje akcija buvo maždaug perpus pigesnė nei 2015 m.",
+          "lesson": "Mylimas prietaisas nėra apsauga, jei kitas telefonas gali atlikti tą patį darbą."
+        },
+        "ru": {
+          "headline": "Падение с высоты геройского видео",
+          "summary": "После громкого IPO 2014 года GoPro столкнулась с замедлением продаж, отзывом дрона Karma и увольнениями. К концу 2020 года акции стоили примерно вдвое меньше, чем в 2015 году.",
+          "lesson": "Любимый гаджет — не защита, если следующий телефон справится с той же задачей."
+        }
+      }
+    },
+    {
+      "id": "fitbit",
+      "name": "Fitbit",
+      "ticker": "FIT",
+      "logoIcon": "activity",
+      "founded": 2007,
+      "annualClose": [
+        29.59,
+        8.65,
+        6.77,
+        5.16,
+        6.66,
+        6.43
+      ],
+      "multiplier2015to2020": 0.217303,
+      "look": {
+        "from": "#DDF7E7",
+        "to": "#BFF0D2",
+        "ink": "#0B6749",
+        "chip": "#CFF5DF"
+      },
+      "locales": {
+        "en": {
+          "sector": "Wearable health",
+          "tagline": "A fitness band that makes step counts social.",
+          "description": "Fitbit put step counters on millions of wrists and went public in 2015. The category is young, the competition is real, and hardware margins are thin.",
+          "pitch": "A simple wearable that tracks steps, sleep, and heart rate, with a social layer that keeps people moving.",
+          "risk": "Hardware margins, ruthless competition, and the risk that health tracking becomes a free feature on a phone or watch."
+        },
+        "lt": {
+          "sector": "Nešiojama sveikata",
+          "tagline": "Fitneso apyrankė, kuri žingsnius paverčia socialiniais.",
+          "description": "Fitbit uždėjo žingsnių skaitiklius milijonams riešų ir 2015 m. išėjo į biržą. Kategorija jauna, konkurencija tikra, o techninės įrangos maržos plonos.",
+          "pitch": "Paprastas nešiojamas įrenginys, stebintis žingsnius, miegą ir pulsą, su socialiniu sluoksniu, skatinančiu judėti.",
+          "risk": "Techninės įrangos maržos, negailestinga konkurencija ir rizika, kad sveikatos stebėjimas taps nemokama telefono ar laikrodžio funkcija."
+        },
+        "ru": {
+          "sector": "Носимые устройства",
+          "tagline": "Фитнес-браслет, который делает шаги социальными.",
+          "description": "Fitbit надела шагомеры на миллионы запястий и вышла на биржу в 2015 году. Категория молода, конкуренция реальна, а маржа в hardware тонкая.",
+          "pitch": "Простой носимый трекер шагов, сна и пульса с социальным слоем, который заставляет двигаться.",
+          "risk": "Маржа в hardware, жёсткая конкуренция и риск, что здоровье станет бесплатной функцией телефона или часов."
+        }
+      },
+      "outcomes": {
+        "en": {
+          "headline": "Wearable pioneer, painful stock",
+          "summary": "Fitbit's 2015 IPO priced at $20 and popped; by the end of 2020 the shares were around $6.43, roughly 78% below the 2015 close. Google agreed to buy the company in 2019.",
+          "lesson": "Pioneering a category does not protect you from the giants who enter it."
+        },
+        "lt": {
+          "headline": "Pionierė su skaudžia akcija",
+          "summary": "Fitbit 2015 m. IPO kainavo 20 USD ir šoktelėjo; 2020 m. pabaigoje akcijos buvo apie 6,43 USD – maždaug 78 % žemiau 2015 m. lygio. Google sutiko pirkti kompaniją 2019 m.",
+          "lesson": "Pionieriškumas kategorijoje neapsaugo nuo milžinų, kurie į ją įžengia."
+        },
+        "ru": {
+          "headline": "Пионер с болезненной акцией",
+          "summary": "IPO Fitbit в 2015 году стоило $20 и взлетело; к концу 2020 года акции были около $6,43 — примерно на 78% ниже закрытия 2015 года. Google согласилась купить компанию в 2019-м.",
+          "lesson": "Пионерство в категории не защищает от гигантов, которые в неё входят."
+        }
+      }
+    }
+  ]
+}

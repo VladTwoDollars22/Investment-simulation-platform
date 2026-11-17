@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Wordmark } from "@/components/brand";
@@ -10,17 +10,16 @@ export function SiteFooter() {
     {
       title: dict.footer.games,
       links: [
-        { href: "/invest", label: dict.footer.gamesInvest },
-        { href: "/pitch", label: dict.footer.gamesPitch },
-        { href: "/pitch#submit", label: dict.footer.gamesSubmit },
+        { href: "/play", label: dict.footer.gamesInvest },
+        { href: "/host", label: dict.footer.gamesHost },
       ],
     },
     {
       title: dict.footer.event,
       links: [
-        { href: "/#games", label: dict.footer.eventHow },
+        { href: "/#how-it-works", label: dict.footer.eventHow },
         { href: "/#why-play", label: dict.footer.eventWhy },
-        { href: "/pitch", label: dict.footer.eventLeaderboard },
+        { href: "/host", label: dict.footer.eventLeaderboard },
       ],
     },
   ];
@@ -69,3 +68,5 @@ export function SiteFooter() {
     </footer>
   );
 }
+
+
